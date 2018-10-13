@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CE5DF815217183BC005BAAF5 /* UIAlertController+CTLHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5DF814217183BC005BAAF5 /* UIAlertController+CTLHelper.m */; };
+		CE5DF8182171929F005BAAF5 /* UIView+CTLLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5DF8172171929F005BAAF5 /* UIView+CTLLayout.m */; };
 		CE80CE91217096A6004A98D3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CE80CE90217096A6004A98D3 /* AppDelegate.m */; };
 		CE80CE94217096A6004A98D3 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE80CE93217096A6004A98D3 /* ViewController.m */; };
 		CE80CE97217096A6004A98D3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE80CE95217096A6004A98D3 /* Main.storyboard */; };
@@ -29,6 +31,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		CE5DF813217183BC005BAAF5 /* UIAlertController+CTLHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIAlertController+CTLHelper.h"; sourceTree = "<group>"; };
+		CE5DF814217183BC005BAAF5 /* UIAlertController+CTLHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIAlertController+CTLHelper.m"; sourceTree = "<group>"; };
+		CE5DF8162171929F005BAAF5 /* UIView+CTLLayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+CTLLayout.h"; sourceTree = "<group>"; };
+		CE5DF8172171929F005BAAF5 /* UIView+CTLLayout.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+CTLLayout.m"; sourceTree = "<group>"; };
 		CE80CE8C217096A6004A98D3 /* CommonToolsKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CommonToolsKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE80CE8F217096A6004A98D3 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		CE80CE90217096A6004A98D3 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -117,6 +123,10 @@
 				CE80CEB52170A047004A98D3 /* UIViewController+CTLConfiguration.m */,
 				CE80CEB72170A075004A98D3 /* UITableView+CTLConfiguration.h */,
 				CE80CEB82170A075004A98D3 /* UITableView+CTLConfiguration.m */,
+				CE5DF813217183BC005BAAF5 /* UIAlertController+CTLHelper.h */,
+				CE5DF814217183BC005BAAF5 /* UIAlertController+CTLHelper.m */,
+				CE5DF8162171929F005BAAF5 /* UIView+CTLLayout.h */,
+				CE5DF8172171929F005BAAF5 /* UIView+CTLLayout.m */,
 			);
 			path = CommonToolsLibrary;
 			sourceTree = SOURCE_ROOT;
@@ -223,8 +233,10 @@
 			files = (
 				CE80CE94217096A6004A98D3 /* ViewController.m in Sources */,
 				CE80CEB62170A047004A98D3 /* UIViewController+CTLConfiguration.m in Sources */,
+				CE5DF815217183BC005BAAF5 /* UIAlertController+CTLHelper.m in Sources */,
 				CE80CE9F217096A8004A98D3 /* main.m in Sources */,
 				CE80CE91217096A6004A98D3 /* AppDelegate.m in Sources */,
+				CE5DF8182171929F005BAAF5 /* UIView+CTLLayout.m in Sources */,
 				CE80CEB92170A075004A98D3 /* UITableView+CTLConfiguration.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -7,6 +7,7 @@
 //
 
 #import "TwoViewController.h"
+#import "CTLStoragePathManager.h"
 #import "NSTimer+CTLBlockTimer.h"
 
 @interface TwoViewController ()
@@ -27,19 +28,13 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    _countdownTimer = [NSTimer ctl_scheduledTimerWithCountdownDuration:10 interval:1 block:^(NSTimer * _Nonnull timer, NSTimeInterval currentCountdown) {
-        NSLog(@"%d.%@", (int)currentCountdown, timer);
-    }];
-    [_countdownTimer fire];
-    
     _timer = [NSTimer ctl_scheduledTimerWithTimeInterval:2 repeats:YES block:^(NSTimer * _Nonnull timer) {
-        NSLog(@"1");
+        NSLog(@"%@", [CTLStoragePathManager storageTempDirectory]);
     }];
     [_timer fire];
 }
 
 - (void)dealloc {
-    [_countdownTimer invalidate];
     [_timer invalidate];
 }
 

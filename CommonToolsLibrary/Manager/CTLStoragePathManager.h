@@ -12,6 +12,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface CTLStoragePathManager : NSObject
 
++ (NSString *)storageHomeDirectory;
++ (NSString *)storageDocumentsDirectory;
++ (NSString *)storageLibraryDirectory;
++ (NSString *)storageCacheDirectory;
++ (NSString *)storageTempDirectory;
+
 @end
 
 NS_ASSUME_NONNULL_END

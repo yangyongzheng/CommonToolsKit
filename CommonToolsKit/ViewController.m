@@ -27,7 +27,7 @@
     [self.view addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapActionInViewInvoke:)]];
     
     _timer = [NSTimer ctl_scheduledTimerWithTimeInterval:1 repeats:YES block:^(NSTimer * _Nonnull timer) {
-        NSLog(@"1.%@", timer);
+        NSLog(@"%@", NSHomeDirectory());
     }];
     [_timer fire];
 }

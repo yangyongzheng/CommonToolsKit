@@ -8,8 +8,13 @@
 
 #import "ViewController.h"
 #import "UIAlertController+CTLHelper.h"
+#import "TwoViewController.h"
+#import "NSTimer+CTLBlockTimer.h"
 
 @interface ViewController ()
+{
+    NSTimer *_timer;
+}
 @property (weak, nonatomic) IBOutlet UITextField *textField;
 
 @end
@@ -20,6 +25,11 @@
     [super viewDidLoad];
     
     [self.view addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapActionInViewInvoke:)]];
+    
+    _timer = [NSTimer ctl_scheduledTimerWithTimeInterval:1 repeats:YES block:^(NSTimer * _Nonnull timer) {
+        NSLog(@"1.%@", timer);
+    }];
+    [_timer fire];
 }
 
 - (void)tapActionInViewInvoke:(UITapGestureRecognizer *)tap {
@@ -31,7 +41,9 @@
                                                          cancelActionTitle:@"取消"
                                                           otherActionTitle:@"设置", nil];
     alert.alertActionHandler = ^(UIAlertAction * _Nonnull action) {
-        
+        if ([action.title isEqualToString:@"设置"]) {
+            [self.navigationController pushViewController:[TwoViewController twoViewController] animated:YES];
+        }
     };
     [self presentViewController:alert
                        animated:YES

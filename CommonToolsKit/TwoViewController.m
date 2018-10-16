@@ -12,7 +12,7 @@
 
 @interface TwoViewController ()
 {
-    NSTimer *_timer;
+    dispatch_source_t _timer;
     NSTimer *_countdownTimer;
 }
 @end
@@ -28,14 +28,12 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    _timer = [NSTimer ctl_scheduledTimerWithTimeInterval:2 repeats:YES block:^(NSTimer * _Nonnull timer) {
-        NSLog(@"%@", [CTLStoragePathManager storageTempDirectory]);
-    }];
-    [_timer fire];
+    NSString *filePath = [[CTLStoragePathManager storageTempDirectory] stringByAppendingString:@"test.txt"];
+    [NSFileManager.defaultManager createFileAtPath:filePath contents:nil attributes:nil];
+    [NSUserDefaults.standardUserDefaults setObject:@"test" forKey:@"com.yyz.test"];
 }
 
 - (void)dealloc {
-    [_timer invalidate];
 }
 
 @end

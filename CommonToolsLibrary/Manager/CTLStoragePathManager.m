@@ -8,6 +8,12 @@
 
 #import "CTLStoragePathManager.h"
 
+typedef NS_ENUM(NSUInteger, CTLStorageType) {
+    CTLStorageTypeDatabase,     // 数据库存储
+    CTLStorageTypeNetworkData,  // 网络数据
+    CTLStorageTypeArchive,      // 归档存储
+};
+
 @implementation CTLStoragePathManager
 
 + (NSString *)storageHomeDirectory {
@@ -29,5 +35,7 @@
 + (NSString *)storageTempDirectory {
     return NSTemporaryDirectory();
 }
+
+
 
 @end

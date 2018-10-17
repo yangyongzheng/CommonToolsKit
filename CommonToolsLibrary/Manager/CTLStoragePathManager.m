@@ -12,19 +12,19 @@
 
 @implementation CTLStoragePathManager
 
-+ (CTLStorageDirectory)storageDocumentsDirectory {
++ (NSString *)storageDocumentsDirectory {
     return NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject;
 }
 
-+ (CTLStorageDirectory)storageLibraryDirectory {
++ (NSString *)storageLibraryDirectory {
     return NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES).firstObject;
 }
 
-+ (CTLStorageDirectory)storageCacheDirectory {
++ (NSString *)storageCacheDirectory {
     return NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES).firstObject;
 }
 
-+ (CTLStorageDirectory)storageTempDirectory {
++ (NSString *)storageTempDirectory {
     return NSTemporaryDirectory();
 }
 
@@ -37,15 +37,18 @@
         case CTLStorageTypeArchives:
             stringValue = @"Archives";
             break;
-        default:
+        case CTLStorageTypeCaches:
             stringValue = @"Caches";
+            break;
+        default:
+            stringValue = @"Others";
             break;
     }
     
     return stringValue;
 }
 
-+ (NSString *)directoryWithBaseDirectory:(CTLStorageDirectory)baseDirectory relativeSubdirectory:(NSString *)relativeSubdirectory {
++ (NSString *)directoryWithBaseDirectory:(NSString *)baseDirectory relativeSubdirectory:(NSString *)relativeSubdirectory {
     NSString *directoryPath = nil;
     if (baseDirectory && [baseDirectory isKindOfClass:[NSString class]] && baseDirectory.length > 0) {
         directoryPath = baseDirectory;

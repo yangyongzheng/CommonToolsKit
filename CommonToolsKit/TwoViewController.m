@@ -27,10 +27,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
-    NSString *path = [CTLStoragePathManager directoryWithBaseDirectory:CTLStoragePathManager.storageDocumentsDirectory
-                                                  relativeSubdirectory:[CTLStoragePathManager relativeSubdirectoryWithStorageType:CTLStorageTypeDatabases]];
-    NSLog(@"%@", path);
 }
 
 - (void)dealloc {

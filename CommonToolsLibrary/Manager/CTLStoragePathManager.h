@@ -14,19 +14,23 @@ typedef NS_ENUM(NSUInteger, CTLStorageType) {
     CTLStorageTypeDatabases,    // 数据库存储
     CTLStorageTypeArchives,     // 归档存储
     CTLStorageTypeCaches,       // 网络数据缓存
+    CTLStorageTypeOthers,       // 其他
 };
 
-typedef NSString * CTLStorageDirectory;
+typedef NS_ENUM(NSUInteger, CTLStoragePathDirectory) {
+    CTLStorageLibraryDirectory,
+    CTLStorageDocumentsDirectory,
+    CTLStorageCachesDirectory,
+};
+
+FOUNDATION_EXPORT NSString *CTLStoragePathDirectoryWithType(CTLStoragePathDirectory directory, CTLStorageType storageType);
 
 @interface CTLStoragePathManager : NSObject
 
-@property (class, nonatomic, readonly) CTLStorageDirectory storageDocumentsDirectory;   // ~/Documents
-@property (class, nonatomic, readonly) CTLStorageDirectory storageLibraryDirectory;     // ~/Library
-@property (class, nonatomic, readonly) CTLStorageDirectory storageCacheDirectory;       // ~/Library/Caches
-@property (class, nonatomic, readonly) CTLStorageDirectory storageTempDirectory;        // ~/tmp/
-
-+ (NSString *)directoryWithBaseDirectory:(CTLStorageDirectory)baseDirectory relativeSubdirectory:(NSString *)relativeSubdirectory;
-+ (NSString *)relativeSubdirectoryWithStorageType:(CTLStorageType)storageType;
+@property (class, nonatomic, readonly) NSString *storageDocumentsDirectory; // ~/Documents
+@property (class, nonatomic, readonly) NSString *storageLibraryDirectory;   // ~/Library
+@property (class, nonatomic, readonly) NSString *storageCacheDirectory;     // ~/Library/Caches
+@property (class, nonatomic, readonly) NSString *storageTempDirectory;      // ~/tmp/
 
 @end
 

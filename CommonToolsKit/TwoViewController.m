@@ -28,9 +28,9 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    NSString *filePath = [[CTLStoragePathManager storageTempDirectory] stringByAppendingString:@"test.txt"];
-    [NSFileManager.defaultManager createFileAtPath:filePath contents:nil attributes:nil];
-    [NSUserDefaults.standardUserDefaults setObject:@"test" forKey:@"com.yyz.test"];
+    NSString *path = [CTLStoragePathManager directoryWithBaseDirectory:CTLStoragePathManager.storageDocumentsDirectory
+                                                  relativeSubdirectory:[CTLStoragePathManager relativeSubdirectoryWithStorageType:CTLStorageTypeDatabases]];
+    NSLog(@"%@", path);
 }
 
 - (void)dealloc {

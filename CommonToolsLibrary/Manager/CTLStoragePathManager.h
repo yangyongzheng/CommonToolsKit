@@ -18,20 +18,11 @@ typedef NS_ENUM(NSUInteger, CTLStorageType) {
 };
 
 typedef NS_ENUM(NSUInteger, CTLStoragePathDirectory) {
-    CTLStorageLibraryDirectory,
     CTLStorageDocumentsDirectory,
+    CTLStorageLibraryDirectory,
     CTLStorageCachesDirectory,
 };
 
 FOUNDATION_EXPORT NSString *CTLStoragePathDirectoryWithType(CTLStoragePathDirectory directory, CTLStorageType storageType);
-
-@interface CTLStoragePathManager : NSObject
-
-@property (class, nonatomic, readonly) NSString *storageDocumentsDirectory; // ~/Documents
-@property (class, nonatomic, readonly) NSString *storageLibraryDirectory;   // ~/Library
-@property (class, nonatomic, readonly) NSString *storageCacheDirectory;     // ~/Library/Caches
-@property (class, nonatomic, readonly) NSString *storageTempDirectory;      // ~/tmp/
-
-@end
 
 NS_ASSUME_NONNULL_END

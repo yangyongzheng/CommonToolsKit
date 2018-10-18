@@ -10,66 +10,49 @@
 
 #define CTLStorageRootDirectoryName [NSBundle.mainBundle.bundleIdentifier stringByAppendingString:@".ctl_storage_root"]
 
-@implementation CTLStoragePathManager
-
-+ (NSString *)storageDocumentsDirectory {
-    return NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject;
-}
-
-+ (NSString *)storageLibraryDirectory {
-    return NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES).firstObject;
-}
-
-+ (NSString *)storageCacheDirectory {
-    return NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES).firstObject;
-}
-
-+ (NSString *)storageTempDirectory {
-    return NSTemporaryDirectory();
-}
-
-+ (NSString *)stringWithStorageType:(CTLStorageType)storageType {
+static NSString *CTLRelativeSubdirectoryWithType(CTLStorageType storageType) {
     NSString *stringValue = nil;
     switch (storageType) {
         case CTLStorageTypeDatabases:
             stringValue = @"Databases";
             break;
+            
         case CTLStorageTypeArchives:
             stringValue = @"Archives";
             break;
+            
         case CTLStorageTypeCaches:
             stringValue = @"Caches";
             break;
-        default:
+            
+        case CTLStorageTypeOthers:
             stringValue = @"Others";
             break;
     }
     
-    return stringValue;
+    return [CTLStorageRootDirectoryName stringByAppendingPathComponent:stringValue];
 }
 
-+ (NSString *)directoryWithBaseDirectory:(NSString *)baseDirectory relativeSubdirectory:(NSString *)relativeSubdirectory {
-    NSString *directoryPath = nil;
-    if (baseDirectory && [baseDirectory isKindOfClass:[NSString class]] && baseDirectory.length > 0) {
-        directoryPath = baseDirectory;
-    } else {
-        directoryPath = CTLStoragePathManager.storageDocumentsDirectory;
-    }
-    if (relativeSubdirectory && [relativeSubdirectory isKindOfClass:[NSString class]] && relativeSubdirectory.length > 0) {
-        directoryPath = [directoryPath stringByAppendingPathComponent:relativeSubdirectory];
-    }
-    if (![NSFileManager.defaultManager fileExistsAtPath:directoryPath isDirectory:NULL]) {
-        [NSFileManager.defaultManager createDirectoryAtPath:directoryPath
-                                withIntermediateDirectories:YES
-                                                 attributes:nil
-                                                      error:nil];
+NSString *CTLStoragePathDirectoryWithType(CTLStoragePathDirectory directory, CTLStorageType storageType) {
+    NSString *baseDirPath = nil;
+    switch (directory) {
+        case CTLStorageDocumentsDirectory:
+            baseDirPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject;
+            break;
+            
+        case CTLStorageLibraryDirectory:
+            baseDirPath = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES).firstObject;
+            break;
+            
+        case CTLStorageCachesDirectory:
+            baseDirPath = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES).firstObject;
+            break;
     }
     
-    return directoryPath;
+    NSString *absoluteDirPath = [baseDirPath stringByAppendingPathComponent:CTLRelativeSubdirectoryWithType(storageType)];
+    if (absoluteDirPath.length > 0) {
+        if ([NSFileManager.defaultManager fileExistsAtPath:absoluteDirPath isDirectory:NULL]) {
+            
+        }
+    }
 }
-
-+ (NSString *)relativeSubdirectoryWithStorageType:(CTLStorageType)storageType {
-    return [CTLStorageRootDirectoryName stringByAppendingPathComponent:[self stringWithStorageType:storageType]];
-}
-
-@end

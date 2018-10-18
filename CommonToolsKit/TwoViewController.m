@@ -28,7 +28,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    NSLog(@"%@", CTLStoragePathDirectoryWithType(CTLStorageDocumentsDirectory, CTLStorageTypeArchives));
+    NSLog(@"%@", CTLStoragePathForDirectory(CTLStorageDocumentsBaseDirectory, CTLStorageArchivesSubdirectory));
+    NSLog(@"%@", CTLStoragePathForDirectory(CTLStorageTempBaseDirectory, CTLStorageArchivesSubdirectory));
 }
 
 - (void)dealloc {

@@ -28,8 +28,11 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    NSLog(@"%@", CTLStoragePathForDirectory(CTLStorageDocumentsBaseDirectory, CTLStorageArchivesSubdirectory));
-    NSLog(@"%@", CTLStoragePathForDirectory(CTLStorageTempBaseDirectory, CTLStorageArchivesSubdirectory));
+    NSString *dirPath = CTLStoragePathForDirectory(CTLStorageDocumentsBaseDirectory, CTLStorageArchivesSubdirectory);
+    NSString *filePath = CTLStoragePathForFileInDirectory(@"User.archive", dirPath);
+    [NSKeyedArchiver archiveRootObject:@"test" toFile:filePath];
+    
+    NSString *content = [NSKeyedUnarchiver unarchiveObjectWithFile:filePath];
 }
 
 - (void)dealloc {

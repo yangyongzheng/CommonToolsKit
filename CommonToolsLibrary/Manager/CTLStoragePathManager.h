@@ -18,10 +18,10 @@ typedef NS_ENUM(NSUInteger, CTLStoragePathSubdirectory) {
 };
 
 typedef NS_ENUM(NSUInteger, CTLStoragePathBaseDirectory) {
-    CTLStorageDocumentsBaseDirectory,
-    CTLStorageLibraryBaseDirectory,
-    CTLStorageCachesBaseDirectory,
-    CTLStorageTempBaseDirectory,
+    CTLStorageDocumentsBaseDirectory,   // ~/Documents
+    CTLStorageLibraryBaseDirectory,     // ~/Library
+    CTLStorageCachesBaseDirectory,      // ~/Library/Caches
+    CTLStorageTempBaseDirectory,        // ~/tmp
 };
 
 

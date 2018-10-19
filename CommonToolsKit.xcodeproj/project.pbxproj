@@ -21,6 +21,7 @@
 		CE80CE9C217096A8004A98D3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE80CE9A217096A8004A98D3 /* LaunchScreen.storyboard */; };
 		CE80CE9F217096A8004A98D3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CE80CE9E217096A8004A98D3 /* main.m */; };
 		CE80CEA9217096A8004A98D3 /* CommonToolsKitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CE80CEA8217096A8004A98D3 /* CommonToolsKitTests.m */; };
+		CEE9AE7521797CA700471FB5 /* NSString+CTLMD5.m in Sources */ = {isa = PBXBuildFile; fileRef = CEE9AE7421797CA700471FB5 /* NSString+CTLMD5.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +62,8 @@
 		CE80CEA4217096A8004A98D3 /* CommonToolsKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CommonToolsKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE80CEA8217096A8004A98D3 /* CommonToolsKitTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CommonToolsKitTests.m; sourceTree = "<group>"; };
 		CE80CEAA217096A8004A98D3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CEE9AE7321797CA700471FB5 /* NSString+CTLMD5.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+CTLMD5.h"; sourceTree = "<group>"; };
+		CEE9AE7421797CA700471FB5 /* NSString+CTLMD5.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+CTLMD5.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +106,8 @@
 				CE10D93B2171C7FF000561AE /* UIViewController+CTLConfiguration.m */,
 				CE10D9412171CA8B000561AE /* NSTimer+CTLBlockTimer.h */,
 				CE10D9422171CA8B000561AE /* NSTimer+CTLBlockTimer.m */,
+				CEE9AE7321797CA700471FB5 /* NSString+CTLMD5.h */,
+				CEE9AE7421797CA700471FB5 /* NSString+CTLMD5.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -267,6 +272,7 @@
 				CE10D9402171C7FF000561AE /* UIViewController+CTLConfiguration.m in Sources */,
 				CE80CE9F217096A8004A98D3 /* main.m in Sources */,
 				CE10D93D2171C7FF000561AE /* UIView+CTLLayout.m in Sources */,
+				CEE9AE7521797CA700471FB5 /* NSString+CTLMD5.m in Sources */,
 				CE10D93F2171C7FF000561AE /* UITableView+CTLConfiguration.m in Sources */,
 				CE56F4E32174445800DACF5C /* CTLStoragePathManager.m in Sources */,
 				CE10D9462171DDC7000561AE /* TwoViewController.m in Sources */,

@@ -7,8 +7,9 @@
 //
 
 #import "CTLStoragePathManager.h"
+#import "NSString+CTLMD5.h"
 
-#define CTLStorageRootDirectoryName [NSBundle.mainBundle.bundleIdentifier stringByAppendingString:@".CTLStorageRoot"]
+#define CTLStorageRootDirectoryName [@"com.ctl.storage.rootDirectory" ctl_MD5]
 
 static NSString *CTLRelativeSubdirectory(CTLStoragePathSubdirectory subdirectory) {
     NSString *stringValue = nil;
@@ -66,9 +67,9 @@ NSString *CTLStoragePathForDirectory(CTLStoragePathBaseDirectory baseDirectory, 
 
 NSString *CTLStoragePathForFileInDirectory(NSString *fileFullName, NSString *directoryPath) {
     NSString *filePath = [directoryPath stringByAppendingPathComponent:fileFullName];
-    NSString *directory = [filePath stringByDeletingLastPathComponent];
-    if (![NSFileManager.defaultManager fileExistsAtPath:directory isDirectory:NULL]) {
-        [NSFileManager.defaultManager createDirectoryAtPath:directory
+    NSString *dirPath = [filePath stringByDeletingLastPathComponent];
+    if (![NSFileManager.defaultManager fileExistsAtPath:dirPath isDirectory:NULL]) {
+        [NSFileManager.defaultManager createDirectoryAtPath:dirPath
                                 withIntermediateDirectories:YES
                                                  attributes:nil
                                                       error:nil];

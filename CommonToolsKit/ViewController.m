@@ -10,11 +10,9 @@
 #import "UIAlertController+CTLHelper.h"
 #import "TwoViewController.h"
 #import "NSTimer+CTLBlockTimer.h"
+#import "NSString+CTLMD5.h"
 
 @interface ViewController ()
-{
-    NSTimer *_timer;
-}
 @property (weak, nonatomic) IBOutlet UITextField *textField;
 
 @end
@@ -25,11 +23,6 @@
     [super viewDidLoad];
     
     [self.view addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapActionInViewInvoke:)]];
-    
-    _timer = [NSTimer ctl_scheduledTimerWithTimeInterval:1 repeats:YES block:^(NSTimer * _Nonnull timer) {
-        NSLog(@"%@", NSHomeDirectory());
-    }];
-    [_timer fire];
 }
 
 - (void)tapActionInViewInvoke:(UITapGestureRecognizer *)tap {
@@ -43,6 +36,9 @@
     alert.alertActionHandler = ^(UIAlertAction * _Nonnull action) {
         if ([action.title isEqualToString:@"设置"]) {
             [self.navigationController pushViewController:[TwoViewController twoViewController] animated:YES];
+        } else {
+            NSLog(@"%@", self.textField.text.ctl_MD5);
+            NSLog(@"%@", self.textField.text.ctl_MD5AddSalt);
         }
     };
     [self presentViewController:alert

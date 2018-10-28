@@ -9,11 +9,11 @@
 #import "NSString+CTLMD5.h"
 #import <CommonCrypto/CommonDigest.h>
 
-static NSString * const CTLMD5Salt = @"BE4D$3D9F-EF%15-47E*4-98/69-6962(3CBE$DA6C 7C3@B%AC8-5*26C-4D.92-BB|F3-479～A6%6438E3B C1&D54B5B-1B^CE-41=D1-81+F3-D6%@449D982297";
+static NSString * const CTLMD5Salt = @"&olVEkL7A736d,`D2I&/xd+2XVnwg:>_6^tLTH90+2ks<7p<,Qf5%W:(d2(2adVUjIrjL-u3DuZ&r)@R9+S'_'y1sS)lN|EuhQBDd?o=PXhc6^a-EAXJhhiotR/5(d4>?tWCCf(P:'F0DTXIPNspj*dkHe)c``/B5+`:c_l>#)XH!0*e=2Y!DuK%ikZCmOi9FxUcU~UZ;<`S~gN|Z>$(?=kWItN_D5&4~%Ik7k.kL'!<ceaqS!xo:=>|V!_DeM>9";
 
 @implementation NSString (CTLMD5)
 
-@dynamic ctl_MD5;
+@dynamic ctl_MD5, ctl_MD5AddSalt;
 
 - (NSString *)ctl_MD5 {
     const char *cStr = self.UTF8String;
@@ -28,8 +28,18 @@ static NSString * const CTLMD5Salt = @"BE4D$3D9F-EF%15-47E*4-98/69-6962(3CBE$DA6
     return [output copy];
 }
 
-- (NSString *)ctl_addSalt {
-    return [NSString stringWithFormat:@"%@-%@-%@", CTLMD5Salt, self, CTLMD5Salt];
+- (NSString *)ctl_MD5AddSalt {
+    NSString *md5 = self.ctl_MD5;
+    NSMutableString *result = [NSMutableString string];
+    
+    int j = 0;
+    for (int i = 0; i < CTLMD5Salt.length; i+=8) {// 盐值256位
+        [result appendString:[CTLMD5Salt substringWithRange:NSMakeRange(i, 8)]];
+        [result appendString:[md5 substringWithRange:NSMakeRange(j, 1)]];
+        j++;
+    }
+    
+    return result.ctl_MD5;
 }
 
 @end

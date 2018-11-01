@@ -22,7 +22,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    UIApplication.sharedApplication.statusBarHidden = YES;
     [self.view addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapActionInViewInvoke:)]];
+    self.view.backgroundColor = CTLColorWithHEX(0x66BB47);
 }
 
 - (void)tapActionInViewInvoke:(UITapGestureRecognizer *)tap {
@@ -37,6 +39,7 @@
         if ([action.title isEqualToString:@"设置"]) {
             [self.navigationController pushViewController:[TwoViewController twoViewController] animated:YES];
         } else {
+            NSLog(@"%f-%f", CTLSafeAreaManager.defaultManager.safeAreaTopMargin, CTLSafeAreaManager.defaultManager.safeAreaBottomMargin);
             NSLog(@"%@", self.textField.text.ctl_MD5);
             NSLog(@"%@", self.textField.text.ctl_MD5AddSalt);
         }

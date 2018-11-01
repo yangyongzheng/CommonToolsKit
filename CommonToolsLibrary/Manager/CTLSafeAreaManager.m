@@ -9,6 +9,7 @@
 #import "CTLSafeAreaManager.h"
 
 @interface CTLSafeAreaManager ()
+@property (nonatomic, readwrite) BOOL hasBangs; // 是否有刘海
 @property (nonatomic, readwrite) UIEdgeInsets safeAreaInsets;
 @end
 
@@ -19,25 +20,31 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         manager = [[CTLSafeAreaManager alloc] init];
+        [manager loadDefaultConfiguration];
     });
     
     return manager;
 }
 
-- (void)startConfigurationWithKeyWindow:(UIWindow *)keyWindow {
+- (void)loadDefaultConfiguration {
+    UIEdgeInsets safeAreaInsets = UIEdgeInsetsZero;
     if (@available(iOS 11.0, *)) {
-        self.safeAreaInsets = keyWindow.safeAreaInsets;
-    } else {
-        self.safeAreaInsets = UIEdgeInsetsMake(20, 0, 0, 0);
+        UIWindow *tmpWindow = UIApplication.sharedApplication.keyWindow;
+        if (!tmpWindow) {
+            tmpWindow = UIApplication.sharedApplication.windows.firstObject;
+        }
+        safeAreaInsets = tmpWindow.safeAreaInsets;
     }
-}
-
-- (CGFloat)navigationBarHeight {
-    return 44.0f;
+    self.hasBangs = safeAreaInsets.bottom > 20;
+    self.safeAreaInsets = safeAreaInsets;
 }
 
 - (CGFloat)statusBarHeight {
     return UIApplication.sharedApplication.statusBarFrame.size.height;
+}
+
+- (CGFloat)navigationBarHeight {
+    return 44.0f;
 }
 
 - (CGFloat)tabBarHeight {

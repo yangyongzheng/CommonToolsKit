@@ -15,6 +15,7 @@
 		CE10D9462171DDC7000561AE /* TwoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE10D9452171DDC7000561AE /* TwoViewController.m */; };
 		CE56F4E32174445800DACF5C /* CTLStoragePathManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CE56F4E22174445800DACF5C /* CTLStoragePathManager.m */; };
 		CE5DE468218ACF4E00862E47 /* CTLAppStatusMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5DE467218ACF4E00862E47 /* CTLAppStatusMonitor.m */; };
+		CE5DE471218AFEA800862E47 /* CTLSafeAreaManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5DE46F218AFEA800862E47 /* CTLSafeAreaManager.m */; };
 		CE80CE91217096A6004A98D3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CE80CE90217096A6004A98D3 /* AppDelegate.m */; };
 		CE80CE94217096A6004A98D3 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE80CE93217096A6004A98D3 /* ViewController.m */; };
 		CE80CE97217096A6004A98D3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE80CE95217096A6004A98D3 /* Main.storyboard */; };
@@ -54,6 +55,8 @@
 		CE5DE467218ACF4E00862E47 /* CTLAppStatusMonitor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CTLAppStatusMonitor.m; sourceTree = "<group>"; };
 		CE5DE46A218AE02300862E47 /* CTLCommonFunction.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CTLCommonFunction.h; sourceTree = "<group>"; };
 		CE5DE46B218AE09000862E47 /* CTLCommonMacros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CTLCommonMacros.h; sourceTree = "<group>"; };
+		CE5DE46F218AFEA800862E47 /* CTLSafeAreaManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTLSafeAreaManager.m; sourceTree = "<group>"; };
+		CE5DE470218AFEA800862E47 /* CTLSafeAreaManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTLSafeAreaManager.h; sourceTree = "<group>"; };
 		CE80CE8C217096A6004A98D3 /* CommonToolsKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CommonToolsKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE80CE8F217096A6004A98D3 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		CE80CE90217096A6004A98D3 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -125,6 +128,8 @@
 				CE56F4E22174445800DACF5C /* CTLStoragePathManager.m */,
 				CE5DE466218ACF4E00862E47 /* CTLAppStatusMonitor.h */,
 				CE5DE467218ACF4E00862E47 /* CTLAppStatusMonitor.m */,
+				CE5DE470218AFEA800862E47 /* CTLSafeAreaManager.h */,
+				CE5DE46F218AFEA800862E47 /* CTLSafeAreaManager.m */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -289,6 +294,7 @@
 				CE10D9402171C7FF000561AE /* UIViewController+CTLConfiguration.m in Sources */,
 				CE80CE9F217096A8004A98D3 /* main.m in Sources */,
 				CE10D93D2171C7FF000561AE /* UIView+CTLLayout.m in Sources */,
+				CE5DE471218AFEA800862E47 /* CTLSafeAreaManager.m in Sources */,
 				CEE9AE7521797CA700471FB5 /* NSString+CTLMD5.m in Sources */,
 				CE10D93F2171C7FF000561AE /* UITableView+CTLConfiguration.m in Sources */,
 				CE56F4E32174445800DACF5C /* CTLStoragePathManager.m in Sources */,

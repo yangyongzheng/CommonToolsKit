@@ -138,8 +138,8 @@
 		CE5DE469218AD3C200862E47 /* Header */ = {
 			isa = PBXGroup;
 			children = (
-				CE5DE46B218AE09000862E47 /* CTLCommonMacros.h */,
-				CE5DE46A218AE02300862E47 /* CTLCommonFunction.h */,
+				CE8DC8DA218BE4B400BE0B71 /* CommonFunction */,
+				CE8DC8D9218BE48600BE0B71 /* CommonMacros */,
 			);
 			path = Header;
 			sourceTree = "<group>";
@@ -189,6 +189,22 @@
 				CE80CEAA217096A8004A98D3 /* Info.plist */,
 			);
 			path = CommonToolsKitTests;
+			sourceTree = "<group>";
+		};
+		CE8DC8D9218BE48600BE0B71 /* CommonMacros */ = {
+			isa = PBXGroup;
+			children = (
+				CE5DE46B218AE09000862E47 /* CTLCommonMacros.h */,
+			);
+			path = CommonMacros;
+			sourceTree = "<group>";
+		};
+		CE8DC8DA218BE4B400BE0B71 /* CommonFunction */ = {
+			isa = PBXGroup;
+			children = (
+				CE5DE46A218AE02300862E47 /* CTLCommonFunction.h */,
+			);
+			path = CommonFunction;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

@@ -11,20 +11,22 @@
 
 #import <UIKit/UIKit.h>
 
-#define CTLKIT_EXTERN UIKIT_EXTERN
-#define CTLKIT_STATIC_INLINE UIKIT_STATIC_INLINE
+#define CTL_EXTERN          UIKIT_EXTERN
+#define CTL_STATIC_INLINE   UIKIT_STATIC_INLINE
+#define CTL_AppDelegate
 
 // 单例宏
 #define CTLSharedAppDelegate ((AppDelegate *)UIApplication.sharedApplication.delegate)
 #define CTLSharedUserDefaults NSUserDefaults.standardUserDefaults
 #define CTLSharedFileManager NSFileManager.defaultManager
+#define CTLSharedNotificationCenter NSNotificationCenter.defaultCenter
 
 // 屏幕相关高度
-#define CTLScreenWidth UIScreen.mainScreen.bounds.size.width
-#define CTLScreenHeight UIScreen.mainScreen.bounds.size.height
-#define CTLStatusBarHeight CTLSafeAreaManager.defaultManager.statusBarHeight
-#define CTLSafeAreaTopMargin CTLSafeAreaManager.defaultManager.safeAreaTopMargin
-#define CTLSafeAreaBottomMargin CTLSafeAreaManager.defaultManager.safeAreaBottomMargin
+#define CTL_SCREEN_WIDTH            UIScreen.mainScreen.bounds.size.width
+#define CTL_SCREEN_Height           UIScreen.mainScreen.bounds.size.height
+#define CTL_STATUS_BAR_HEIGHT       CTLSafeAreaManager.defaultManager.statusBarHeight
+#define CTL_SAFE_AREA_MARGIN_TOP    CTLSafeAreaManager.defaultManager.safeAreaTopMargin
+#define CTL_SAFE_AREA_MARGIN_BOTTOM CTLSafeAreaManager.defaultManager.safeAreaBottomMargin
 #define CTLAdditionalSafeAreaBottomMargin CTLSafeAreaManager.defaultManager.additionalSafeAreaBottomMargin
 
 // App信息

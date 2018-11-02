@@ -24,7 +24,7 @@
     
     UIApplication.sharedApplication.statusBarHidden = YES;
     [self.view addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapActionInViewInvoke:)]];
-    self.view.backgroundColor = CTLColorWithHEX(0x66BB47);
+    self.view.backgroundColor = CTLColorWithHEX(0x66BB47);UIApplication
 }
 
 - (void)tapActionInViewInvoke:(UITapGestureRecognizer *)tap {

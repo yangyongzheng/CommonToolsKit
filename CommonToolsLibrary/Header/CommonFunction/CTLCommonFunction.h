@@ -119,4 +119,45 @@ CTL_STATIC_INLINE void CTLSafeAsyncMainQueueHandler(void(^handler)(void)) {
     }
 }
 
+
+#pragma mark - 从Storyboard实例化UIViewController
+CTL_STATIC_INLINE UIViewController *CTLLoadControllerInMainStoryboard(NSString *identifier) {
+    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:NSBundle.mainBundle];
+    return [sb instantiateViewControllerWithIdentifier:identifier];
+}
+
+CTL_STATIC_INLINE UIViewController *CTLLoadControllerInStoryboard(NSString *storyboardName, NSString *identifier) {
+    UIStoryboard *sb = [UIStoryboard storyboardWithName:storyboardName bundle:NSBundle.mainBundle];
+    return [sb instantiateViewControllerWithIdentifier:identifier];
+}
+
+
+#pragma mark - 从Xib实例化UIView
+CTL_STATIC_INLINE UIView *CTLLoadViewInNib(NSString *nibName) {
+    if (nibName && [nibName isKindOfClass:[NSString class]] && nibName.length > 0) {
+        NSArray *viewArray = [[NSBundle mainBundle] loadNibNamed:nibName owner:nil options:nil];
+        for (UIView *view in viewArray) {
+            if (view && [view isKindOfClass:[UIView class]]) {
+                return view;
+            }
+        }
+    }
+    
+    return nil;
+}
+
+CTL_STATIC_INLINE UIView *CTLLoadViewInNibAtIndex(NSString *nibName, NSInteger index) {
+    if (nibName && [nibName isKindOfClass:[NSString class]] && nibName.length > 0) {
+        NSArray *viewArray = [[NSBundle mainBundle] loadNibNamed:nibName owner:nil options:nil];
+        if (index < viewArray.count) {
+            UIView *obj = [viewArray objectAtIndex:index];
+            if ([obj isKindOfClass:[UIView class]]) {
+                return obj;
+            }
+        }
+    }
+    
+    return nil;
+}
+
 #endif /* CTLCommonFunction_h */

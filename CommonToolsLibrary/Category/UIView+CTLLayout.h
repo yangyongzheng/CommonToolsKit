@@ -12,9 +12,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UIView (CTLLayout)
 
-@property (nonatomic, assign) IBInspectable CGFloat cornerRadius;
-@property (nonatomic, assign) IBInspectable CGFloat borderWidth;
-@property (nonatomic, strong) IBInspectable UIColor *borderColor;
+@property (nonatomic, assign) IBInspectable CGFloat ctl_cornerRadius;
+@property (nonatomic, assign) IBInspectable CGFloat ctl_borderWidth;
+@property (nonatomic, strong) IBInspectable UIColor *ctl_borderColor;
 
 /** frame */
 @property (nonatomic) CGFloat ctl_minX;
@@ -31,7 +31,7 @@ NS_ASSUME_NONNULL_BEGIN
 /** add corners
  注意UIView的frame必须为最终布局后frame.
  */
-- (void)setCornerRedius:(CGFloat)cornerRedius withCorners:(UIRectCorner)corners;
+- (void)ctl_setCornerRedius:(CGFloat)cornerRedius withCorners:(UIRectCorner)corners;
 
 @end
 

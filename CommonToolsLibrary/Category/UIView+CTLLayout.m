@@ -10,32 +10,30 @@
 
 @implementation UIView (CTLLayout)
 
-@dynamic cornerRadius, borderWidth, borderColor;
-
-- (void)setCornerRadius:(CGFloat)cornerRadius {
-    if (cornerRadius < 0) {cornerRadius = 0;}
-    self.layer.cornerRadius = cornerRadius;
-    self.layer.masksToBounds = cornerRadius>0 ? YES : NO;
+- (void)setCtl_cornerRadius:(CGFloat)ctl_cornerRadius {
+    if (ctl_cornerRadius < 0) {ctl_cornerRadius = 0;}
+    self.layer.cornerRadius = ctl_cornerRadius;
+    self.layer.masksToBounds = ctl_cornerRadius>0 ? YES : NO;
 }
 
-- (CGFloat)cornerRadius {
+- (CGFloat)ctl_cornerRadius {
     return self.layer.cornerRadius;
 }
 
-- (void)setBorderWidth:(CGFloat)borderWidth {
-    if (borderWidth < 0) {borderWidth = 0;}
-    self.layer.borderWidth = borderWidth;
+- (void)setCtl_borderWidth:(CGFloat)ctl_borderWidth {
+    if (ctl_borderWidth < 0) {ctl_borderWidth = 0;}
+    self.layer.borderWidth = ctl_borderWidth;
 }
 
-- (CGFloat)borderWidth {
+- (CGFloat)ctl_borderWidth {
     return self.layer.borderWidth;
 }
 
-- (void)setBorderColor:(UIColor *)borderColor {
-    self.layer.borderColor = borderColor.CGColor;
+- (void)setCtl_borderColor:(UIColor *)ctl_borderColor {
+    self.layer.borderColor = ctl_borderColor.CGColor;
 }
 
-- (UIColor *)borderColor {
+- (UIColor *)ctl_borderColor {
     return [UIColor colorWithCGColor:self.layer.borderColor];
 }
 
@@ -137,7 +135,7 @@
 }
 
 #pragma mark - add corner
-- (void)setCornerRedius:(CGFloat)cornerRedius withCorners:(UIRectCorner)corners {
+- (void)ctl_setCornerRedius:(CGFloat)cornerRedius withCorners:(UIRectCorner)corners {
     if (cornerRedius > 0) {
         UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:self.bounds
                                                        byRoundingCorners:corners

@@ -10,15 +10,15 @@
 
 @implementation UITableView (CTLConfiguration)
 
-- (void)registerNibWithNibName:(NSString *)nibName forCellReuseIdentifier:(NSString *)identifier {
+- (void)ctl_registerNibWithNibName:(NSString *)nibName forCellReuseIdentifier:(NSString *)identifier {
     [self registerNib:[UINib nibWithNibName:nibName bundle:NSBundle.mainBundle] forCellReuseIdentifier:identifier];
 }
 
-- (void)registerNibWithNibName:(NSString *)nibName forHeaderFooterViewReuseIdentifier:(NSString *)identifier {
+- (void)ctl_registerNibWithNibName:(NSString *)nibName forHeaderFooterViewReuseIdentifier:(NSString *)identifier {
     [self registerNib:[UINib nibWithNibName:nibName bundle:NSBundle.mainBundle] forHeaderFooterViewReuseIdentifier:identifier];
 }
 
-- (void)resetDefaultConfiguration {
+- (void)ctl_resetDefaultConfiguration {
     self.rowHeight = 0;
     self.estimatedRowHeight = 0;
     self.sectionHeaderHeight = 0;

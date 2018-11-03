@@ -7,10 +7,7 @@
 //
 
 #import "ViewController.h"
-#import "UIAlertController+CTLHelper.h"
 #import "TwoViewController.h"
-#import "NSTimer+CTLBlockTimer.h"
-#import "NSString+CTLMD5.h"
 
 @interface ViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *textField;

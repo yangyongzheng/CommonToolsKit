@@ -12,10 +12,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UITableView (CTLConfiguration)
 
-- (void)registerNibWithNibName:(NSString *)nibName forCellReuseIdentifier:(NSString *)identifier;
-- (void)registerNibWithNibName:(NSString *)nibName forHeaderFooterViewReuseIdentifier:(NSString *)identifier;
+- (void)ctl_registerNibWithNibName:(NSString *)nibName forCellReuseIdentifier:(NSString *)identifier;
+- (void)ctl_registerNibWithNibName:(NSString *)nibName forHeaderFooterViewReuseIdentifier:(NSString *)identifier;
 
-- (void)resetDefaultConfiguration;
+- (void)ctl_resetDefaultConfiguration;
 
 @end
 

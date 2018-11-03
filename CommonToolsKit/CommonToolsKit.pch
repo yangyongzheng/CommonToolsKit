@@ -11,6 +11,6 @@
 
 #import "CTLCommonMacros.h"
 #import "CTLCommonFunction.h"
-#import "CTLSafeAreaManager.h"
+#import "CommonToolsLibraryHeader.h"
 
 #endif /* CommonToolsKit_pch */

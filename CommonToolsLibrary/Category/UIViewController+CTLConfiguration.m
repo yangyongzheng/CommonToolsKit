@@ -9,66 +9,66 @@
 #import "UIViewController+CTLConfiguration.h"
 #import <objc/runtime.h>
 
-static const void * CTLPageNumberAssociationKey         = (void *)&CTLPageNumberAssociationKey;
-static const void * CTLPageSizeAssociationKey           = (void *)&CTLPageSizeAssociationKey;
-static const void * CTLIsRequestingAssociationKey       = (void *)&CTLIsRequestingAssociationKey;
-static const void * CTLIsRequestSuccessAssociationKey   = (void *)&CTLIsRequestSuccessAssociationKey;
+static const void * CTLPageNumberAssociationKey         =   (void *)&CTLPageNumberAssociationKey;
+static const void * CTLPageSizeAssociationKey           =   (void *)&CTLPageSizeAssociationKey;
+static const void * CTLIsRequestingAssociationKey       =   (void *)&CTLIsRequestingAssociationKey;
+static const void * CTLIsRequestSuccessAssociationKey   =   (void *)&CTLIsRequestSuccessAssociationKey;
 
 @implementation UIViewController (CTLConfiguration)
 
-@dynamic pageNumber, pageSize, isRequesting, isRequestSuccess;
+@dynamic ctl_pageNumber, ctl_pageSize, ctl_isRequesting, ctl_isRequestSuccess;
 
-- (NSInteger)pageNumber {
+- (NSInteger)ctl_pageNumber {
     NSInteger numner = [objc_getAssociatedObject(self, CTLPageNumberAssociationKey) integerValue];
     if (numner < 1) {
         numner = 1;
-        [self setPageNumber:numner];
+        [self setCtl_pageNumber:numner];
     }
     return numner;
 }
 
-- (void)setPageNumber:(NSInteger)pageNumber {
+- (void)setCtl_pageNumber:(NSInteger)ctl_pageNumber {
     objc_setAssociatedObject(self,
                              CTLPageNumberAssociationKey,
-                             [NSNumber numberWithInteger:pageNumber],
+                             [NSNumber numberWithInteger:ctl_pageNumber],
                              OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
-- (NSInteger)pageSize {
+- (NSInteger)ctl_pageSize {
     NSInteger size = [objc_getAssociatedObject(self, CTLPageSizeAssociationKey) integerValue];
     if (size < 10) {
         size = 10;
-        [self setPageSize:size];
+        [self setCtl_pageSize:size];
     }
     return size;
 }
 
-- (void)setPageSize:(NSInteger)pageSize {
+- (void)setCtl_pageSize:(NSInteger)ctl_pageSize {
     objc_setAssociatedObject(self,
                              CTLPageSizeAssociationKey,
-                             [NSNumber numberWithInteger:pageSize],
+                             [NSNumber numberWithInteger:ctl_pageSize],
                              OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
-- (BOOL)isRequesting {
+- (BOOL)ctl_isRequesting {
     return [objc_getAssociatedObject(self, CTLIsRequestingAssociationKey) boolValue];
 }
 
-- (void)setIsRequesting:(BOOL)isRequesting {
+- (void)setCtl_isRequesting:(BOOL)ctl_isRequesting {
     objc_setAssociatedObject(self,
                              CTLIsRequestingAssociationKey,
-                             [NSNumber numberWithBool:isRequesting],
+                             [NSNumber numberWithBool:ctl_isRequesting],
                              OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
-- (BOOL)isRequestSuccess {
+- (BOOL)ctl_isRequestSuccess {
     return [objc_getAssociatedObject(self, CTLIsRequestSuccessAssociationKey) boolValue];
 }
 
-- (void)setIsRequestSuccess:(BOOL)isRequestSuccess {
+- (void)setCtl_isRequestSuccess:(BOOL)ctl_isRequestSuccess {
     objc_setAssociatedObject(self,
                              CTLIsRequestSuccessAssociationKey,
-                             [NSNumber numberWithBool:isRequestSuccess],
+                             [NSNumber numberWithBool:ctl_isRequestSuccess],
                              OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 

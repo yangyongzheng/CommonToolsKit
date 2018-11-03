@@ -12,10 +12,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UIViewController (CTLConfiguration)
 
-@property (nonatomic) NSInteger pageNumber;
-@property (nonatomic) NSInteger pageSize;
-@property (nonatomic) BOOL isRequesting;
-@property (nonatomic) BOOL isRequestSuccess;
+@property (nonatomic) NSInteger ctl_pageNumber;
+@property (nonatomic) NSInteger ctl_pageSize;
+@property (nonatomic) BOOL ctl_isRequesting;
+@property (nonatomic) BOOL ctl_isRequestSuccess;
 
 @end
 

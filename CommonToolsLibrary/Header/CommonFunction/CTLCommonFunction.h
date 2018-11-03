@@ -22,7 +22,7 @@
  @param v2 版本号
  @return 比较结果
  */
-CTL_STATIC_INLINE NSComparisonResult CFLCompareVersion(NSString *v1, NSString *v2) {
+CTL_STATIC_INLINE NSComparisonResult CTLCompareVersion(NSString *v1, NSString *v2) {
     // 以小数点结尾的补'0'再比较
     if ([v1 hasSuffix:@"."]) {
         v1 = [v1 stringByAppendingString:@"0"];
@@ -33,72 +33,72 @@ CTL_STATIC_INLINE NSComparisonResult CFLCompareVersion(NSString *v1, NSString *v
     return [v1 compare:v2 options:NSNumericSearch];
 }
 
-CTL_STATIC_INLINE BOOL CFLSystemVersionEqualTo(NSString *version) {
-    return CFLCompareVersion(UIDevice.currentDevice.systemVersion, version) == NSOrderedSame;
+CTL_STATIC_INLINE BOOL CTLSystemVersionEqualTo(NSString *version) {
+    return CTLCompareVersion(UIDevice.currentDevice.systemVersion, version) == NSOrderedSame;
 }
 
-CTL_STATIC_INLINE BOOL CFLSystemVersionGreaterThan(NSString *version) {
-    return CFLCompareVersion(UIDevice.currentDevice.systemVersion, version) == NSOrderedDescending;
+CTL_STATIC_INLINE BOOL CTLSystemVersionGreaterThan(NSString *version) {
+    return CTLCompareVersion(UIDevice.currentDevice.systemVersion, version) == NSOrderedDescending;
 }
 
-CTL_STATIC_INLINE BOOL CFLSystemVersionGreaterThanOrEqualTo(NSString *version) {
-    return CFLCompareVersion(UIDevice.currentDevice.systemVersion, version) != NSOrderedAscending;
+CTL_STATIC_INLINE BOOL CTLSystemVersionGreaterThanOrEqualTo(NSString *version) {
+    return CTLCompareVersion(UIDevice.currentDevice.systemVersion, version) != NSOrderedAscending;
 }
 
-CTL_STATIC_INLINE BOOL CFLSystemVersionLessThan(NSString *version) {
-    return CFLCompareVersion(UIDevice.currentDevice.systemVersion, version) == NSOrderedAscending;
+CTL_STATIC_INLINE BOOL CTLSystemVersionLessThan(NSString *version) {
+    return CTLCompareVersion(UIDevice.currentDevice.systemVersion, version) == NSOrderedAscending;
 }
 
-CTL_STATIC_INLINE BOOL CFLSystemVersionLessThanOrEqualTo(NSString *version) {
-    return CFLCompareVersion(UIDevice.currentDevice.systemVersion, version) != NSOrderedDescending;
+CTL_STATIC_INLINE BOOL CTLSystemVersionLessThanOrEqualTo(NSString *version) {
+    return CTLCompareVersion(UIDevice.currentDevice.systemVersion, version) != NSOrderedDescending;
 }
 
 
 #pragma mark - 基本数据类型判空函数
-CTL_STATIC_INLINE BOOL CFLAssertStringNotEmpty(id str) {
+CTL_STATIC_INLINE BOOL CTLAssertStringNotEmpty(id str) {
     return str && [str isKindOfClass:[NSString class]] && ((NSString *)str).length > 0;
 }
 
-CTL_STATIC_INLINE BOOL CFLAssertStringIsEmpty(id str) {
-    return !CFLAssertStringNotEmpty(str);
+CTL_STATIC_INLINE BOOL CTLAssertStringIsEmpty(id str) {
+    return !CTLAssertStringNotEmpty(str);
 }
 
-CTL_STATIC_INLINE BOOL CFLAssertArrayNotEmpty(id array) {
+CTL_STATIC_INLINE BOOL CTLAssertArrayNotEmpty(id array) {
     return array && [array isKindOfClass:[NSArray class]] && ((NSArray *)array).count > 0;
 }
 
-CTL_STATIC_INLINE BOOL CFLAssertArrayIsEmpty(id array) {
-    return !CFLAssertArrayNotEmpty(array);
+CTL_STATIC_INLINE BOOL CTLAssertArrayIsEmpty(id array) {
+    return !CTLAssertArrayNotEmpty(array);
 }
 
-CTL_STATIC_INLINE BOOL CFLAssertMutableArrayNotEmpty(id mutableArray) {
+CTL_STATIC_INLINE BOOL CTLAssertMutableArrayNotEmpty(id mutableArray) {
     return mutableArray && [mutableArray isKindOfClass:[NSMutableArray class]] && ((NSMutableArray *)mutableArray).count > 0;
 }
 
-CTL_STATIC_INLINE BOOL CFLAssertMutableArrayIsEmpty(id mutableArray) {
-    return !CFLAssertMutableArrayNotEmpty(mutableArray);
+CTL_STATIC_INLINE BOOL CTLAssertMutableArrayIsEmpty(id mutableArray) {
+    return !CTLAssertMutableArrayNotEmpty(mutableArray);
 }
 
-CTL_STATIC_INLINE BOOL CFLAssertDictionaryNotEmpty(id dictionary) {
+CTL_STATIC_INLINE BOOL CTLAssertDictionaryNotEmpty(id dictionary) {
     return dictionary && [dictionary isKindOfClass:[NSDictionary class]] && ((NSDictionary *)dictionary).count > 0;
 }
 
-CTL_STATIC_INLINE BOOL CFLAssertDictionaryIsEmpty(id dictionary) {
-    return !CFLAssertDictionaryNotEmpty(dictionary);
+CTL_STATIC_INLINE BOOL CTLAssertDictionaryIsEmpty(id dictionary) {
+    return !CTLAssertDictionaryNotEmpty(dictionary);
 }
 
-CTL_STATIC_INLINE BOOL CFLAssertMutableDictionaryNotEmpty(id mutableDictionary) {
+CTL_STATIC_INLINE BOOL CTLAssertMutableDictionaryNotEmpty(id mutableDictionary) {
     return mutableDictionary && [mutableDictionary isKindOfClass:[NSMutableDictionary class]] && ((NSMutableDictionary *)mutableDictionary).count > 0;
 }
 
-CTL_STATIC_INLINE BOOL CFLAssertMutableDictionaryIsEmpty(id mutableDictionary) {
-    return !CFLAssertMutableDictionaryNotEmpty(mutableDictionary);
+CTL_STATIC_INLINE BOOL CTLAssertMutableDictionaryIsEmpty(id mutableDictionary) {
+    return !CTLAssertMutableDictionaryNotEmpty(mutableDictionary);
 }
 
 
 #pragma mark - 安全主线程回调
-// 1.同步回调主线程
-CTL_STATIC_INLINE void CFLSafeSyncMainQueueHandler(void(^handler)(void)) {
+// 1.当前非主线程时 同步回调主线程
+CTL_STATIC_INLINE void CTLSafeSyncMainQueueHandler(void(^handler)(void)) {
     if (handler) {
         if ([NSThread isMainThread]) {
             handler();
@@ -108,8 +108,8 @@ CTL_STATIC_INLINE void CFLSafeSyncMainQueueHandler(void(^handler)(void)) {
     }
 }
 
-// 2.异步回调主线程
-CTL_STATIC_INLINE void CFLSafeAsyncMainQueueHandler(void(^handler)(void)) {
+// 2.当前非主线程时 异步回调主线程
+CTL_STATIC_INLINE void CTLSafeAsyncMainQueueHandler(void(^handler)(void)) {
     if (handler) {
         if ([NSThread isMainThread]) {
             handler();

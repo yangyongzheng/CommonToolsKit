@@ -34,9 +34,10 @@
 // App信息
 #define CTLSystemVersion UIDevice.currentDevice.systemVersion
 
-// RGB色值，注意r/g/b取值范围为[0.0f 255.0f]，a取值范围[0.0f 1.0f]
-#define CTLColorWithRGBA(r, g, b, a) [UIColor colorWithRed:((r)/255.0f) green:((g)/255.0f) blue:((b)/255.0f) alpha:(a)]
-#define CTLColorWithRGB(r, g, b) CTLColorWithRGBA(r, g, b, 1.0f)
-#define CTLColorWithHEX(hex) nil
+// UIColor
+#define CTLColorWithRGBA(r, g, b, a)        [UIColor colorWithRed:((r)/255.0f) green:((g)/255.0f) blue:((b)/255.0f) alpha:(a)]
+#define CTLColorWithRGB(r, g, b)            CTLColorWithRGBA(r, g, b, 1.0f)
+#define CTLColorWithHexString(hexString)    [UIColor ctl_colorWithHexString:hexString]
+#define CTLColorWithHexInt(hexInt)    [UIColor ctl_colorWithHexInt:hexInt]
 
 #endif /* CTLCommonMacros_h */

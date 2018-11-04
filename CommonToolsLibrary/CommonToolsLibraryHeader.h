@@ -19,9 +19,15 @@
 #import "Category/NSTimer+CTLBlockTimer.h"
 #import "Category/NSString+CTLMD5.h"
 #import "Category/NSString+CTLURLComparison.h"
+#import "Category/UIColor+CTLHelper.h"
+#import "Category/UITextField+CTLLimitInputLength.h"
+#import "Category/UITextView+CTLLimitInputLength.h"
+#import "Category/UISearchBar+CTLLimitInputLength.h"
+#import "Category/NSData+CTLGZIP.h"
 
 #import "Manager/CTLStoragePathManager.h"
 #import "Manager/CTLAppStatusMonitor.h"
 #import "Manager/CTLSafeAreaManager.h"
+#import "Manager/CTLDateManager.h"
 
 #endif /* CommonToolsLibraryHeader_h */

@@ -25,6 +25,12 @@
 		CE80CE9F217096A8004A98D3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CE80CE9E217096A8004A98D3 /* main.m */; };
 		CE80CEA9217096A8004A98D3 /* CommonToolsKitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CE80CEA8217096A8004A98D3 /* CommonToolsKitTests.m */; };
 		CEE9AE7521797CA700471FB5 /* NSString+CTLMD5.m in Sources */ = {isa = PBXBuildFile; fileRef = CEE9AE7421797CA700471FB5 /* NSString+CTLMD5.m */; };
+		CEF41220218F10E60049A994 /* UIColor+CTLHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = CEF4121F218F10E60049A994 /* UIColor+CTLHelper.m */; };
+		CEF41223218F15D30049A994 /* UITextField+CTLLimitInputLength.m in Sources */ = {isa = PBXBuildFile; fileRef = CEF41222218F15D30049A994 /* UITextField+CTLLimitInputLength.m */; };
+		CEF41226218F17330049A994 /* UITextView+CTLLimitInputLength.m in Sources */ = {isa = PBXBuildFile; fileRef = CEF41225218F17330049A994 /* UITextView+CTLLimitInputLength.m */; };
+		CEF41229218F17DB0049A994 /* UISearchBar+CTLLimitInputLength.m in Sources */ = {isa = PBXBuildFile; fileRef = CEF41228218F17DB0049A994 /* UISearchBar+CTLLimitInputLength.m */; };
+		CEF4122C218F19300049A994 /* NSData+CTLGZIP.m in Sources */ = {isa = PBXBuildFile; fileRef = CEF4122B218F19300049A994 /* NSData+CTLGZIP.m */; };
+		CEF4122F218F1BB40049A994 /* CTLDateManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CEF4122E218F1BB40049A994 /* CTLDateManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +83,18 @@
 		CE80CEAA217096A8004A98D3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CEE9AE7321797CA700471FB5 /* NSString+CTLMD5.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+CTLMD5.h"; sourceTree = "<group>"; };
 		CEE9AE7421797CA700471FB5 /* NSString+CTLMD5.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+CTLMD5.m"; sourceTree = "<group>"; };
+		CEF4121E218F10E60049A994 /* UIColor+CTLHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIColor+CTLHelper.h"; sourceTree = "<group>"; };
+		CEF4121F218F10E60049A994 /* UIColor+CTLHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIColor+CTLHelper.m"; sourceTree = "<group>"; };
+		CEF41221218F15D30049A994 /* UITextField+CTLLimitInputLength.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UITextField+CTLLimitInputLength.h"; sourceTree = "<group>"; };
+		CEF41222218F15D30049A994 /* UITextField+CTLLimitInputLength.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UITextField+CTLLimitInputLength.m"; sourceTree = "<group>"; };
+		CEF41224218F17330049A994 /* UITextView+CTLLimitInputLength.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UITextView+CTLLimitInputLength.h"; sourceTree = "<group>"; };
+		CEF41225218F17330049A994 /* UITextView+CTLLimitInputLength.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UITextView+CTLLimitInputLength.m"; sourceTree = "<group>"; };
+		CEF41227218F17DB0049A994 /* UISearchBar+CTLLimitInputLength.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UISearchBar+CTLLimitInputLength.h"; sourceTree = "<group>"; };
+		CEF41228218F17DB0049A994 /* UISearchBar+CTLLimitInputLength.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UISearchBar+CTLLimitInputLength.m"; sourceTree = "<group>"; };
+		CEF4122A218F19300049A994 /* NSData+CTLGZIP.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSData+CTLGZIP.h"; sourceTree = "<group>"; };
+		CEF4122B218F19300049A994 /* NSData+CTLGZIP.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSData+CTLGZIP.m"; sourceTree = "<group>"; };
+		CEF4122D218F1BB40049A994 /* CTLDateManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CTLDateManager.h; sourceTree = "<group>"; };
+		CEF4122E218F1BB40049A994 /* CTLDateManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CTLDateManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,6 +143,16 @@
 				CEE9AE7421797CA700471FB5 /* NSString+CTLMD5.m */,
 				CE2C2528218DF38800244974 /* NSString+CTLURLComparison.h */,
 				CE2C2529218DF38800244974 /* NSString+CTLURLComparison.m */,
+				CEF4121E218F10E60049A994 /* UIColor+CTLHelper.h */,
+				CEF4121F218F10E60049A994 /* UIColor+CTLHelper.m */,
+				CEF41221218F15D30049A994 /* UITextField+CTLLimitInputLength.h */,
+				CEF41222218F15D30049A994 /* UITextField+CTLLimitInputLength.m */,
+				CEF41224218F17330049A994 /* UITextView+CTLLimitInputLength.h */,
+				CEF41225218F17330049A994 /* UITextView+CTLLimitInputLength.m */,
+				CEF41227218F17DB0049A994 /* UISearchBar+CTLLimitInputLength.h */,
+				CEF41228218F17DB0049A994 /* UISearchBar+CTLLimitInputLength.m */,
+				CEF4122A218F19300049A994 /* NSData+CTLGZIP.h */,
+				CEF4122B218F19300049A994 /* NSData+CTLGZIP.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -138,6 +166,8 @@
 				CE5DE467218ACF4E00862E47 /* CTLAppStatusMonitor.m */,
 				CE5DE470218AFEA800862E47 /* CTLSafeAreaManager.h */,
 				CE5DE46F218AFEA800862E47 /* CTLSafeAreaManager.m */,
+				CEF4122D218F1BB40049A994 /* CTLDateManager.h */,
+				CEF4122E218F1BB40049A994 /* CTLDateManager.m */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -320,12 +350,18 @@
 				CE80CE9F217096A8004A98D3 /* main.m in Sources */,
 				CE10D93D2171C7FF000561AE /* UIView+CTLLayout.m in Sources */,
 				CE5DE471218AFEA800862E47 /* CTLSafeAreaManager.m in Sources */,
+				CEF41229218F17DB0049A994 /* UISearchBar+CTLLimitInputLength.m in Sources */,
+				CEF4122F218F1BB40049A994 /* CTLDateManager.m in Sources */,
+				CEF41223218F15D30049A994 /* UITextField+CTLLimitInputLength.m in Sources */,
+				CEF41226218F17330049A994 /* UITextView+CTLLimitInputLength.m in Sources */,
 				CEE9AE7521797CA700471FB5 /* NSString+CTLMD5.m in Sources */,
 				CE10D93F2171C7FF000561AE /* UITableView+CTLConfiguration.m in Sources */,
+				CEF41220218F10E60049A994 /* UIColor+CTLHelper.m in Sources */,
 				CE2C252A218DF38800244974 /* NSString+CTLURLComparison.m in Sources */,
 				CE56F4E32174445800DACF5C /* CTLStoragePathManager.m in Sources */,
 				CE5DE468218ACF4E00862E47 /* CTLAppStatusMonitor.m in Sources */,
 				CE10D9462171DDC7000561AE /* TwoViewController.m in Sources */,
+				CEF4122C218F19300049A994 /* NSData+CTLGZIP.m in Sources */,
 				CE10D9432171CA8B000561AE /* NSTimer+CTLBlockTimer.m in Sources */,
 				CE80CE91217096A6004A98D3 /* AppDelegate.m in Sources */,
 			);

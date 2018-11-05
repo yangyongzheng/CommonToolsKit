@@ -18,9 +18,9 @@
 #define CTLAppDelegate      AppDelegate
 
 // 单例宏
-#define CTLSharedAppDelegate ((CTLAppDelegate *)UIApplication.sharedApplication.delegate)
-#define CTLSharedUserDefaults NSUserDefaults.standardUserDefaults
-#define CTLSharedFileManager NSFileManager.defaultManager
+#define CTLSharedAppDelegate        ((CTLAppDelegate *)UIApplication.sharedApplication.delegate)
+#define CTLSharedUserDefaults       NSUserDefaults.standardUserDefaults
+#define CTLSharedFileManager        NSFileManager.defaultManager
 #define CTLSharedNotificationCenter NSNotificationCenter.defaultCenter
 
 // 屏幕相关高度
@@ -38,6 +38,6 @@
 #define CTLColorWithRGBA(r, g, b, a)        [UIColor colorWithRed:((r)/255.0f) green:((g)/255.0f) blue:((b)/255.0f) alpha:(a)]
 #define CTLColorWithRGB(r, g, b)            CTLColorWithRGBA(r, g, b, 1.0f)
 #define CTLColorWithHexString(hexString)    [UIColor ctl_colorWithHexString:hexString]
-#define CTLColorWithHexInt(hexInt)    [UIColor ctl_colorWithHexInt:hexInt]
+#define CTLColorWithHexInt(hexInt)          [UIColor ctl_colorWithHexInt:hexInt]
 
 #endif /* CTLCommonMacros_h */

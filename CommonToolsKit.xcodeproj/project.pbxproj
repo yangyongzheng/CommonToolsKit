@@ -13,6 +13,7 @@
 		CE10D9402171C7FF000561AE /* UIViewController+CTLConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = CE10D93B2171C7FF000561AE /* UIViewController+CTLConfiguration.m */; };
 		CE10D9432171CA8B000561AE /* NSTimer+CTLBlockTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = CE10D9422171CA8B000561AE /* NSTimer+CTLBlockTimer.m */; };
 		CE10D9462171DDC7000561AE /* TwoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE10D9452171DDC7000561AE /* TwoViewController.m */; };
+		CE221AE3218FDC8E0019BACD /* UIApplication+CTLHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = CE221AE2218FDC8E0019BACD /* UIApplication+CTLHelper.m */; };
 		CE2C252A218DF38800244974 /* NSString+CTLURLComparison.m in Sources */ = {isa = PBXBuildFile; fileRef = CE2C2529218DF38800244974 /* NSString+CTLURLComparison.m */; };
 		CE56F4E32174445800DACF5C /* CTLStoragePathManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CE56F4E22174445800DACF5C /* CTLStoragePathManager.m */; };
 		CE5DE468218ACF4E00862E47 /* CTLAppStatusMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5DE467218ACF4E00862E47 /* CTLAppStatusMonitor.m */; };
@@ -56,6 +57,8 @@
 		CE10D9422171CA8B000561AE /* NSTimer+CTLBlockTimer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSTimer+CTLBlockTimer.m"; sourceTree = "<group>"; };
 		CE10D9442171DDC7000561AE /* TwoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TwoViewController.h; sourceTree = "<group>"; };
 		CE10D9452171DDC7000561AE /* TwoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TwoViewController.m; sourceTree = "<group>"; };
+		CE221AE1218FDC8E0019BACD /* UIApplication+CTLHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIApplication+CTLHelper.h"; sourceTree = "<group>"; };
+		CE221AE2218FDC8E0019BACD /* UIApplication+CTLHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIApplication+CTLHelper.m"; sourceTree = "<group>"; };
 		CE2C2527218DE84F00244974 /* CommonToolsLibraryHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommonToolsLibraryHeader.h; sourceTree = "<group>"; };
 		CE2C2528218DF38800244974 /* NSString+CTLURLComparison.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+CTLURLComparison.h"; sourceTree = "<group>"; };
 		CE2C2529218DF38800244974 /* NSString+CTLURLComparison.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+CTLURLComparison.m"; sourceTree = "<group>"; };
@@ -153,6 +156,8 @@
 				CEF41228218F17DB0049A994 /* UISearchBar+CTLLimitInputLength.m */,
 				CEF4122A218F19300049A994 /* NSData+CTLGZIP.h */,
 				CEF4122B218F19300049A994 /* NSData+CTLGZIP.m */,
+				CE221AE1218FDC8E0019BACD /* UIApplication+CTLHelper.h */,
+				CE221AE2218FDC8E0019BACD /* UIApplication+CTLHelper.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -359,6 +364,7 @@
 				CEF41220218F10E60049A994 /* UIColor+CTLHelper.m in Sources */,
 				CE2C252A218DF38800244974 /* NSString+CTLURLComparison.m in Sources */,
 				CE56F4E32174445800DACF5C /* CTLStoragePathManager.m in Sources */,
+				CE221AE3218FDC8E0019BACD /* UIApplication+CTLHelper.m in Sources */,
 				CE5DE468218ACF4E00862E47 /* CTLAppStatusMonitor.m in Sources */,
 				CE10D9462171DDC7000561AE /* TwoViewController.m in Sources */,
 				CEF4122C218F19300049A994 /* NSData+CTLGZIP.m in Sources */,

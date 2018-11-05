@@ -24,6 +24,7 @@
 #import "Category/UITextView+CTLLimitInputLength.h"
 #import "Category/UISearchBar+CTLLimitInputLength.h"
 #import "Category/NSData+CTLGZIP.h"
+#import "Category/UIApplication+CTLHelper.h"
 
 #import "Manager/CTLStoragePathManager.h"
 #import "Manager/CTLAppStatusMonitor.h"

@@ -21,7 +21,6 @@
     
     UIApplication.sharedApplication.statusBarHidden = YES;
     [self.view addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapActionInViewInvoke:)]];
-    [UIApplication.sharedApplication ctl_openAppSettings];
 }
 
 - (void)tapActionInViewInvoke:(UITapGestureRecognizer *)tap {

@@ -30,5 +30,6 @@
 #import "Manager/CTLAppStatusMonitor.h"
 #import "Manager/CTLSafeAreaManager.h"
 #import "Manager/CTLDateManager.h"
+#import "Manager/CTLDevice.h"
 
 #endif /* CommonToolsLibraryHeader_h */

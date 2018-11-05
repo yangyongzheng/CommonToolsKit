@@ -18,8 +18,7 @@
         if (filterString.length >= 6) {
             if ([filterString hasPrefix:@"#"]) {
                 filterString = [filterString substringFromIndex:1];
-            }
-            if ([filterString hasPrefix:@"0X"]) {
+            } else if ([filterString hasPrefix:@"0X"]) {
                 filterString = [filterString substringFromIndex:2];
             }
             if (filterString.length >= 6) {
@@ -27,10 +26,10 @@
                 NSString *rString = [filterString substringWithRange:NSMakeRange(0, 2)];
                 NSString *gString = [filterString substringWithRange:NSMakeRange(2, 2)];
                 NSString *bString = [filterString substringWithRange:NSMakeRange(4, 2)];
-                unsigned int r, g, b;
-                [[NSScanner scannerWithString:rString] scanHexInt:&r];
-                [[NSScanner scannerWithString:gString] scanHexInt:&g];
-                [[NSScanner scannerWithString:bString] scanHexInt:&b];
+                unsigned int r = 0, g = 0, b = 0;
+                sscanf(rString.UTF8String, "%X", &r);
+                sscanf(gString.UTF8String, "%X", &g);
+                sscanf(bString.UTF8String, "%X", &b);
                 
                 return [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:1.0];
             }
@@ -42,7 +41,7 @@
 
 + (instancetype)ctl_colorWithHexInt:(UInt32)hexNumber {
     if (hexNumber > 0xFFFFFF) { // 超范围转为字符串参数实例化方法
-        NSString *hexString = [NSString stringWithFormat:@"%x", hexNumber];
+        NSString *hexString = [NSString stringWithFormat:@"%X", hexNumber];
         return [UIColor ctl_colorWithHexString:hexString];
     }
     

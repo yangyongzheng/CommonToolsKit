@@ -7,6 +7,7 @@
 //
 
 #import "UIApplication+CTLHelper.h"
+#import "CTLCommonFunction.h"
 
 @implementation UIApplication (CTLHelper)
 

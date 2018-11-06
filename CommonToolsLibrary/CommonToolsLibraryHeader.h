@@ -28,7 +28,6 @@
 
 #import "Manager/CTLStoragePathManager.h"
 #import "Manager/CTLAppStatusMonitor.h"
-#import "Manager/CTLSafeAreaManager.h"
 #import "Manager/CTLDateManager.h"
 #import "Manager/CTLDevice.h"
 

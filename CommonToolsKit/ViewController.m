@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "TwoViewController.h"
+#import "CommonToolsLibraryHeader.h"
 
 @interface ViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *textField;
@@ -35,7 +36,7 @@
         if ([action.title isEqualToString:@"设置"]) {
             [self.navigationController pushViewController:[TwoViewController twoViewController] animated:YES];
         } else {
-            NSLog(@"%f-%f", CTLSafeAreaManager.defaultManager.safeAreaTopMargin, CTLSafeAreaManager.defaultManager.safeAreaBottomMargin);
+            NSLog(@"%f-%f", CTLSafeAreaTopMargin, CTLSafeAreaBottomMargin);
             NSLog(@"%@", self.textField.text.ctl_MD5);
             NSLog(@"%@", self.textField.text.ctl_MD5AddSalt);
         }
@@ -45,6 +46,9 @@
                      completion:^{
                          
                      }];
+    
+    NSLog(@"%@", CTLDevice.currentDevice.deviceModelIdentifier);
+    NSLog(@"%f", CTLCompileTimestamp);
 }
 
 @end

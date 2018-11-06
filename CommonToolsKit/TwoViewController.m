@@ -7,8 +7,7 @@
 //
 
 #import "TwoViewController.h"
-#import "CTLStoragePathManager.h"
-#import "NSTimer+CTLBlockTimer.h"
+#import "CommonToolsLibraryHeader.h"
 
 @interface TwoViewController ()
 {
@@ -28,9 +27,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    NSString *dirPath = CTLStoragePathForDirectory(CTLStorageDocumentsBaseDirectory, CTLStorageArchivesSubdirectory);
-    NSString *filePath = CTLStoragePathForFileInDirectory(@"User.archive", dirPath);
-    [NSKeyedArchiver archiveRootObject:@"test" toFile:filePath];
+    self.view.backgroundColor = CTLColorWithHexInt(0x55bb22);
 }
 
 - (void)dealloc {

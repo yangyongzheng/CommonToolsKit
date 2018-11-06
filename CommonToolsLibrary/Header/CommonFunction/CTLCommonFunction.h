@@ -10,6 +10,7 @@
 #define CTLCommonFunction_h
 
 #import <UIKit/UIKit.h>
+#import "CTLCommonMacros.h"
 
 #pragma mark - 系统版本判断
 /**
@@ -33,25 +34,11 @@ CTL_STATIC_INLINE NSComparisonResult CTLCompareVersion(NSString *v1, NSString *v
     return [v1 compare:v2 options:NSNumericSearch];
 }
 
-CTL_STATIC_INLINE BOOL CTLSystemVersionEqualTo(NSString *version) {
-    return CTLCompareVersion(UIDevice.currentDevice.systemVersion, version) == NSOrderedSame;
-}
-
-CTL_STATIC_INLINE BOOL CTLSystemVersionGreaterThan(NSString *version) {
-    return CTLCompareVersion(UIDevice.currentDevice.systemVersion, version) == NSOrderedDescending;
-}
-
-CTL_STATIC_INLINE BOOL CTLSystemVersionGreaterThanOrEqualTo(NSString *version) {
-    return CTLCompareVersion(UIDevice.currentDevice.systemVersion, version) != NSOrderedAscending;
-}
-
-CTL_STATIC_INLINE BOOL CTLSystemVersionLessThan(NSString *version) {
-    return CTLCompareVersion(UIDevice.currentDevice.systemVersion, version) == NSOrderedAscending;
-}
-
-CTL_STATIC_INLINE BOOL CTLSystemVersionLessThanOrEqualTo(NSString *version) {
-    return CTLCompareVersion(UIDevice.currentDevice.systemVersion, version) != NSOrderedDescending;
-}
+CTL_EXTERN BOOL CTLSystemVersionEqualTo(NSString *version);
+CTL_EXTERN BOOL CTLSystemVersionGreaterThan(NSString *version);
+CTL_EXTERN BOOL CTLSystemVersionGreaterThanOrEqualTo(NSString *version);
+CTL_EXTERN BOOL CTLSystemVersionLessThan(NSString *version);
+CTL_EXTERN BOOL CTLSystemVersionLessThanOrEqualTo(NSString *version);
 
 
 #pragma mark - 基本数据类型判空函数
@@ -158,6 +145,24 @@ CTL_STATIC_INLINE UIView *CTLLoadViewInNibAtIndex(NSString *nibName, NSInteger i
     }
     
     return nil;
+}
+
+
+#pragma mark - 编译时间戳
+/**
+ 编译时间戳，单位秒
+
+ @param date __DATE__
+ @param time __TIME__
+ @return app编译时间戳，单位秒
+ */
+CTL_STATIC_INLINE NSTimeInterval __CTLCompileTimestamp(const char *date, const char *time) {
+    NSString *timeStr = [NSString stringWithFormat:@"%s %s", date, time];
+    NSLocale *locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"MMM dd yyyy HH:mm:ss"];
+    [formatter setLocale:locale];
+    return [[formatter dateFromString:timeStr] timeIntervalSince1970];
 }
 
 #endif /* CTLCommonFunction_h */

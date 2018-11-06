@@ -13,11 +13,11 @@
 		CE10D9402171C7FF000561AE /* UIViewController+CTLConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = CE10D93B2171C7FF000561AE /* UIViewController+CTLConfiguration.m */; };
 		CE10D9432171CA8B000561AE /* NSTimer+CTLBlockTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = CE10D9422171CA8B000561AE /* NSTimer+CTLBlockTimer.m */; };
 		CE10D9462171DDC7000561AE /* TwoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE10D9452171DDC7000561AE /* TwoViewController.m */; };
+		CE14F05C219180B100AEC54C /* CTLCommonFunction.m in Sources */ = {isa = PBXBuildFile; fileRef = CE14F05B219180B100AEC54C /* CTLCommonFunction.m */; };
 		CE221AE3218FDC8E0019BACD /* UIApplication+CTLHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = CE221AE2218FDC8E0019BACD /* UIApplication+CTLHelper.m */; };
 		CE2C252A218DF38800244974 /* NSString+CTLURLComparison.m in Sources */ = {isa = PBXBuildFile; fileRef = CE2C2529218DF38800244974 /* NSString+CTLURLComparison.m */; };
 		CE56F4E32174445800DACF5C /* CTLStoragePathManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CE56F4E22174445800DACF5C /* CTLStoragePathManager.m */; };
 		CE5DE468218ACF4E00862E47 /* CTLAppStatusMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5DE467218ACF4E00862E47 /* CTLAppStatusMonitor.m */; };
-		CE5DE471218AFEA800862E47 /* CTLSafeAreaManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5DE46F218AFEA800862E47 /* CTLSafeAreaManager.m */; };
 		CE80CE91217096A6004A98D3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CE80CE90217096A6004A98D3 /* AppDelegate.m */; };
 		CE80CE94217096A6004A98D3 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE80CE93217096A6004A98D3 /* ViewController.m */; };
 		CE80CE97217096A6004A98D3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE80CE95217096A6004A98D3 /* Main.storyboard */; };
@@ -58,6 +58,7 @@
 		CE10D9422171CA8B000561AE /* NSTimer+CTLBlockTimer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSTimer+CTLBlockTimer.m"; sourceTree = "<group>"; };
 		CE10D9442171DDC7000561AE /* TwoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TwoViewController.h; sourceTree = "<group>"; };
 		CE10D9452171DDC7000561AE /* TwoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TwoViewController.m; sourceTree = "<group>"; };
+		CE14F05B219180B100AEC54C /* CTLCommonFunction.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CTLCommonFunction.m; sourceTree = "<group>"; };
 		CE221AE1218FDC8E0019BACD /* UIApplication+CTLHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIApplication+CTLHelper.h"; sourceTree = "<group>"; };
 		CE221AE2218FDC8E0019BACD /* UIApplication+CTLHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIApplication+CTLHelper.m"; sourceTree = "<group>"; };
 		CE2C2527218DE84F00244974 /* CommonToolsLibraryHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommonToolsLibraryHeader.h; sourceTree = "<group>"; };
@@ -69,8 +70,6 @@
 		CE5DE467218ACF4E00862E47 /* CTLAppStatusMonitor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CTLAppStatusMonitor.m; sourceTree = "<group>"; };
 		CE5DE46A218AE02300862E47 /* CTLCommonFunction.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CTLCommonFunction.h; sourceTree = "<group>"; };
 		CE5DE46B218AE09000862E47 /* CTLCommonMacros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CTLCommonMacros.h; sourceTree = "<group>"; };
-		CE5DE46F218AFEA800862E47 /* CTLSafeAreaManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTLSafeAreaManager.m; sourceTree = "<group>"; };
-		CE5DE470218AFEA800862E47 /* CTLSafeAreaManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTLSafeAreaManager.h; sourceTree = "<group>"; };
 		CE6BB921218B2527009F3F54 /* CommonToolsKit.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommonToolsKit.pch; sourceTree = "<group>"; };
 		CE80CE8C217096A6004A98D3 /* CommonToolsKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CommonToolsKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE80CE8F217096A6004A98D3 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -172,8 +171,6 @@
 				CE56F4E22174445800DACF5C /* CTLStoragePathManager.m */,
 				CE5DE466218ACF4E00862E47 /* CTLAppStatusMonitor.h */,
 				CE5DE467218ACF4E00862E47 /* CTLAppStatusMonitor.m */,
-				CE5DE470218AFEA800862E47 /* CTLSafeAreaManager.h */,
-				CE5DE46F218AFEA800862E47 /* CTLSafeAreaManager.m */,
 				CEF4122D218F1BB40049A994 /* CTLDateManager.h */,
 				CEF4122E218F1BB40049A994 /* CTLDateManager.m */,
 				CE90CD28219027F6007B2009 /* CTLDevice.h */,
@@ -250,6 +247,7 @@
 			isa = PBXGroup;
 			children = (
 				CE5DE46A218AE02300862E47 /* CTLCommonFunction.h */,
+				CE14F05B219180B100AEC54C /* CTLCommonFunction.m */,
 			);
 			path = CommonFunction;
 			sourceTree = "<group>";
@@ -354,12 +352,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE14F05C219180B100AEC54C /* CTLCommonFunction.m in Sources */,
 				CE80CE94217096A6004A98D3 /* ViewController.m in Sources */,
 				CE10D93E2171C7FF000561AE /* UIAlertController+CTLHelper.m in Sources */,
 				CE10D9402171C7FF000561AE /* UIViewController+CTLConfiguration.m in Sources */,
 				CE80CE9F217096A8004A98D3 /* main.m in Sources */,
 				CE10D93D2171C7FF000561AE /* UIView+CTLLayout.m in Sources */,
-				CE5DE471218AFEA800862E47 /* CTLSafeAreaManager.m in Sources */,
 				CEF41229218F17DB0049A994 /* UISearchBar+CTLLimitInputLength.m in Sources */,
 				CE90CD2A219027F6007B2009 /* CTLDevice.m in Sources */,
 				CEF4122F218F1BB40049A994 /* CTLDateManager.m in Sources */,

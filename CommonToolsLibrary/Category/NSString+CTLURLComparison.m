@@ -7,6 +7,7 @@
 //
 
 #import "NSString+CTLURLComparison.h"
+#import "CTLCommonFunction.h"
 
 @implementation NSString (CTLURLComparison)
 

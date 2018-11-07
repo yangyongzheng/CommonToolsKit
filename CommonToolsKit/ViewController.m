@@ -49,6 +49,12 @@
     
     NSLog(@"%@", CTLDevice.currentDevice.deviceModelIdentifier);
     NSLog(@"%f", CTLCompileTimestamp);
+    NSLog(@"%@", [CTLDevice stringFromFileOrStorageFormatByteCount:CTLDevice.currentDevice.diskTotalSpace]);
+    NSLog(@"%@", [CTLDevice stringFromFileOrStorageFormatByteCount:CTLDevice.currentDevice.diskFreeSpace]);
+    NSLog(@"%@", [CTLDevice stringFromFileOrStorageFormatByteCount:CTLDevice.currentDevice.diskUsedSpace]);
+    
+    
+    
 }
 
 @end

@@ -12,6 +12,8 @@
 #import <CoreTelephony/CTCarrier.h>
 #import <dlfcn.h>
 #import <sys/stat.h>
+#import <mach-o/dyld.h>
+#include <mach/mach_host.h>
 
 @interface CTLDevice ()
 @property (nonatomic, readonly) UIEdgeInsets safeAreaInsets;
@@ -19,18 +21,25 @@
 
 @implementation CTLDevice
 
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        [self __loadDefaultConfiguration];
+    }
+    return self;
+}
+
 + (CTLDevice *)currentDevice {
     static CTLDevice *device = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         device = [[CTLDevice alloc] init];
-        [device loadDefaultConfiguration];
     });
     
     return device;
 }
 
-- (NSString *)deviceModelIdentifier {
+- (NSString *)firmwareIdentifier {
     struct utsname systemInfo;
     uname(&systemInfo);
     return [NSString stringWithCString:systemInfo.machine encoding:NSUTF8StringEncoding];
@@ -121,6 +130,102 @@
 #endif
 }
 
+- (NSString *)dSYMUUIDString {
+    const struct mach_header *executableHeader = NULL;
+    for (uint32_t i = 0; i < _dyld_image_count(); i++) {
+        const struct mach_header *header = _dyld_get_image_header(i);
+        if (header->filetype == MH_EXECUTE) {
+            executableHeader = header;
+            break;
+        }
+    }
+    
+    if (!executableHeader) {
+        return nil;
+    }
+    
+    BOOL is64bit = executableHeader->magic == MH_MAGIC_64 || executableHeader->magic == MH_CIGAM_64;
+    uintptr_t cursor = (uintptr_t)executableHeader + (is64bit ? sizeof(struct mach_header_64) : sizeof(struct mach_header));
+    const struct segment_command *segmentCommand = NULL;
+    for (uint32_t i = 0; i < executableHeader->ncmds; i++, cursor += segmentCommand->cmdsize) {
+        segmentCommand = (struct segment_command *)cursor;
+        if (segmentCommand->cmd == LC_UUID) {
+            const struct uuid_command *uuidCommand = (const struct uuid_command *)segmentCommand;
+            return [[NSUUID alloc] initWithUUIDBytes:uuidCommand->uuid].UUIDString;
+        }
+    }
+    
+    return nil;
+}
+
+- (long)slideAddress {
+    long slide = 0;
+    for (uint32_t i = 0; i < _dyld_image_count(); i++) {
+        if (_dyld_get_image_header(i)->filetype == MH_EXECUTE) {
+            slide = _dyld_get_image_vmaddr_slide(i);
+            break;
+        }
+    }
+    return slide;
+}
+
+- (NSString *)CPUType {
+    host_basic_info_data_t hostInfo;
+    mach_msg_type_number_t infoCount;
+    
+    infoCount = HOST_BASIC_INFO_COUNT;
+    host_info(mach_host_self(), HOST_BASIC_INFO, (host_info_t)&hostInfo, &infoCount);
+    
+    NSString *cpuType = nil;
+    if (hostInfo.cpu_type == CPU_TYPE_ANY) {
+        cpuType = @"CPU_TYPE_ANY";
+    } else if (hostInfo.cpu_type == CPU_TYPE_VAX) {
+        cpuType = @"CPU_TYPE_VAX";
+    } else if (hostInfo.cpu_type == CPU_TYPE_MC680x0) {
+        cpuType = @"CPU_TYPE_MC680x0";
+    } else if (hostInfo.cpu_type == CPU_TYPE_X86) {
+        cpuType = @"CPU_TYPE_X86";
+    } else if (hostInfo.cpu_type == CPU_TYPE_I386) {
+        cpuType = @"CPU_TYPE_X86";
+    } else if (hostInfo.cpu_type == CPU_TYPE_X86_64) {
+        cpuType = @"CPU_TYPE_X86_64";
+    } else if (hostInfo.cpu_type == CPU_TYPE_MC98000) {
+        cpuType = @"CPU_TYPE_MC98000";
+    } else if (hostInfo.cpu_type == CPU_TYPE_HPPA) {
+        cpuType = @"CPU_TYPE_HPPA";
+    } else if (hostInfo.cpu_type == CPU_TYPE_ARM) {
+        cpuType = @"CPU_TYPE_ARM";
+    } else if (hostInfo.cpu_type == CPU_TYPE_ARM64) {
+        cpuType = @"CPU_TYPE_ARM64";
+    } else if (hostInfo.cpu_type == CPU_TYPE_ARM64_32) {
+        cpuType = @"CPU_TYPE_ARM64_32";
+    } else if (hostInfo.cpu_type == CPU_TYPE_MC88000) {
+        cpuType = @"CPU_TYPE_MC88000";
+    } else if (hostInfo.cpu_type == CPU_TYPE_SPARC) {
+        cpuType = @"CPU_TYPE_SPARC";
+    } else if (hostInfo.cpu_type == CPU_TYPE_I860) {
+        cpuType = @"CPU_TYPE_I860";
+    } else if (hostInfo.cpu_type == CPU_TYPE_POWERPC) {
+        cpuType = @"CPU_TYPE_POWERPC";
+    } else if (hostInfo.cpu_type == CPU_TYPE_POWERPC64) {
+        cpuType = @"CPU_TYPE_POWERPC64";
+    } else {
+        cpuType = [@"CPU_TYPE_" stringByAppendingString:[NSString stringWithFormat:@"%d", hostInfo.cpu_type]];
+    }
+    
+    return cpuType;
+}
+
+- (NSString *)currentLanguage {
+    NSString *language = [NSLocale preferredLanguages].firstObject;
+    if (!language) {
+        NSArray *languages = [NSUserDefaults.standardUserDefaults arrayForKey:@"AppleLanguages"];
+        language = languages.firstObject;
+    }
+    
+    return language;
+}
+
 #pragma mark - 版本判断
 - (BOOL)isiOS8Later {
     if (@available(iOS 8.0, *)) {
@@ -157,7 +262,7 @@
     return NO;
 }
 
-#pragma mark 存储单位转换
+#pragma mark - 存储单位转换
 #pragma mark 将字节数转换为 file or storage byte counts string
 + (NSString *)stringFromFileOrStorageFormatByteCount:(int64_t)byteCount {
     return [NSByteCountFormatter stringFromByteCount:byteCount countStyle:NSByteCountFormatterCountStyleFile];
@@ -169,7 +274,7 @@
 }
 
 #pragma mark - Misc
-- (void)loadDefaultConfiguration {
+- (void)__loadDefaultConfiguration {
     UIEdgeInsets safeAreaInsets = UIEdgeInsetsZero;
     if (@available(iOS 11.0, *)) {
         UIWindow *tmpWindow = UIApplication.sharedApplication.keyWindow;

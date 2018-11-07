@@ -47,14 +47,15 @@
                          
                      }];
     
-    NSLog(@"%@", CTLDevice.currentDevice.deviceModelIdentifier);
+    NSLog(@"%@", CTLDevice.currentDevice.firmwareIdentifier);
     NSLog(@"%f", CTLCompileTimestamp);
     NSLog(@"%@", [CTLDevice stringFromFileOrStorageFormatByteCount:CTLDevice.currentDevice.diskTotalSpace]);
     NSLog(@"%@", [CTLDevice stringFromFileOrStorageFormatByteCount:CTLDevice.currentDevice.diskFreeSpace]);
     NSLog(@"%@", [CTLDevice stringFromFileOrStorageFormatByteCount:CTLDevice.currentDevice.diskUsedSpace]);
-    
-    
-    
+    NSLog(@"%@", CTLDevice.currentDevice.dSYMUUIDString);
+    NSLog(@"%ld", CTLDevice.currentDevice.slideAddress);
+    NSLog(@"%@", CTLDevice.currentDevice.CPUType);
+    NSLog(@"%@", CTLDevice.currentDevice.currentLanguage);
 }
 
 @end

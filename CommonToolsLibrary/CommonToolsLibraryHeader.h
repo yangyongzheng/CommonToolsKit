@@ -32,4 +32,7 @@
 #import "Manager/CTLDevice.h"
 #import "Manager/CTLKeychainManager.h"
 
+#import "ViewModules/SegmentedView/EqualWidth/EqualWidthSegmentedView.h"
+#import "ViewModules/SegmentedView/EqualSpacing/EqualSpacingSegmentedView.h"
+
 #endif /* CommonToolsLibraryHeader_h */

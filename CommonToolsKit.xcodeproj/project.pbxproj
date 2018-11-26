@@ -13,6 +13,18 @@
 		CE10D9402171C7FF000561AE /* UIViewController+CTLConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = CE10D93B2171C7FF000561AE /* UIViewController+CTLConfiguration.m */; };
 		CE10D9432171CA8B000561AE /* NSTimer+CTLBlockTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = CE10D9422171CA8B000561AE /* NSTimer+CTLBlockTimer.m */; };
 		CE10D9462171DDC7000561AE /* TwoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE10D9452171DDC7000561AE /* TwoViewController.m */; };
+		CE12869621ABA42B0088C98C /* SegmentedViewConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = CE12868121ABA42B0088C98C /* SegmentedViewConfiguration.m */; };
+		CE12869721ABA42B0088C98C /* ESSVBadgeTextCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CE12868321ABA42B0088C98C /* ESSVBadgeTextCollectionViewCell.m */; };
+		CE12869821ABA42B0088C98C /* EqualSpacingSegmentedView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE12868421ABA42B0088C98C /* EqualSpacingSegmentedView.m */; };
+		CE12869921ABA42B0088C98C /* ESSVBadgeImageCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CE12868621ABA42B0088C98C /* ESSVBadgeImageCollectionViewCell.m */; };
+		CE12869A21ABA42B0088C98C /* ESSVBadgeImageCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE12868721ABA42B0088C98C /* ESSVBadgeImageCollectionViewCell.xib */; };
+		CE12869B21ABA42B0088C98C /* ESSVNormalCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CE12868921ABA42B0088C98C /* ESSVNormalCollectionViewCell.m */; };
+		CE12869C21ABA42B0088C98C /* ESSVNormalCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE12868C21ABA42B0088C98C /* ESSVNormalCollectionViewCell.xib */; };
+		CE12869D21ABA42B0088C98C /* ESSVBadgeTextCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE12868D21ABA42B0088C98C /* ESSVBadgeTextCollectionViewCell.xib */; };
+		CE12869E21ABA42B0088C98C /* SegmentedViewItem.m in Sources */ = {isa = PBXBuildFile; fileRef = CE12868E21ABA42B0088C98C /* SegmentedViewItem.m */; };
+		CE12869F21ABA42B0088C98C /* EWSVCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CE12869121ABA42B0088C98C /* EWSVCollectionViewCell.m */; };
+		CE1286A021ABA42B0088C98C /* EqualWidthSegmentedView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE12869221ABA42B0088C98C /* EqualWidthSegmentedView.m */; };
+		CE1286A121ABA42B0088C98C /* EWSVCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE12869421ABA42B0088C98C /* EWSVCollectionViewCell.xib */; };
 		CE14F05C219180B100AEC54C /* CTLCommonFunction.m in Sources */ = {isa = PBXBuildFile; fileRef = CE14F05B219180B100AEC54C /* CTLCommonFunction.m */; };
 		CE221AE3218FDC8E0019BACD /* UIApplication+CTLHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = CE221AE2218FDC8E0019BACD /* UIApplication+CTLHelper.m */; };
 		CE2C252A218DF38800244974 /* NSString+CTLURLComparison.m in Sources */ = {isa = PBXBuildFile; fileRef = CE2C2529218DF38800244974 /* NSString+CTLURLComparison.m */; };
@@ -59,6 +71,26 @@
 		CE10D9422171CA8B000561AE /* NSTimer+CTLBlockTimer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSTimer+CTLBlockTimer.m"; sourceTree = "<group>"; };
 		CE10D9442171DDC7000561AE /* TwoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TwoViewController.h; sourceTree = "<group>"; };
 		CE10D9452171DDC7000561AE /* TwoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TwoViewController.m; sourceTree = "<group>"; };
+		CE12868021ABA42B0088C98C /* SegmentedViewItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SegmentedViewItem.h; sourceTree = "<group>"; };
+		CE12868121ABA42B0088C98C /* SegmentedViewConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SegmentedViewConfiguration.m; sourceTree = "<group>"; };
+		CE12868321ABA42B0088C98C /* ESSVBadgeTextCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESSVBadgeTextCollectionViewCell.m; sourceTree = "<group>"; };
+		CE12868421ABA42B0088C98C /* EqualSpacingSegmentedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EqualSpacingSegmentedView.m; sourceTree = "<group>"; };
+		CE12868521ABA42B0088C98C /* ESSVNormalCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESSVNormalCollectionViewCell.h; sourceTree = "<group>"; };
+		CE12868621ABA42B0088C98C /* ESSVBadgeImageCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESSVBadgeImageCollectionViewCell.m; sourceTree = "<group>"; };
+		CE12868721ABA42B0088C98C /* ESSVBadgeImageCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ESSVBadgeImageCollectionViewCell.xib; sourceTree = "<group>"; };
+		CE12868821ABA42B0088C98C /* ESSVBadgeTextCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESSVBadgeTextCollectionViewCell.h; sourceTree = "<group>"; };
+		CE12868921ABA42B0088C98C /* ESSVNormalCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESSVNormalCollectionViewCell.m; sourceTree = "<group>"; };
+		CE12868A21ABA42B0088C98C /* EqualSpacingSegmentedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EqualSpacingSegmentedView.h; sourceTree = "<group>"; };
+		CE12868B21ABA42B0088C98C /* ESSVBadgeImageCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESSVBadgeImageCollectionViewCell.h; sourceTree = "<group>"; };
+		CE12868C21ABA42B0088C98C /* ESSVNormalCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ESSVNormalCollectionViewCell.xib; sourceTree = "<group>"; };
+		CE12868D21ABA42B0088C98C /* ESSVBadgeTextCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ESSVBadgeTextCollectionViewCell.xib; sourceTree = "<group>"; };
+		CE12868E21ABA42B0088C98C /* SegmentedViewItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SegmentedViewItem.m; sourceTree = "<group>"; };
+		CE12868F21ABA42B0088C98C /* SegmentedViewConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SegmentedViewConfiguration.h; sourceTree = "<group>"; };
+		CE12869121ABA42B0088C98C /* EWSVCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EWSVCollectionViewCell.m; sourceTree = "<group>"; };
+		CE12869221ABA42B0088C98C /* EqualWidthSegmentedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EqualWidthSegmentedView.m; sourceTree = "<group>"; };
+		CE12869321ABA42B0088C98C /* EWSVCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EWSVCollectionViewCell.h; sourceTree = "<group>"; };
+		CE12869421ABA42B0088C98C /* EWSVCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EWSVCollectionViewCell.xib; sourceTree = "<group>"; };
+		CE12869521ABA42B0088C98C /* EqualWidthSegmentedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EqualWidthSegmentedView.h; sourceTree = "<group>"; };
 		CE14F05B219180B100AEC54C /* CTLCommonFunction.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CTLCommonFunction.m; sourceTree = "<group>"; };
 		CE221AE1218FDC8E0019BACD /* UIApplication+CTLHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIApplication+CTLHelper.h"; sourceTree = "<group>"; };
 		CE221AE2218FDC8E0019BACD /* UIApplication+CTLHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIApplication+CTLHelper.m"; sourceTree = "<group>"; };
@@ -127,9 +159,10 @@
 			isa = PBXGroup;
 			children = (
 				CE2C2527218DE84F00244974 /* CommonToolsLibraryHeader.h */,
-				CE5DE469218AD3C200862E47 /* Header */,
 				CE10D9332171C7FF000561AE /* Category */,
+				CE5DE469218AD3C200862E47 /* Header */,
 				CE10D93C2171C7FF000561AE /* Manager */,
+				CE12867E21ABA2380088C98C /* ViewModules */,
 			);
 			path = CommonToolsLibrary;
 			sourceTree = SOURCE_ROOT;
@@ -182,6 +215,57 @@
 				CEE8D20521AAA95900EE68CA /* CTLKeychainManager.m */,
 			);
 			path = Manager;
+			sourceTree = "<group>";
+		};
+		CE12867E21ABA2380088C98C /* ViewModules */ = {
+			isa = PBXGroup;
+			children = (
+				CE12867F21ABA42B0088C98C /* SegmentedView */,
+			);
+			path = ViewModules;
+			sourceTree = "<group>";
+		};
+		CE12867F21ABA42B0088C98C /* SegmentedView */ = {
+			isa = PBXGroup;
+			children = (
+				CE12868221ABA42B0088C98C /* EqualSpacing */,
+				CE12869021ABA42B0088C98C /* EqualWidth */,
+				CE12868F21ABA42B0088C98C /* SegmentedViewConfiguration.h */,
+				CE12868121ABA42B0088C98C /* SegmentedViewConfiguration.m */,
+				CE12868021ABA42B0088C98C /* SegmentedViewItem.h */,
+				CE12868E21ABA42B0088C98C /* SegmentedViewItem.m */,
+			);
+			path = SegmentedView;
+			sourceTree = "<group>";
+		};
+		CE12868221ABA42B0088C98C /* EqualSpacing */ = {
+			isa = PBXGroup;
+			children = (
+				CE12868A21ABA42B0088C98C /* EqualSpacingSegmentedView.h */,
+				CE12868421ABA42B0088C98C /* EqualSpacingSegmentedView.m */,
+				CE12868B21ABA42B0088C98C /* ESSVBadgeImageCollectionViewCell.h */,
+				CE12868621ABA42B0088C98C /* ESSVBadgeImageCollectionViewCell.m */,
+				CE12868721ABA42B0088C98C /* ESSVBadgeImageCollectionViewCell.xib */,
+				CE12868821ABA42B0088C98C /* ESSVBadgeTextCollectionViewCell.h */,
+				CE12868321ABA42B0088C98C /* ESSVBadgeTextCollectionViewCell.m */,
+				CE12868D21ABA42B0088C98C /* ESSVBadgeTextCollectionViewCell.xib */,
+				CE12868521ABA42B0088C98C /* ESSVNormalCollectionViewCell.h */,
+				CE12868921ABA42B0088C98C /* ESSVNormalCollectionViewCell.m */,
+				CE12868C21ABA42B0088C98C /* ESSVNormalCollectionViewCell.xib */,
+			);
+			path = EqualSpacing;
+			sourceTree = "<group>";
+		};
+		CE12869021ABA42B0088C98C /* EqualWidth */ = {
+			isa = PBXGroup;
+			children = (
+				CE12869521ABA42B0088C98C /* EqualWidthSegmentedView.h */,
+				CE12869221ABA42B0088C98C /* EqualWidthSegmentedView.m */,
+				CE12869321ABA42B0088C98C /* EWSVCollectionViewCell.h */,
+				CE12869121ABA42B0088C98C /* EWSVCollectionViewCell.m */,
+				CE12869421ABA42B0088C98C /* EWSVCollectionViewCell.xib */,
+			);
+			path = EqualWidth;
 			sourceTree = "<group>";
 		};
 		CE5DE469218AD3C200862E47 /* Header */ = {
@@ -337,9 +421,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE12869D21ABA42B0088C98C /* ESSVBadgeTextCollectionViewCell.xib in Resources */,
 				CE80CE9C217096A8004A98D3 /* LaunchScreen.storyboard in Resources */,
 				CE80CE99217096A8004A98D3 /* Assets.xcassets in Resources */,
+				CE1286A121ABA42B0088C98C /* EWSVCollectionViewCell.xib in Resources */,
 				CE80CE97217096A6004A98D3 /* Main.storyboard in Resources */,
+				CE12869C21ABA42B0088C98C /* ESSVNormalCollectionViewCell.xib in Resources */,
+				CE12869A21ABA42B0088C98C /* ESSVBadgeImageCollectionViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -363,18 +451,26 @@
 				CE10D9402171C7FF000561AE /* UIViewController+CTLConfiguration.m in Sources */,
 				CE80CE9F217096A8004A98D3 /* main.m in Sources */,
 				CE10D93D2171C7FF000561AE /* UIView+CTLLayout.m in Sources */,
+				CE12869621ABA42B0088C98C /* SegmentedViewConfiguration.m in Sources */,
 				CEF41229218F17DB0049A994 /* UISearchBar+CTLLimitInputLength.m in Sources */,
+				CE12869721ABA42B0088C98C /* ESSVBadgeTextCollectionViewCell.m in Sources */,
 				CE90CD2A219027F6007B2009 /* CTLDevice.m in Sources */,
 				CEF4122F218F1BB40049A994 /* CTLDateManager.m in Sources */,
+				CE12869F21ABA42B0088C98C /* EWSVCollectionViewCell.m in Sources */,
+				CE12869E21ABA42B0088C98C /* SegmentedViewItem.m in Sources */,
 				CEF41223218F15D30049A994 /* UITextField+CTLLimitInputLength.m in Sources */,
 				CEF41226218F17330049A994 /* UITextView+CTLLimitInputLength.m in Sources */,
+				CE12869921ABA42B0088C98C /* ESSVBadgeImageCollectionViewCell.m in Sources */,
 				CEE9AE7521797CA700471FB5 /* NSString+CTLMD5.m in Sources */,
 				CE10D93F2171C7FF000561AE /* UITableView+CTLConfiguration.m in Sources */,
 				CEF41220218F10E60049A994 /* UIColor+CTLHelper.m in Sources */,
+				CE12869821ABA42B0088C98C /* EqualSpacingSegmentedView.m in Sources */,
 				CE2C252A218DF38800244974 /* NSString+CTLURLComparison.m in Sources */,
 				CE56F4E32174445800DACF5C /* CTLStoragePathManager.m in Sources */,
 				CE221AE3218FDC8E0019BACD /* UIApplication+CTLHelper.m in Sources */,
 				CE5DE468218ACF4E00862E47 /* CTLAppStatusMonitor.m in Sources */,
+				CE12869B21ABA42B0088C98C /* ESSVNormalCollectionViewCell.m in Sources */,
+				CE1286A021ABA42B0088C98C /* EqualWidthSegmentedView.m in Sources */,
 				CE10D9462171DDC7000561AE /* TwoViewController.m in Sources */,
 				CEF4122C218F19300049A994 /* NSData+CTLGZIP.m in Sources */,
 				CE10D9432171CA8B000561AE /* NSTimer+CTLBlockTimer.m in Sources */,

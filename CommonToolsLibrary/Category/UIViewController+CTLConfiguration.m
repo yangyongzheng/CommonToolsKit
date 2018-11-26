@@ -9,14 +9,13 @@
 #import "UIViewController+CTLConfiguration.h"
 #import <objc/runtime.h>
 
-static const void * CTLPageNumberAssociationKey         =   (void *)&CTLPageNumberAssociationKey;
-static const void * CTLPageSizeAssociationKey           =   (void *)&CTLPageSizeAssociationKey;
-static const void * CTLIsRequestingAssociationKey       =   (void *)&CTLIsRequestingAssociationKey;
-static const void * CTLIsRequestSuccessAssociationKey   =   (void *)&CTLIsRequestSuccessAssociationKey;
+static const void * CTLPageNumberAssociationKey     =   (void *)&CTLPageNumberAssociationKey;
+static const void * CTLPageSizeAssociationKey       =   (void *)&CTLPageSizeAssociationKey;
+static const void * CTLRequestStateAssociationKey   =   (void *)&CTLRequestStateAssociationKey;
 
 @implementation UIViewController (CTLConfiguration)
 
-@dynamic ctl_pageNumber, ctl_pageSize, ctl_isRequesting, ctl_isRequestSuccess;
+@dynamic ctl_pageNumber, ctl_pageSize, ctl_requestState;
 
 - (NSInteger)ctl_pageNumber {
     NSInteger numner = [objc_getAssociatedObject(self, CTLPageNumberAssociationKey) integerValue];
@@ -50,25 +49,14 @@ static const void * CTLIsRequestSuccessAssociationKey   =   (void *)&CTLIsReques
                              OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
-- (BOOL)ctl_isRequesting {
-    return [objc_getAssociatedObject(self, CTLIsRequestingAssociationKey) boolValue];
+- (CTLRequestState)ctl_requestState {
+    return (CTLRequestState)[objc_getAssociatedObject(self, CTLRequestStateAssociationKey) integerValue];
 }
 
-- (void)setCtl_isRequesting:(BOOL)ctl_isRequesting {
+- (void)setCtl_requestState:(CTLRequestState)ctl_requestState {
     objc_setAssociatedObject(self,
-                             CTLIsRequestingAssociationKey,
-                             [NSNumber numberWithBool:ctl_isRequesting],
-                             OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-}
-
-- (BOOL)ctl_isRequestSuccess {
-    return [objc_getAssociatedObject(self, CTLIsRequestSuccessAssociationKey) boolValue];
-}
-
-- (void)setCtl_isRequestSuccess:(BOOL)ctl_isRequestSuccess {
-    objc_setAssociatedObject(self,
-                             CTLIsRequestSuccessAssociationKey,
-                             [NSNumber numberWithBool:ctl_isRequestSuccess],
+                             CTLRequestStateAssociationKey,
+                             [NSNumber numberWithInteger:ctl_requestState],
                              OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 

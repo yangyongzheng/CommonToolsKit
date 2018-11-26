@@ -10,12 +10,19 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/** 接口请求状态枚举 */
+typedef NS_ENUM(NSInteger, CTLRequestState) {
+    CTLRequestStateIdle         = 0,    // 闲置状态
+    CTLRequestStateRequesting   = 1,    // 正在请求中
+    CTLRequestStateSuccess      = 2,    // 请求成功
+    CTLRequestStateFailure      = 3,    // 请求失败
+};
+
 @interface UIViewController (CTLConfiguration)
 
 @property (nonatomic) NSInteger ctl_pageNumber;
 @property (nonatomic) NSInteger ctl_pageSize;
-@property (nonatomic) BOOL ctl_isRequesting;
-@property (nonatomic) BOOL ctl_isRequestSuccess;
+@property (nonatomic) CTLRequestState ctl_requestState;
 
 @end
 

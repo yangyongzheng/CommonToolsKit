@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 /** 参数错误code */
 FOUNDATION_EXTERN const NSInteger CTLKeychainManagerErrorBadParameters;
 
+/** 查询条件model */
 @interface CTLKeychainQuery : NSObject
 @property (nullable, nonatomic, copy) NSString *attrAccessGroup;    // the access group an item is in
 @property (nonatomic, copy) NSString *attrAccount;                  // item's account name

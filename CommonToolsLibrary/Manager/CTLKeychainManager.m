@@ -36,6 +36,7 @@ static NSString * const CTLKeychainManagerErrorDomainSecurity = @"See \"Security
         CFTypeRef resultDictionaryRef = NULL;
         status = SecItemCopyMatching(((__bridge CFDictionaryRef)queryDictionary), &resultDictionaryRef);
         if (status == errSecSuccess) {
+            // CF对象转换成OC对象，CF对象的所有权交给OC对象
             NSDictionary *resultDictionary = ((__bridge_transfer NSDictionary *)resultDictionaryRef);
             return [resultDictionary objectForKey:__CTLKMNSStringBridge(kSecValueData)];
         } else {

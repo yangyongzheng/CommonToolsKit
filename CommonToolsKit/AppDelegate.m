@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "CommonToolsLibraryHeader.h"
 
 @interface AppDelegate ()
 
@@ -16,6 +17,17 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    [UIApplication.sharedApplication ctl_enabledRemoteNotification:^(BOOL enabled) {
+        if (enabled) {
+            NSLog(@"已开启");
+        } else {
+            NSLog(@"未开启");
+        }
+    }];
+    
+    if (CTLAuthorizeManager.locationAuthorizationStatus == CTLLocationAuthorizationStatusNotDetermined) {
+        
+    }
     
     return YES;
 }

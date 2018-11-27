@@ -13,7 +13,10 @@ NS_ASSUME_NONNULL_BEGIN
 @interface UIApplication (CTLHelper)
 
 - (void)ctl_safeOpenURL:(NSURL *)url;
-- (void)ctl_openAppSettings;
+- (void)ctl_openAppSettings NS_AVAILABLE_IOS(8_0);
+
+/** 是否开启了Push通知 */
+- (void)ctl_enabledRemoteNotification:(void(^)(BOOL enabled))completionHandler;
 
 @end
 

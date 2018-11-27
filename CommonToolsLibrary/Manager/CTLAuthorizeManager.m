@@ -9,7 +9,6 @@
 #import "CTLAuthorizeManager.h"
 #import "CTLCommonFunction.h"
 #import <Photos/Photos.h>
-#import <CoreLocation/CoreLocation.h>
 
 @implementation CTLAuthorizeManager
 
@@ -52,23 +51,6 @@
             }
         });
     }];
-}
-
-#pragma mark - 用户定位信息
-+ (CTLLocationAuthorizationStatus)locationAuthorizationStatus {
-    if ([CLLocationManager locationServicesEnabled]) {
-        return (CTLLocationAuthorizationStatus)[CLLocationManager authorizationStatus];
-    } else {
-        return CTLLocationAuthorizationStatusServicesDisabled;
-    }
-}
-
-+ (void)requestLocationAuthorizationWhenInUse {
-    [[CLLocationManager alloc] init];
-}
-
-+ (void)requestLocationAuthorizationAlways {
-    
 }
 
 @end

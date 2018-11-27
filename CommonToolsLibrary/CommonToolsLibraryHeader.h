@@ -32,6 +32,7 @@
 #import "CTLDevice.h"
 #import "CTLKeychainManager.h"
 #import "CTLAuthorizeManager.h"
+#import "CTLLocationManager.h"
 
 #import "EqualWidthSegmentedView.h"
 #import "EqualSpacingSegmentedView.h"

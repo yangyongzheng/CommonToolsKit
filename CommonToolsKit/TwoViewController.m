@@ -9,7 +9,7 @@
 #import "TwoViewController.h"
 #import "CommonToolsLibraryHeader.h"
 
-@interface TwoViewController ()<EqualWidthSegmentedViewDelegate>
+@interface TwoViewController ()<CTLLocationManagerDelegate>
 {
     EqualWidthSegmentedView *_segmentedView;
 }
@@ -27,27 +27,30 @@
     // Do any additional setup after loading the view.
     
     self.view.backgroundColor = CTLColorWithHexInt(0xf5f5f5);
-    
-    SegmentedViewItem *item = [SegmentedViewItem itemWithTitle:@"首页"];
-    SegmentedViewItem *item2 = [SegmentedViewItem itemWithTitle:@"我要买"];
-    SegmentedViewItem *item3 = [SegmentedViewItem itemWithTitle:@"我要卖"];
-    _segmentedView = [[EqualWidthSegmentedView alloc] initWithFrame:CGRectMake(0, CTLSafeAreaTopMargin, CTLScreenWidth, 40)
-                                                              items:@[item, item2, item3]
-                                                      configuration:SegmentedViewConfiguration.defaultConfiguration
-                                                           delegate:self];
-    [self.view addSubview:_segmentedView];
-    
-    [_segmentedView setSelectItemAtIndex:1 animated:NO];
 }
 
-- (void)equalWidthSegmentedView:(EqualWidthSegmentedView *)segmentedView
-                  didSelectItem:(SegmentedViewItem *)selectItem
-                        atIndex:(NSUInteger)index {
-    NSLog(@"index: %ld", index);
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    [super touchesBegan:touches withEvent:event];
+    
+    [CTLLocationManager.defaultManager addDelegate:self];
+    [CTLLocationManager.defaultManager startUpdatingLocation];
 }
 
-- (void)dealloc {
-    
+#pragma mark - CTLLocationManagerDelegate
+- (void)locationManager:(CTLLocationManager *)manager didUpdateLocation:(CLLocation *)location {
+    NSLog(@"%@", location);
+}
+
+- (void)locationManager:(CTLLocationManager *)manager didFailWithError:(NSError *)error {
+    NSLog(@"%@", error);
+}
+
+- (void)locationManager:(CTLLocationManager *)manager reverseGeocodeLocation:(CTLLocationInfo *)locationInfo error:(nonnull NSError *)error {
+    if (locationInfo) {
+        NSLog(@"%@", locationInfo.fullAddress);
+    } else {
+        NSLog(@"%@", error);
+    }
 }
 
 @end

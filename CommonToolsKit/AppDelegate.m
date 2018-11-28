@@ -7,9 +7,8 @@
 //
 
 #import "AppDelegate.h"
-#import "CommonToolsLibraryHeader.h"
 
-@interface AppDelegate ()<CTLLocationManagerDelegate>
+@interface AppDelegate ()
 
 @end
 
@@ -17,20 +16,6 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    [UIApplication.sharedApplication ctl_enabledRemoteNotification:^(BOOL enabled) {
-        if (enabled) {
-            NSLog(@"已开启");
-        } else {
-            NSLog(@"未开启");
-        }
-    }];
-    
-    [CTLLocationManager.defaultManager addDelegate:self];
-    [CTLLocationManager.defaultManager startUpdatingLocation];
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [CTLLocationManager.defaultManager startUpdatingLocation];
-    });
-    
     return YES;
 }
 
@@ -61,9 +46,12 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
-#pragma mark - CTLLocationManagerDelegate
-- (void)locationManager:(CTLLocationManager *)manager reverseGeocodeLocation:(CTLLocationInfo *)locationInfo {
-    
+- (BOOL)application:(UIApplication *)application openURL:(nonnull NSURL *)url options:(nonnull NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options {
+    return YES;
+}
+
+- (BOOL)application:(UIApplication *)app openURL:(nonnull NSURL *)url sourceApplication:(nullable NSString *)sourceApplication annotation:(nonnull id)annotation {
+    return YES;
 }
 
 @end

@@ -40,6 +40,7 @@
 		CE80CE9F217096A8004A98D3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CE80CE9E217096A8004A98D3 /* main.m */; };
 		CE80CEA9217096A8004A98D3 /* CommonToolsKitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CE80CEA8217096A8004A98D3 /* CommonToolsKitTests.m */; };
 		CE90CD2A219027F6007B2009 /* CTLDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = CE90CD29219027F6007B2009 /* CTLDevice.m */; };
+		CE9AF45221AE2AD900EAAC56 /* CTLLocationInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = CE9AF45121AE2AD900EAAC56 /* CTLLocationInfo.m */; };
 		CEE8D20721AAA95900EE68CA /* CTLKeychainManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CEE8D20521AAA95900EE68CA /* CTLKeychainManager.m */; };
 		CEE9AE7521797CA700471FB5 /* NSString+CTLMD5.m in Sources */ = {isa = PBXBuildFile; fileRef = CEE9AE7421797CA700471FB5 /* NSString+CTLMD5.m */; };
 		CEF41220218F10E60049A994 /* UIColor+CTLHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = CEF4121F218F10E60049A994 /* UIColor+CTLHelper.m */; };
@@ -125,6 +126,8 @@
 		CE80CEAA217096A8004A98D3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CE90CD28219027F6007B2009 /* CTLDevice.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CTLDevice.h; sourceTree = "<group>"; };
 		CE90CD29219027F6007B2009 /* CTLDevice.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CTLDevice.m; sourceTree = "<group>"; };
+		CE9AF45021AE2AD900EAAC56 /* CTLLocationInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CTLLocationInfo.h; sourceTree = "<group>"; };
+		CE9AF45121AE2AD900EAAC56 /* CTLLocationInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CTLLocationInfo.m; sourceTree = "<group>"; };
 		CEE8D20521AAA95900EE68CA /* CTLKeychainManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTLKeychainManager.m; sourceTree = "<group>"; };
 		CEE8D20621AAA95900EE68CA /* CTLKeychainManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTLKeychainManager.h; sourceTree = "<group>"; };
 		CEE9AE7321797CA700471FB5 /* NSString+CTLMD5.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+CTLMD5.h"; sourceTree = "<group>"; };
@@ -223,6 +226,8 @@
 				CE35B36821AC15D500D625F9 /* CTLAuthorizeManager.m */,
 				CE2C36D721AD3A2500CA3742 /* CTLLocationManager.h */,
 				CE2C36D821AD3A2500CA3742 /* CTLLocationManager.m */,
+				CE9AF45021AE2AD900EAAC56 /* CTLLocationInfo.h */,
+				CE9AF45121AE2AD900EAAC56 /* CTLLocationInfo.m */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -481,6 +486,7 @@
 				CE56F4E32174445800DACF5C /* CTLStoragePathManager.m in Sources */,
 				CE221AE3218FDC8E0019BACD /* UIApplication+CTLHelper.m in Sources */,
 				CE5DE468218ACF4E00862E47 /* CTLAppStatusMonitor.m in Sources */,
+				CE9AF45221AE2AD900EAAC56 /* CTLLocationInfo.m in Sources */,
 				CE12869B21ABA42B0088C98C /* ESSVNormalCollectionViewCell.m in Sources */,
 				CE1286A021ABA42B0088C98C /* EqualWidthSegmentedView.m in Sources */,
 				CE10D9462171DDC7000561AE /* TwoViewController.m in Sources */,

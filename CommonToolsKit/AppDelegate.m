@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "CommonToolsLibraryHeader.h"
 
 @interface AppDelegate ()
 
@@ -16,6 +17,8 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    [CTLDevice.currentDevice initialConfiguration];
+    NSLog(@"isUpgtadeInstallation: %d", CTLDevice.currentDevice.isUpgtadeInstallation);
     return YES;
 }
 

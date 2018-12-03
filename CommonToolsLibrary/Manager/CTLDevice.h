@@ -13,6 +13,8 @@ NS_ASSUME_NONNULL_BEGIN
 @interface CTLDevice : NSObject
 // 获取单例
 @property(class, nonatomic, readonly) CTLDevice *currentDevice;
+// 初始化配置，推荐在`application:didFinishLaunchingWithOptions:`中调用
+- (void)initialConfiguration;
 
 @property (nonatomic, readonly, copy) NSString *firmwareIdentifier;     // 固件标识符，如iPhone X的标识符为 iPhone10,3 或 iPhone10,6
 @property (nonatomic, readonly, copy) NSString *SIMOperator;            // SIM运营商
@@ -26,6 +28,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, readonly) long slideAddress;                      // slide address
 @property (nonatomic, readonly, copy) NSString *CPUType;                // CPU Type
 @property (nonatomic, readonly, copy) NSString *currentLanguage;        // 设备当前语言
+@property (nonatomic, readonly) BOOL isUpgtadeInstallation;             // 是否是升级安装当前版本App
 
 @property (nonatomic, readonly) BOOL hasBangs;                          // 是否有刘海, 支持横竖屏
 @property (nonatomic, readonly) CGFloat additionalSafeAreaBottomMargin; // 有刘海的设备竖屏时为34.0，横屏21.0

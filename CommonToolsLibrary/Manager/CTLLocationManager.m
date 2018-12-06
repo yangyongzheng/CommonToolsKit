@@ -79,12 +79,50 @@
 @interface CTLLocationManager ()<CLLocationManagerDelegate>
 @property (nonatomic, strong) CLLocationManager *locationManager;
 @property (nonatomic, strong) CLGeocoder *geocoder;
-// 存储定位代理的集合(类似NSSet), 自动释放nil对象
-@property (nonatomic, strong) NSHashTable *delegateContainer;
-@property (nonatomic) BOOL isNeedUpdate;
+@property (nonatomic, strong) NSHashTable *delegateContainer;               // 存储定位代理的集合(类似NSSet), 自动释放nil对象
+@property (nonatomic, readwrite, strong) CLLocation *lastLocation;          // 最新的位置信息
+@property (nonatomic, readwrite, strong) CTLLocationInfo *lastLocationInfo; // 反地理编码后位置信息
+@property (nonatomic, readwrite) CTLLocationState locationState;            // 当前定位状态
 @end
 
 @implementation CTLLocationManager
+
+#pragma mark - setter or getter
+- (void)setDistanceFilter:(CLLocationDistance)distanceFilter {
+    _distanceFilter = distanceFilter;
+    
+    self.locationManager.distanceFilter = distanceFilter;
+}
+
+- (void)setDesiredAccuracy:(CLLocationAccuracy)desiredAccuracy {
+    _desiredAccuracy = desiredAccuracy;
+    
+    self.locationManager.desiredAccuracy = desiredAccuracy;
+}
+
+- (CLLocationManager *)locationManager {
+    if (!_locationManager) {
+        _locationManager = [[CLLocationManager alloc] init];
+        _locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+        _locationManager.distanceFilter = 10;
+        _locationManager.delegate = self;
+    }
+    return _locationManager;
+}
+
+- (CLGeocoder *)geocoder {
+    if (!_geocoder) {
+        _geocoder = [[CLGeocoder alloc] init];
+    }
+    return _geocoder;
+}
+
+- (NSHashTable *)delegateContainer {
+    if (!_delegateContainer) {
+        _delegateContainer = [NSHashTable weakObjectsHashTable];
+    }
+    return _delegateContainer;
+}
 
 #pragma mark - Public Method
 + (CTLLocationManager *)defaultManager {
@@ -92,6 +130,8 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         manager = [[CTLLocationManager alloc] init];
+        manager.distanceFilter = 10;
+        manager.desiredAccuracy = kCLLocationAccuracyBest;
     });
     
     return manager;
@@ -114,14 +154,16 @@
 }
 
 - (void)startUpdatingLocation {
-    self.isNeedUpdate = YES;
-    [self.locationManager startUpdatingLocation];
+    if (self.locationState == CTLLocationStateIdle ||
+        self.locationState == CTLLocationStateFailure ||
+        self.locationState == CTLLocationStateReverseGeocodingCompletion) {
+        self.locationState = CTLLocationStateUpdating;
+        [self.locationManager startUpdatingLocation];
+    }
 }
 
 - (void)stopUpdatingLocation {
-    self.isNeedUpdate = NO;
     [self.locationManager stopUpdatingLocation];
-    
 }
 
 - (void)requestLocationAuthorizationWhenInUse {
@@ -134,8 +176,9 @@
 
 #pragma mark - CLLocationManagerDelegate
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations {
-    // 更新位置成功时调用
-    if (locations.count > 0 && self.isNeedUpdate) {
+    BOOL enabled = self.locationState != CTLLocationStateSuccess || self.locationState != CTLLocationStateReverseGeocodingCompletion;
+    if (locations.count > 0 && enabled) {
+        self.locationState = CTLLocationStateSuccess;
         [self stopUpdatingLocation];
         _lastLocation = locations.lastObject;
         [self requestReverseGeocodeLocation:_lastLocation];
@@ -152,7 +195,12 @@
 }
 
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
-    
+    // 代理通知
+    for (id <CTLLocationManagerDelegate> delegate in self.delegateContainer) {
+        if (delegate && [delegate respondsToSelector:@selector(locationManager:didFailWithError:)]) {
+            [delegate locationManager:self didFailWithError:error];
+        }
+    }
 }
 
 - (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
@@ -173,37 +221,12 @@
             
             // 代理通知
             for (id <CTLLocationManagerDelegate> delegate in strongSelf.delegateContainer) {
-                if (delegate && [delegate respondsToSelector:@selector(locationManager:reverseGeocodeLocation:)]) {
-                    [delegate locationManager:strongSelf reverseGeocodeLocation:strongSelf.lastLocationInfo];
+                if (delegate && [delegate respondsToSelector:@selector(locationManager:reverseGeocodeLocation:error:)]) {
+                    [delegate locationManager:strongSelf reverseGeocodeLocation:strongSelf.lastLocationInfo error:nil];
                 }
             }
-            NSLog(@"%@ %@", strongSelf.lastLocationInfo.country, strongSelf.lastLocationInfo.fullAddress);
         }
     }];
-}
-
-#pragma mark - setter or getter
-- (CLLocationManager *)locationManager {
-    if (!_locationManager) {
-        _locationManager = [[CLLocationManager alloc] init];
-        _locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-        _locationManager.delegate = self;
-    }
-    return _locationManager;
-}
-
-- (CLGeocoder *)geocoder {
-    if (!_geocoder) {
-        _geocoder = [[CLGeocoder alloc] init];
-    }
-    return _geocoder;
-}
-
-- (NSHashTable *)delegateContainer {
-    if (!_delegateContainer) {
-        _delegateContainer = [NSHashTable weakObjectsHashTable];
-    }
-    return _delegateContainer;
 }
 
 @end

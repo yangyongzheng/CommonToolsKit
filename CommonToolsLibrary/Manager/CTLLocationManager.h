@@ -60,6 +60,16 @@ typedef NS_ENUM(NSInteger, CTLLocationAuthorizationStatus) {
 } NS_ENUM_AVAILABLE_IOS(8_0);
 
 
+/** 定位状态 */
+typedef NS_ENUM(NSInteger, CTLLocationState) {
+    CTLLocationStateIdle = 0,   // 闲置
+    CTLLocationStateUpdating,   // 正在定位中
+    CTLLocationStateSuccess,    // 定位成功，正在进行反向地理编码
+    CTLLocationStateFailure,    // 定位失败
+    CTLLocationStateReverseGeocodingCompletion, // 反向地理编码完成
+};
+
+
 @class CTLLocationManager;
 @protocol CTLLocationManagerDelegate <NSObject>
 @optional
@@ -69,28 +79,33 @@ typedef NS_ENUM(NSInteger, CTLLocationAuthorizationStatus) {
  
  @param location 用户当前位置
  */
-- (void)locationManager:(CTLLocationManager *)manager didUpdateLocation:(CLLocation *)location;
+- (void)locationManager:(CTLLocationManager *)manager
+      didUpdateLocation:(CLLocation *)location;
 
 /**
  定位失败时调用
  
  @param error errorCode为 CLError 枚举值
  */
-- (void)locationManager:(CTLLocationManager *)manager didFailWithError:(NSError *)error;
+- (void)locationManager:(CTLLocationManager *)manager
+       didFailWithError:(NSError *)error;
 
 /**
  反向地理编码成功时调用
  
  @param locationInfo 反向地理编码成功后位置信息
  */
-- (void)locationManager:(CTLLocationManager *)manager reverseGeocodeLocation:(CTLLocationInfo *)locationInfo;
+- (void)locationManager:(CTLLocationManager *)manager
+ reverseGeocodeLocation:(nullable CTLLocationInfo *)locationInfo
+                  error:(nullable NSError *)error;
 
 /**
  定位权限变更时调用
  
  @param status 注意：未开启【定位服务】时也会报`kCLAuthorizationStatusDenied`权限状态
  */
-- (void)locationManager:(CTLLocationManager *)manager didChangeAuthorizationStatus:(CTLLocationAuthorizationStatus)status;
+- (void)locationManager:(CTLLocationManager *)manager
+didChangeAuthorizationStatus:(CTLLocationAuthorizationStatus)status;
 
 @end
 
@@ -102,9 +117,16 @@ typedef NS_ENUM(NSInteger, CTLLocationAuthorizationStatus) {
 // 定位权限授权状态
 @property (class, nonatomic, readonly) CTLLocationAuthorizationStatus locationAuthorizationStatus;
 
+// 定位精度，默认值为`kCLLocationAccuracyBest`
+@property(nonatomic) CLLocationAccuracy desiredAccuracy;
+// 触发定位更新的水平移动最小距离（单位米），默认值为10m
+@property(nonatomic) CLLocationDistance distanceFilter;
+
 /** 用户位置信息 */
 @property (nonatomic, readonly, strong) CLLocation *lastLocation;           // 最新的位置信息
 @property (nonatomic, readonly, strong) CTLLocationInfo *lastLocationInfo;  // 反地理编码后位置信息
+// 当前定位状态
+@property (nonatomic, readonly) CTLLocationState locationState;
 
 /**
  添加/移除定位代理
@@ -113,7 +135,11 @@ typedef NS_ENUM(NSInteger, CTLLocationAuthorizationStatus) {
 - (void)removeDelegate:(id<CTLLocationManagerDelegate>)delegate;
 
 /**
- 开始定位，建议调用此API之前优先设置代理.
+ 开始定位，建议调用此API之前优先设置代理以及相关配置信息，如`desiredAccuracy`，`distanceFilter`.
+ 注意：只有当 locationState == CTLLocationStateIdle ||
+            locationState == CTLLocationStateFailure ||
+            locationState == CTLLocationStateReverseGeocodingCompletion
+ 时，调用此方法才会触发下一次定位更新.
  */
 - (void)startUpdatingLocation;
 

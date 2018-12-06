@@ -8,33 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreLocation/CoreLocation.h>
+#import "CTLLocationInfo.h"
 
 NS_ASSUME_NONNULL_BEGIN
-
-@interface CTLLocationInfo : NSObject
-
-@property (nonatomic, strong) CLLocation *location;             // 定位信息
-@property (nonatomic, strong) CLPlacemark *placemark;           // 反地理编码后位置信息
-// 位置经纬度, 根据`location`属性获得
-@property (nonatomic, readonly) CLLocationDegrees latitude;     // 纬度
-@property (nonatomic, readonly) CLLocationDegrees longitude;    // 经度
-// 反地理编码后位置信息 相关属性 根据`placemark`属性获得
-@property (nonatomic, readonly, copy) NSString *country;        // 国家
-@property (nonatomic, readonly, copy) NSString *province;       // 省
-@property (nonatomic, readonly, copy) NSString *city;           // 市
-@property (nonatomic, readonly, copy) NSString *district;       // 区
-@property (nonatomic, readonly, copy) NSString *street;         // 街道
-@property (nonatomic, readonly, copy) NSString *landmark;       // 标志物
-// extra
-@property (nonatomic, readonly, copy) NSString *shortAddress;   // 短地址（省+市）
-@property (nonatomic, readonly, copy) NSString *mediumAddress;  // 中地址（省+市+区）
-@property (nonatomic, readonly, copy) NSString *longAddress;    // 长地址（省+市+区+街道）
-@property (nonatomic, readonly, copy) NSString *fullAddress;    // 完整地址（省+市+区+街道+标志物）
-
-+ (instancetype)locationInfoWithLocation:(CLLocation *)location placemark:(CLPlacemark *)placemark;
-
-@end
-
 
 /**
  定位权限授权状态
@@ -59,7 +35,6 @@ typedef NS_ENUM(NSInteger, CTLLocationAuthorizationStatus) {
     CTLLocationAuthorizationStatusAuthorizedWhenInUse
 } NS_ENUM_AVAILABLE_IOS(8_0);
 
-
 /** 定位状态 */
 typedef NS_ENUM(NSInteger, CTLLocationState) {
     CTLLocationStateIdle = 0,   // 闲置
@@ -69,21 +44,23 @@ typedef NS_ENUM(NSInteger, CTLLocationState) {
     CTLLocationStateReverseGeocodingCompletion, // 反向地理编码完成
 };
 
+/** 访问位置信息权限发生改变通知 */
+CL_EXTERN NSNotificationName const CTLLocationAuthorizationStatusDidChangeNotification;
+
 
 @class CTLLocationManager;
 @protocol CTLLocationManagerDelegate <NSObject>
 @optional
-
 /**
- 定位成功时调用，可能多次调用
+ 更新位置信息成功时调用
  
- @param location 用户当前位置
+ @param location 用户当前位置信息
  */
 - (void)locationManager:(CTLLocationManager *)manager
       didUpdateLocation:(CLLocation *)location;
 
 /**
- 定位失败时调用
+ 更新位置信息失败时调用
  
  @param error errorCode为 CLError 枚举值
  */
@@ -91,22 +68,13 @@ typedef NS_ENUM(NSInteger, CTLLocationState) {
        didFailWithError:(NSError *)error;
 
 /**
- 反向地理编码成功时调用
+ 反向地理编码完成时调用
  
  @param locationInfo 反向地理编码成功后位置信息
  */
 - (void)locationManager:(CTLLocationManager *)manager
  reverseGeocodeLocation:(nullable CTLLocationInfo *)locationInfo
                   error:(nullable NSError *)error;
-
-/**
- 定位权限变更时调用
- 
- @param status 注意：未开启【定位服务】时也会报`kCLAuthorizationStatusDenied`权限状态
- */
-- (void)locationManager:(CTLLocationManager *)manager
-didChangeAuthorizationStatus:(CTLLocationAuthorizationStatus)status;
-
 @end
 
 
@@ -135,11 +103,12 @@ didChangeAuthorizationStatus:(CTLLocationAuthorizationStatus)status;
 - (void)removeDelegate:(id<CTLLocationManagerDelegate>)delegate;
 
 /**
- 开始定位，建议调用此API之前优先设置代理以及相关配置信息，如`desiredAccuracy`，`distanceFilter`.
+ 开始定位，建议调用此API之前优先设置代理以及相关配置信息，如`desiredAccuracy`，`distanceFilter`。
+ 如果当前定位授权状态为`CTLLocationAuthorizationStatusNotDetermined`调用此API会默认请求‘requestLocationAuthorizationWhenInUse’授权。
  注意：只有当 locationState == CTLLocationStateIdle ||
             locationState == CTLLocationStateFailure ||
             locationState == CTLLocationStateReverseGeocodingCompletion
- 时，调用此方法才会触发下一次定位更新.
+ 时，调用此方法才会触发下一次定位更新。
  */
 - (void)startUpdatingLocation;
 

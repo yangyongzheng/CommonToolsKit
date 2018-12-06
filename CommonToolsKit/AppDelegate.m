@@ -9,7 +9,7 @@
 #import "AppDelegate.h"
 #import "CommonToolsLibraryHeader.h"
 
-@interface AppDelegate ()<CTLLocationManagerDelegate>
+@interface AppDelegate ()
 
 @end
 
@@ -25,9 +25,10 @@
         }
     }];
     
-    [CTLLocationManager.defaultManager addDelegate:self];
     [CTLLocationManager.defaultManager startUpdatingLocation];
     
+    [CTLDevice.currentDevice initialConfiguration];
+    NSLog(@"isUpgtadeInstallation: %d", CTLDevice.currentDevice.isUpgtadeInstallation);
     return YES;
 }
 
@@ -58,9 +59,12 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
-#pragma mark - CTLLocationManagerDelegate
-- (void)locationManager:(CTLLocationManager *)manager reverseGeocodeLocation:(CTLLocationInfo *)locationInfo {
-    
+- (BOOL)application:(UIApplication *)application openURL:(nonnull NSURL *)url options:(nonnull NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options {
+    return YES;
+}
+
+- (BOOL)application:(UIApplication *)app openURL:(nonnull NSURL *)url sourceApplication:(nullable NSString *)sourceApplication annotation:(nonnull id)annotation {
+    return YES;
 }
 
 @end

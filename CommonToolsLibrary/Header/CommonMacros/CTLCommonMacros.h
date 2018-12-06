@@ -20,7 +20,7 @@
 #define CTL_STATIC_INLINE   UIKIT_STATIC_INLINE
 #endif
 
-// 制定工程AppDelegate类
+// 指定工程AppDelegate类
 #ifndef CTLAppDelegate
 #define CTLAppDelegate      AppDelegate
 #endif

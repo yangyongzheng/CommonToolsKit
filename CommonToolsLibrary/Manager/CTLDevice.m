@@ -15,6 +15,9 @@
 #import <mach-o/dyld.h>
 #include <mach/mach_host.h>
 
+static NSString * const CTLDeviceLastVersion = @"CTLDeviceLastVersion";
+static NSString * const CTLDeviceIsUpgtadeInstallation = @"CTLDeviceIsUpgtadeInstallation";
+
 @interface CTLDevice ()
 @property (nonatomic, readonly) UIEdgeInsets safeAreaInsets;
 @end
@@ -37,6 +40,10 @@
     });
     
     return device;
+}
+
+- (void)initialConfiguration {
+    
 }
 
 - (NSString *)firmwareIdentifier {
@@ -226,6 +233,10 @@
     return language;
 }
 
+- (BOOL)isUpgtadeInstallation {
+    return [NSUserDefaults.standardUserDefaults boolForKey:CTLDeviceIsUpgtadeInstallation];
+}
+
 #pragma mark - 版本判断
 - (BOOL)isiOS8Later {
     if (@available(iOS 8.0, *)) {
@@ -286,6 +297,23 @@
     
     self->_hasBangs = safeAreaInsets.bottom > 20;// 横向时 有刘海设备的bottomMargin为 21.0
     self->_safeAreaInsets = safeAreaInsets;
+    // 更新安装模式
+    [self updateInstallMode];
+}
+
+- (void)updateInstallMode {
+    NSUserDefaults *userDefaults = NSUserDefaults.standardUserDefaults;
+    NSString *lastVersion = [userDefaults stringForKey:CTLDeviceLastVersion];
+    NSString *appVersion = [NSBundle.mainBundle.infoDictionary objectForKey:@"CFBundleShortVersionString"];
+    if (lastVersion == nil) {
+        [userDefaults setBool:NO forKey:CTLDeviceIsUpgtadeInstallation];
+        [userDefaults setObject:appVersion forKey:CTLDeviceLastVersion];
+        [userDefaults synchronize];
+    } else if (lastVersion != appVersion) {
+        [userDefaults setBool:YES forKey:CTLDeviceIsUpgtadeInstallation];
+        [userDefaults setObject:appVersion forKey:CTLDeviceLastVersion];
+        [userDefaults synchronize];
+    }
 }
 
 #pragma mark 根据使用stat方法来判断cydia是否存在来判断

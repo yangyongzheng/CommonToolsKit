@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 // 获取单例
 @property(class, nonatomic, readonly) CTLDevice *currentDevice;
 // 初始化配置，推荐在`application:didFinishLaunchingWithOptions:`中调用
-- (void)initialConfiguration;
+- (void)startConfiguration;
 
 @property (nonatomic, readonly, copy) NSString *firmwareIdentifier;     // 固件标识符，如iPhone X的标识符为 iPhone10,3 或 iPhone10,6
 @property (nonatomic, readonly, copy) NSString *SIMOperator;            // SIM运营商

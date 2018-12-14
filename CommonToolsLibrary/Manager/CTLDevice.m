@@ -42,7 +42,7 @@ static NSString * const CTLDeviceIsUpgtadeInstallation = @"CTLDeviceIsUpgtadeIns
     return device;
 }
 
-- (void)initialConfiguration {
+- (void)startConfiguration {
     
 }
 

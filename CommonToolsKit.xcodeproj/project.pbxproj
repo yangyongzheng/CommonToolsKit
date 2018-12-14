@@ -27,6 +27,7 @@
 		CE1286A121ABA42B0088C98C /* EWSVCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE12869421ABA42B0088C98C /* EWSVCollectionViewCell.xib */; };
 		CE14F05C219180B100AEC54C /* CTLCommonFunction.m in Sources */ = {isa = PBXBuildFile; fileRef = CE14F05B219180B100AEC54C /* CTLCommonFunction.m */; };
 		CE221AE3218FDC8E0019BACD /* UIApplication+CTLHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = CE221AE2218FDC8E0019BACD /* UIApplication+CTLHelper.m */; };
+		CE2C17DD21C3A87100F50EB3 /* CTLContactsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CE2C17DC21C3A87100F50EB3 /* CTLContactsManager.m */; };
 		CE2C252A218DF38800244974 /* NSString+CTLURLComparison.m in Sources */ = {isa = PBXBuildFile; fileRef = CE2C2529218DF38800244974 /* NSString+CTLURLComparison.m */; };
 		CE2C36D921AD3A2500CA3742 /* CTLLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CE2C36D821AD3A2500CA3742 /* CTLLocationManager.m */; };
 		CE35B36921AC15D500D625F9 /* CTLAuthorizeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CE35B36821AC15D500D625F9 /* CTLAuthorizeManager.m */; };
@@ -97,6 +98,8 @@
 		CE14F05B219180B100AEC54C /* CTLCommonFunction.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CTLCommonFunction.m; sourceTree = "<group>"; };
 		CE221AE1218FDC8E0019BACD /* UIApplication+CTLHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIApplication+CTLHelper.h"; sourceTree = "<group>"; };
 		CE221AE2218FDC8E0019BACD /* UIApplication+CTLHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIApplication+CTLHelper.m"; sourceTree = "<group>"; };
+		CE2C17DB21C3A87100F50EB3 /* CTLContactsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTLContactsManager.h; sourceTree = "<group>"; };
+		CE2C17DC21C3A87100F50EB3 /* CTLContactsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTLContactsManager.m; sourceTree = "<group>"; };
 		CE2C2527218DE84F00244974 /* CommonToolsLibraryHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommonToolsLibraryHeader.h; sourceTree = "<group>"; };
 		CE2C2528218DF38800244974 /* NSString+CTLURLComparison.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+CTLURLComparison.h"; sourceTree = "<group>"; };
 		CE2C2529218DF38800244974 /* NSString+CTLURLComparison.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+CTLURLComparison.m"; sourceTree = "<group>"; };
@@ -228,6 +231,8 @@
 				CE2C36D821AD3A2500CA3742 /* CTLLocationManager.m */,
 				CE9AF45021AE2AD900EAAC56 /* CTLLocationInfo.h */,
 				CE9AF45121AE2AD900EAAC56 /* CTLLocationInfo.m */,
+				CE2C17DB21C3A87100F50EB3 /* CTLContactsManager.h */,
+				CE2C17DC21C3A87100F50EB3 /* CTLContactsManager.m */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -481,6 +486,7 @@
 				CE10D93F2171C7FF000561AE /* UITableView+CTLConfiguration.m in Sources */,
 				CEF41220218F10E60049A994 /* UIColor+CTLHelper.m in Sources */,
 				CE12869821ABA42B0088C98C /* EqualSpacingSegmentedView.m in Sources */,
+				CE2C17DD21C3A87100F50EB3 /* CTLContactsManager.m in Sources */,
 				CE2C36D921AD3A2500CA3742 /* CTLLocationManager.m in Sources */,
 				CE2C252A218DF38800244974 /* NSString+CTLURLComparison.m in Sources */,
 				CE56F4E32174445800DACF5C /* CTLStoragePathManager.m in Sources */,

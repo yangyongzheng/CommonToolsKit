@@ -17,7 +17,7 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    [CTLDevice.currentDevice initialConfiguration];
+    [CTLDevice.currentDevice startConfiguration];
     NSLog(@"isUpgtadeInstallation: %d", CTLDevice.currentDevice.isUpgtadeInstallation);
     return YES;
 }

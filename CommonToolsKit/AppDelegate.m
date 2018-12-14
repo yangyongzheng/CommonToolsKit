@@ -17,6 +17,16 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    [UIApplication.sharedApplication ctl_enabledRemoteNotification:^(BOOL enabled) {
+        if (enabled) {
+            NSLog(@"已开启");
+        } else {
+            NSLog(@"未开启");
+        }
+    }];
+    
+    [CTLLocationManager.defaultManager startUpdatingLocation];
+    
     [CTLDevice.currentDevice startConfiguration];
     NSLog(@"isUpgtadeInstallation: %d", CTLDevice.currentDevice.isUpgtadeInstallation);
     return YES;

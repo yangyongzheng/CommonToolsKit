@@ -12,13 +12,44 @@ NSNotificationName const CTLLocationAuthorizationStatusDidChangeNotification = @
 
 #pragma mark - 定位管理类
 @interface CTLLocationManager ()<CLLocationManagerDelegate>
-@property (nonatomic, strong) CLLocationManager *locationManager;
-// 存储定位代理的集合(类似NSSet), 自动释放nil对象
-@property (nonatomic, strong) NSHashTable *delegateContainer;
-@property (nonatomic) BOOL isNeedUpdate;
+@property (nonatomic, strong) CLLocationManager *locationManager;           // 定位管理类
+@property (nonatomic, strong) NSHashTable *delegateContainer;               // 存储定位代理的集合(类似NSSet), 自动释放nil对象
+@property (nonatomic, readwrite, strong) CLLocation *lastLocation;          // 最新的位置信息
+@property (nonatomic, readwrite, strong) CTLLocationInfo *lastLocationInfo; // 反地理编码后位置信息
+@property (nonatomic, readwrite) CTLLocationState locationState;            // 当前定位状态
 @end
 
 @implementation CTLLocationManager
+
+#pragma mark - setter or getter
+- (void)setDistanceFilter:(CLLocationDistance)distanceFilter {
+    _distanceFilter = distanceFilter;
+    
+    self.locationManager.distanceFilter = distanceFilter;
+}
+
+- (void)setDesiredAccuracy:(CLLocationAccuracy)desiredAccuracy {
+    _desiredAccuracy = desiredAccuracy;
+    
+    self.locationManager.desiredAccuracy = desiredAccuracy;
+}
+
+- (CLLocationManager *)locationManager {
+    if (!_locationManager) {
+        _locationManager = [[CLLocationManager alloc] init];
+        _locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+        _locationManager.distanceFilter = 10;
+        _locationManager.delegate = self;
+    }
+    return _locationManager;
+}
+
+- (NSHashTable *)delegateContainer {
+    if (!_delegateContainer) {
+        _delegateContainer = [NSHashTable weakObjectsHashTable];
+    }
+    return _delegateContainer;
+}
 
 #pragma mark - Public Method
 + (CTLLocationManager *)defaultManager {
@@ -26,6 +57,8 @@ NSNotificationName const CTLLocationAuthorizationStatusDidChangeNotification = @
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         manager = [[CTLLocationManager alloc] init];
+        manager.distanceFilter = 10;
+        manager.desiredAccuracy = kCLLocationAccuracyBest;
     });
     
     return manager;
@@ -48,12 +81,15 @@ NSNotificationName const CTLLocationAuthorizationStatusDidChangeNotification = @
 }
 
 - (void)startUpdatingLocation {
-    self.isNeedUpdate = YES;
-    [self.locationManager startUpdatingLocation];
+    if (self.locationState == CTLLocationStateIdle ||
+        self.locationState == CTLLocationStateFailure ||
+        self.locationState == CTLLocationStateReverseGeocodingCompletion) {
+        self.locationState = CTLLocationStateUpdating;
+        [self.locationManager startUpdatingLocation];
+    }
 }
 
 - (void)stopUpdatingLocation {
-    self.isNeedUpdate = NO;
     [self.locationManager stopUpdatingLocation];
 }
 
@@ -67,13 +103,13 @@ NSNotificationName const CTLLocationAuthorizationStatusDidChangeNotification = @
 
 #pragma mark - CLLocationManagerDelegate
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations {
-    // 更新位置成功时调用
-    if (locations.count > 0 && self.isNeedUpdate) {
-        self.isNeedUpdate = NO;
+    BOOL enabled = self.locationState != CTLLocationStateSuccess && self.locationState != CTLLocationStateReverseGeocodingCompletion;
+    if (locations.count > 0 && enabled) {
+        self.locationState = CTLLocationStateSuccess;
         [self stopUpdatingLocation];
-        _lastLocation = locations.lastObject;
+        self.lastLocation = locations.lastObject;
         // 反向地理编码
-        [self requestReverseGeocodeLocation:_lastLocation];
+        [self requestReverseGeocodeLocation:self.lastLocation];
         // 代理通知
         for (id <CTLLocationManagerDelegate> delegate in self.delegateContainer) {
             if (delegate && [delegate respondsToSelector:@selector(locationManager:didUpdateLocation:)]) {
@@ -85,6 +121,7 @@ NSNotificationName const CTLLocationAuthorizationStatusDidChangeNotification = @
 
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
     // 代理通知
+    self.locationState = CTLLocationStateFailure;
     [self stopUpdatingLocation];
     for (id <CTLLocationManagerDelegate> delegate in self.delegateContainer) {
         if (delegate && [delegate respondsToSelector:@selector(locationManager:didFailWithError:)]) {
@@ -96,10 +133,14 @@ NSNotificationName const CTLLocationAuthorizationStatusDidChangeNotification = @
 - (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
     if (status == kCLAuthorizationStatusNotDetermined) {
         [self requestLocationAuthorizationWhenInUse];
+    } else {
+        [NSNotificationCenter.defaultCenter postNotificationName:CTLLocationAuthorizationStatusDidChangeNotification
+                                                          object:nil
+                                                        userInfo:nil];
+        if (!self.lastLocation && status != kCLAuthorizationStatusRestricted && status != kCLAuthorizationStatusDenied) {
+            [self startUpdatingLocation];
+        }
     }
-    [NSNotificationCenter.defaultCenter postNotificationName:CTLLocationAuthorizationStatusDidChangeNotification
-                                                      object:nil
-                                                    userInfo:nil];
 }
 
 #pragma mark - Misc
@@ -118,16 +159,18 @@ NSNotificationName const CTLLocationAuthorizationStatusDidChangeNotification = @
         [NSUserDefaults.standardUserDefaults setObject:@[@"zh-Hans"] forKey:@"AppleLanguages"];
         [geocoder reverseGeocodeLocation:location completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
             __strong typeof(weakSelf) strongSelf = weakSelf;
-            [strongSelf reverseGeocodeLocation:location placemarks:placemarks error:error];
             [NSUserDefaults.standardUserDefaults setObject:languages forKey:@"AppleLanguages"];
+            [strongSelf reverseGeocodeLocation:location placemarks:placemarks error:error];
         }];
     }
 }
 
 - (void)reverseGeocodeLocation:(CLLocation *)location placemarks:(NSArray<CLPlacemark *> *)placemarks error:(NSError *)error {
+    self.locationState = CTLLocationStateReverseGeocodingCompletion;
+    
     if (!error && placemarks.count > 0) {
         CLPlacemark *place = placemarks.lastObject;
-        _lastLocationInfo = [CTLLocationInfo locationInfoWithLocation:location placemark:place];
+        self.lastLocationInfo = [CTLLocationInfo locationInfoWithLocation:location placemark:place];
     }
     
     // 代理通知
@@ -136,23 +179,6 @@ NSNotificationName const CTLLocationAuthorizationStatusDidChangeNotification = @
             [delegate locationManager:self reverseGeocodeLocation:self.lastLocationInfo error:error];
         }
     }
-}
-
-#pragma mark - setter or getter
-- (CLLocationManager *)locationManager {
-    if (!_locationManager) {
-        _locationManager = [[CLLocationManager alloc] init];
-        _locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-        _locationManager.delegate = self;
-    }
-    return _locationManager;
-}
-
-- (NSHashTable *)delegateContainer {
-    if (!_delegateContainer) {
-        _delegateContainer = [NSHashTable weakObjectsHashTable];
-    }
-    return _delegateContainer;
 }
 
 @end

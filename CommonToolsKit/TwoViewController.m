@@ -45,7 +45,7 @@
     NSLog(@"%@", error);
 }
 
-- (void)locationManager:(CTLLocationManager *)manager reverseGeocodeLocation:(CTLLocationInfo *)locationInfo error:(nonnull NSError *)error {
+- (void)locationManager:(CTLLocationManager *)manager reverseGeocodeLocation:(CTLLocationInfo *)locationInfo error:(NSError *)error {
     if (locationInfo) {
         NSLog(@"%@", locationInfo.fullAddress);
     } else {

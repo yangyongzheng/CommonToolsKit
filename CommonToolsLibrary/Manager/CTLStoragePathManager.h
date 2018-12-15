@@ -11,10 +11,10 @@
 NS_ASSUME_NONNULL_BEGIN
 
 typedef NS_ENUM(NSUInteger, CTLStoragePathSubdirectory) {
-    CTLStorageDatabasesSubdirectory,    // 数据库存储
-    CTLStorageArchivesSubdirectory,     // 归档存储
-    CTLStorageCachesSubdirectory,       // 网络数据缓存
-    CTLStorageOthersSubdirectory,       // 其他
+    CTLStorageDatabasesSubdirectory,    // Databases
+    CTLStorageArchivesSubdirectory,     // Archives
+    CTLStorageCachesSubdirectory,       // Caches
+    CTLStorageOthersSubdirectory,       // Others
 };
 
 typedef NS_ENUM(NSUInteger, CTLStoragePathBaseDirectory) {
@@ -28,11 +28,32 @@ typedef NS_ENUM(NSUInteger, CTLStoragePathBaseDirectory) {
 /**
  获取目录绝对路径
 
- @param baseDirectory 基目录
+ @param baseDirectory 基目录类型
+ @return 目录绝对路径
+ */
+FOUNDATION_EXPORT NSString *CTLStoragePathForBaseDirectory(CTLStoragePathBaseDirectory baseDirectory);
+
+/**
+ 获取目录绝对路径
+
+ @param baseDirectory 基目录类型
  @param subdirectory 子目录类型
  @return 目录绝对路径
  */
-FOUNDATION_EXPORT NSString *CTLStoragePathForDirectory(CTLStoragePathBaseDirectory baseDirectory, CTLStoragePathSubdirectory subdirectory);
+FOUNDATION_EXPORT NSString *CTLStoragePathForBaseSubdirectory(CTLStoragePathBaseDirectory baseDirectory,
+                                                              CTLStoragePathSubdirectory subdirectory);
+
+/**
+ 获取目录绝对路径
+
+ @param baseDirectory 基目录类型
+ @param subdirectory 基目录的子目录类型
+ @param relativeSubdirectory 相对子目录
+ @return 目录绝对路径
+ */
+FOUNDATION_EXPORT NSString *CTLStoragePathForDirectory(CTLStoragePathBaseDirectory baseDirectory,
+                                                       CTLStoragePathSubdirectory subdirectory,
+                                                       NSString *relativeSubdirectory);
 
 /**
  获取文件绝对路径
@@ -41,6 +62,7 @@ FOUNDATION_EXPORT NSString *CTLStoragePathForDirectory(CTLStoragePathBaseDirecto
  @param directoryPath 文件所在目录路径
  @return 文件绝对路径
  */
-FOUNDATION_EXPORT NSString *CTLStoragePathForFileInDirectory(NSString *fileFullName, NSString *directoryPath);
+FOUNDATION_EXPORT NSString *CTLStoragePathForFileInDirectory(NSString *fileFullName,
+                                                             NSString *directoryPath);
 
 NS_ASSUME_NONNULL_END

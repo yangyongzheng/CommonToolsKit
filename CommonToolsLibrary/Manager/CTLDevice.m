@@ -237,42 +237,6 @@ static NSString * const CTLDeviceIsUpgtadeInstallation = @"CTLDeviceIsUpgtadeIns
     return [NSUserDefaults.standardUserDefaults boolForKey:CTLDeviceIsUpgtadeInstallation];
 }
 
-#pragma mark - 版本判断
-- (BOOL)isiOS8Later {
-    if (@available(iOS 8.0, *)) {
-        return YES;
-    }
-    return NO;
-}
-
-- (BOOL)isiOS9Later {
-    if (@available(iOS 9.0, *)) {
-        return YES;
-    }
-    return NO;
-}
-
-- (BOOL)isiOS10Later {
-    if (@available(iOS 10.0, *)) {
-        return YES;
-    }
-    return NO;
-}
-
-- (BOOL)isiOS11Later {
-    if (@available(iOS 11.0, *)) {
-        return YES;
-    }
-    return NO;
-}
-
-- (BOOL)isiOS12Later {
-    if (@available(iOS 12.0, *)) {
-        return YES;
-    }
-    return NO;
-}
-
 #pragma mark - 存储单位转换
 #pragma mark 将字节数转换为 file or storage byte counts string
 + (NSString *)stringFromFileOrStorageFormatByteCount:(int64_t)byteCount {

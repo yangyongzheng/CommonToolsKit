@@ -111,7 +111,8 @@ NSNotificationName const CTLLocationAuthorizationStatusDidChangeNotification = @
         // 反向地理编码
         [self requestReverseGeocodeLocation:self.lastLocation];
         // 代理通知
-        for (id <CTLLocationManagerDelegate> delegate in self.delegateContainer) {
+        NSArray *allDelegates = self.delegateContainer.allObjects;
+        for (id <CTLLocationManagerDelegate> delegate in allDelegates) {
             if (delegate && [delegate respondsToSelector:@selector(locationManager:didUpdateLocation:)]) {
                 [delegate locationManager:self didUpdateLocation:self.lastLocation];
             }
@@ -123,7 +124,8 @@ NSNotificationName const CTLLocationAuthorizationStatusDidChangeNotification = @
     // 代理通知
     self.locationState = CTLLocationStateFailure;
     [self stopUpdatingLocation];
-    for (id <CTLLocationManagerDelegate> delegate in self.delegateContainer) {
+    NSArray *allDelegates = self.delegateContainer.allObjects;
+    for (id <CTLLocationManagerDelegate> delegate in allDelegates) {
         if (delegate && [delegate respondsToSelector:@selector(locationManager:didFailWithError:)]) {
             [delegate locationManager:self didFailWithError:error];
         }
@@ -157,6 +159,7 @@ NSNotificationName const CTLLocationAuthorizationStatusDidChangeNotification = @
     } else {
         NSArray *languages = [NSUserDefaults.standardUserDefaults objectForKey:@"AppleLanguages"];
         [NSUserDefaults.standardUserDefaults setObject:@[@"zh-Hans"] forKey:@"AppleLanguages"];
+        [NSUserDefaults.standardUserDefaults synchronize];
         [geocoder reverseGeocodeLocation:location completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
             __strong typeof(weakSelf) strongSelf = weakSelf;
             [NSUserDefaults.standardUserDefaults setObject:languages forKey:@"AppleLanguages"];
@@ -174,7 +177,8 @@ NSNotificationName const CTLLocationAuthorizationStatusDidChangeNotification = @
     }
     
     // 代理通知
-    for (id <CTLLocationManagerDelegate> delegate in self.delegateContainer) {
+    NSArray *allDelegates = self.delegateContainer.allObjects;
+    for (id <CTLLocationManagerDelegate> delegate in allDelegates) {
         if (delegate && [delegate respondsToSelector:@selector(locationManager:reverseGeocodeLocation:error:)]) {
             [delegate locationManager:self reverseGeocodeLocation:self.lastLocationInfo error:error];
         }

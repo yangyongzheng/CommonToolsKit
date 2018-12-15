@@ -79,7 +79,8 @@
 
 #pragma mark - notifications
 - (void)applicationDidFinishLaunchingNotification:(NSNotification *)notification {
-    for (id <CTLAppStatusMonitorDelegate> delegate in self.delegateContainer) {
+    NSArray *allDelegates = self.delegateContainer.allObjects; // fix 代理回调方法中调用`removeDelegate:`移除对象崩溃
+    for (id <CTLAppStatusMonitorDelegate> delegate in allDelegates) {
         if (delegate && [delegate respondsToSelector:@selector(applicationDidFinishLaunching:)]) {
             [delegate applicationDidFinishLaunching:self];
         }
@@ -87,7 +88,8 @@
 }
 
 - (void)applicationWillTerminateNotification:(NSNotification *)notification {
-    for (id <CTLAppStatusMonitorDelegate> delegate in self.delegateContainer) {
+    NSArray *allDelegates = self.delegateContainer.allObjects; // fix 代理回调方法中调用`removeDelegate:`移除对象崩溃
+    for (id <CTLAppStatusMonitorDelegate> delegate in allDelegates) {
         if (delegate && [delegate respondsToSelector:@selector(applicationWillTerminate:)]) {
             [delegate applicationWillTerminate:self];
         }
@@ -95,7 +97,8 @@
 }
 
 - (void)applicationWillEnterForegroundNotification:(NSNotification *)notification {
-    for (id <CTLAppStatusMonitorDelegate> delegate in self.delegateContainer) {
+    NSArray *allDelegates = self.delegateContainer.allObjects; // fix 代理回调方法中调用`removeDelegate:`移除对象崩溃
+    for (id <CTLAppStatusMonitorDelegate> delegate in allDelegates) {
         if (delegate && [delegate respondsToSelector:@selector(applicationWillEnterForeground:)]) {
             [delegate applicationWillEnterForeground:self];
         }
@@ -103,7 +106,8 @@
 }
 
 - (void)applicationDidEnterBackgroundNotification:(NSNotification *)notification {
-    for (id <CTLAppStatusMonitorDelegate> delegate in self.delegateContainer) {
+    NSArray *allDelegates = self.delegateContainer.allObjects; // fix 代理回调方法中调用`removeDelegate:`移除对象崩溃
+    for (id <CTLAppStatusMonitorDelegate> delegate in allDelegates) {
         if (delegate && [delegate respondsToSelector:@selector(applicationDidEnterBackground:)]) {
             [delegate applicationDidEnterBackground:self];
         }
@@ -111,7 +115,8 @@
 }
 
 - (void)applicationDidBecomeActiveNotification:(NSNotification *)notification {
-    for (id <CTLAppStatusMonitorDelegate> delegate in self.delegateContainer) {
+    NSArray *allDelegates = self.delegateContainer.allObjects; // fix 代理回调方法中调用`removeDelegate:`移除对象崩溃
+    for (id <CTLAppStatusMonitorDelegate> delegate in allDelegates) {
         if (delegate && [delegate respondsToSelector:@selector(applicationDidBecomeActive:)]) {
             [delegate applicationDidBecomeActive:self];
         }
@@ -119,7 +124,8 @@
 }
 
 - (void)applicationWillResignActiveNotification:(NSNotification *)notification {
-    for (id <CTLAppStatusMonitorDelegate> delegate in self.delegateContainer) {
+    NSArray *allDelegates = self.delegateContainer.allObjects; // fix 代理回调方法中调用`removeDelegate:`移除对象崩溃
+    for (id <CTLAppStatusMonitorDelegate> delegate in allDelegates) {
         if (delegate && [delegate respondsToSelector:@selector(applicationWillResignActive:)]) {
             [delegate applicationWillResignActive:self];
         }
@@ -127,7 +133,8 @@
 }
 
 - (void)applicationDidReceiveMemoryWarningNotification:(NSNotification *)notification {
-    for (id <CTLAppStatusMonitorDelegate> delegate in self.delegateContainer) {
+    NSArray *allDelegates = self.delegateContainer.allObjects; // fix 代理回调方法中调用`removeDelegate:`移除对象崩溃
+    for (id <CTLAppStatusMonitorDelegate> delegate in allDelegates) {
         if (delegate && [delegate respondsToSelector:@selector(applicationDidReceiveMemoryWarning:)]) {
             [delegate applicationDidReceiveMemoryWarning:self];
         }

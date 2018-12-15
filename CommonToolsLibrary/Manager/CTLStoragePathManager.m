@@ -7,11 +7,28 @@
 //
 
 #import "CTLStoragePathManager.h"
-#import "NSString+CTLMD5.h"
+#import <CommonCrypto/CommonDigest.h>
 
-#define CTLStorageRootDirectoryName [@"com.ctl.storage.rootDirectory" ctl_MD5]
+#define CTLStorageSubBaseDirectory CTLSPMMD5Encrypt(@"com.ctl.storage.subBaseDirectory")
 
-static NSString *CTLRelativeSubdirectory(CTLStoragePathSubdirectory subdirectory) {
+static NSString *CTLSPMMD5Encrypt(NSString *sourceString) {
+    if (sourceString && [sourceString isKindOfClass:[NSString class]]) {
+        const char *cStr = sourceString.UTF8String;
+        unsigned char digest[CC_MD5_DIGEST_LENGTH];
+        CC_MD5(cStr, (CC_LONG)strlen(cStr), digest);
+        
+        NSMutableString *output = [NSMutableString stringWithCapacity:CC_MD5_DIGEST_LENGTH * 2];
+        for (int i = 0; i < CC_MD5_DIGEST_LENGTH; i++) {
+            [output appendFormat:@"%02X", digest[i]];
+        }
+        
+        return [output copy];
+    }
+    
+    return nil;
+}
+
+static NSString *__CTLRelativeSubdirectory(CTLStoragePathSubdirectory subdirectory) {
     NSString *stringValue = nil;
     switch (subdirectory) {
         case CTLStorageDatabasesSubdirectory:
@@ -31,10 +48,10 @@ static NSString *CTLRelativeSubdirectory(CTLStoragePathSubdirectory subdirectory
             break;
     }
     
-    return [CTLStorageRootDirectoryName stringByAppendingPathComponent:stringValue];
+    return stringValue ? [CTLStorageSubBaseDirectory stringByAppendingPathComponent:stringValue] : CTLStorageSubBaseDirectory;
 }
 
-NSString *CTLStoragePathForDirectory(CTLStoragePathBaseDirectory baseDirectory, CTLStoragePathSubdirectory subdirectory) {
+NSString *CTLStoragePathForBaseDirectory(CTLStoragePathBaseDirectory baseDirectory) {
     NSString *baseDirPath = nil;
     switch (baseDirectory) {
         case CTLStorageDocumentsBaseDirectory:
@@ -48,18 +65,41 @@ NSString *CTLStoragePathForDirectory(CTLStoragePathBaseDirectory baseDirectory, 
         case CTLStorageCachesBaseDirectory:
             baseDirPath = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES).firstObject;
             break;
-            
         case CTLStorageTempBaseDirectory:
             baseDirPath = NSTemporaryDirectory();
             break;
     }
     
-    NSString *absoluteDirPath = [baseDirPath stringByAppendingPathComponent:CTLRelativeSubdirectory(subdirectory)];
+    return baseDirPath ? baseDirPath : (NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject);
+}
+
+NSString *CTLStoragePathForBaseSubdirectory(CTLStoragePathBaseDirectory baseDirectory,
+                                            CTLStoragePathSubdirectory subdirectory) {
+    NSString *baseDirPath = CTLStoragePathForBaseDirectory(baseDirectory);
+    NSString *absoluteDirPath = [baseDirPath stringByAppendingPathComponent:__CTLRelativeSubdirectory(subdirectory)];
     if (absoluteDirPath.length > 0 && ![NSFileManager.defaultManager fileExistsAtPath:absoluteDirPath isDirectory:NULL]) {
         [NSFileManager.defaultManager createDirectoryAtPath:absoluteDirPath
                                 withIntermediateDirectories:YES
                                                  attributes:nil
                                                       error:nil];
+    }
+    
+    return absoluteDirPath;
+}
+
+NSString *CTLStoragePathForDirectory(CTLStoragePathBaseDirectory baseDirectory,
+                                     CTLStoragePathSubdirectory subdirectory,
+                                     NSString *relativeSubdirectory) {
+    NSString *baseDirPath = CTLStoragePathForBaseSubdirectory(baseDirectory, subdirectory);
+    NSString *absoluteDirPath = baseDirPath;
+    if (relativeSubdirectory && [relativeSubdirectory isKindOfClass:[NSString class]] && relativeSubdirectory.length > 0) {
+        absoluteDirPath = [baseDirPath stringByAppendingPathComponent:relativeSubdirectory];
+        if (absoluteDirPath.length > 0 && ![NSFileManager.defaultManager fileExistsAtPath:absoluteDirPath isDirectory:NULL]) {
+            [NSFileManager.defaultManager createDirectoryAtPath:absoluteDirPath
+                                    withIntermediateDirectories:YES
+                                                     attributes:nil
+                                                          error:nil];
+        }
     }
     
     return absoluteDirPath;

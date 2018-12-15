@@ -26,9 +26,12 @@
     }];
     
     [CTLLocationManager.defaultManager startUpdatingLocation];
-    
     [CTLDevice.currentDevice startConfiguration];
     NSLog(@"isUpgtadeInstallation: %d", CTLDevice.currentDevice.isUpgtadeInstallation);
+    [CTLAppStatusMonitor.defaultMonitor startMonitor];
+    
+    NSLog(@"%@", CTLStoragePathForBaseSubdirectory(CTLStorageDocumentsBaseDirectory, CTLStorageCachesSubdirectory));
+    
     return YES;
 }
 

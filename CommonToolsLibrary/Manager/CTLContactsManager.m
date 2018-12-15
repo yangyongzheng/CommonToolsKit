@@ -7,8 +7,8 @@
 //
 
 #import "CTLContactsManager.h"
-#import <AddressBook/AddressBook.h>
 #import <Contacts/Contacts.h>
+#import <AddressBook/AddressBook.h>
 
 @interface CTLContact ()
 @property (nonatomic, strong) id recordRef;

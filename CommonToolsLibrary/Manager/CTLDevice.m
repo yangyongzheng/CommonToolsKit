@@ -250,13 +250,17 @@ static NSString * const CTLDeviceIsUpgtadeInstallation = @"CTLDeviceIsUpgtadeIns
 
 #pragma mark - Misc
 - (void)__loadDefaultConfiguration {
-    UIEdgeInsets safeAreaInsets = UIEdgeInsetsZero;
+    CGFloat statusBarHeight = UIApplication.sharedApplication.statusBarFrame.size.height;
+    UIEdgeInsets safeAreaInsets = UIEdgeInsetsMake(statusBarHeight, 0, 0, 0);
     if (@available(iOS 11.0, *)) {
         UIWindow *tmpWindow = UIApplication.sharedApplication.keyWindow;
         if (!tmpWindow) {
             tmpWindow = UIApplication.sharedApplication.windows.firstObject;
         }
         safeAreaInsets = tmpWindow.safeAreaInsets;
+        if (safeAreaInsets.top < statusBarHeight) { // Xcode9无刘海手机top值返回0，得重置赋值
+            safeAreaInsets.top = statusBarHeight;
+        }
     }
     
     self->_hasBangs = safeAreaInsets.bottom > 20;// 横向时 有刘海设备的bottomMargin为 21.0

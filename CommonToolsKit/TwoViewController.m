@@ -9,7 +9,6 @@
 #import "TwoViewController.h"
 #import "CommonToolsLibraryHeader.h"
 #import "CTLTimerHolder.h"
-#import "NSTimer+CTLBlockTimer.h"
 
 @interface TwoViewController ()<CTLLocationManagerDelegate>
 {
@@ -40,9 +39,15 @@
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     [super touchesBegan:touches withEvent:event];
  
-    [_timerHolder startTimerWithCountdown:60 interval:1 block:^(CTLTimerHolder * _Nonnull timerHolder, NSTimeInterval currentCountdown) {
-        NSLog(@"%f", currentCountdown);
-    }];
+    if (arc4random() % 2 == 0) {
+        [_timerHolder startTimerWithTimeInterval:0 repeats:YES block:^(CTLTimerHolder * _Nonnull timerHolder) {
+            NSLog(@"%@", timerHolder);
+        }];
+    } else {
+        [_timerHolder startTimerWithCountdown:60 interval:1 block:^(CTLTimerHolder * _Nonnull timerHolder, NSTimeInterval currentCountdown) {
+            NSLog(@"%f", currentCountdown);
+        }];
+    }
     [_timerHolder startFire];
     
     [CTLLocationManager.defaultManager addDelegate:self];

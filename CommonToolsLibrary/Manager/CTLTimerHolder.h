@@ -23,6 +23,11 @@ NS_ASSUME_NONNULL_BEGIN
                            repeats:(BOOL)repeats
                              block:(void(^)(CTLTimerHolder *timerHolder))block;
 
+- (void)startTimerWithTimeInterval:(NSTimeInterval)interval
+                           repeats:(BOOL)repeats
+                              mode:(NSRunLoopMode)mode
+                             block:(void(^)(CTLTimerHolder *timerHolder))block;
+
 /**
  启动倒计时定时器, 倒计时总时长和间隔时间要能整除，否则最后一次倒计时会有较大误差。
 
@@ -33,6 +38,12 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)startTimerWithCountdown:(NSTimeInterval)countdown
                        interval:(NSTimeInterval)interval
                           block:(void(^)(CTLTimerHolder *timerHolder, NSTimeInterval currentCountdown))block;
+
+- (void)startTimerWithCountdown:(NSTimeInterval)countdown
+                       interval:(NSTimeInterval)interval
+                           mode:(NSRunLoopMode)mode
+                          block:(void(^)(CTLTimerHolder *timerHolder, NSTimeInterval currentCountdown))block;
+
 // 立即发送一次定时器事件回调
 - (void)startFire;
 // 停止定时器

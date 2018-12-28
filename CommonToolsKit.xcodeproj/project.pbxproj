@@ -11,7 +11,6 @@
 		CE10D93E2171C7FF000561AE /* UIAlertController+CTLHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = CE10D9382171C7FF000561AE /* UIAlertController+CTLHelper.m */; };
 		CE10D93F2171C7FF000561AE /* UITableView+CTLConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = CE10D93A2171C7FF000561AE /* UITableView+CTLConfiguration.m */; };
 		CE10D9402171C7FF000561AE /* UIViewController+CTLConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = CE10D93B2171C7FF000561AE /* UIViewController+CTLConfiguration.m */; };
-		CE10D9432171CA8B000561AE /* NSTimer+CTLBlockTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = CE10D9422171CA8B000561AE /* NSTimer+CTLBlockTimer.m */; };
 		CE10D9462171DDC7000561AE /* TwoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE10D9452171DDC7000561AE /* TwoViewController.m */; };
 		CE12869621ABA42B0088C98C /* SegmentedViewConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = CE12868121ABA42B0088C98C /* SegmentedViewConfiguration.m */; };
 		CE12869721ABA42B0088C98C /* ESSVBadgeTextCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CE12868321ABA42B0088C98C /* ESSVBadgeTextCollectionViewCell.m */; };
@@ -72,8 +71,6 @@
 		CE10D9392171C7FF000561AE /* UIView+CTLLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+CTLLayout.h"; sourceTree = "<group>"; };
 		CE10D93A2171C7FF000561AE /* UITableView+CTLConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+CTLConfiguration.m"; sourceTree = "<group>"; };
 		CE10D93B2171C7FF000561AE /* UIViewController+CTLConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+CTLConfiguration.m"; sourceTree = "<group>"; };
-		CE10D9412171CA8B000561AE /* NSTimer+CTLBlockTimer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSTimer+CTLBlockTimer.h"; sourceTree = "<group>"; };
-		CE10D9422171CA8B000561AE /* NSTimer+CTLBlockTimer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSTimer+CTLBlockTimer.m"; sourceTree = "<group>"; };
 		CE10D9442171DDC7000561AE /* TwoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TwoViewController.h; sourceTree = "<group>"; };
 		CE10D9452171DDC7000561AE /* TwoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TwoViewController.m; sourceTree = "<group>"; };
 		CE12868021ABA42B0088C98C /* SegmentedViewItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SegmentedViewItem.h; sourceTree = "<group>"; };
@@ -193,8 +190,6 @@
 				CE10D9382171C7FF000561AE /* UIAlertController+CTLHelper.m */,
 				CE10D9372171C7FF000561AE /* UIViewController+CTLConfiguration.h */,
 				CE10D93B2171C7FF000561AE /* UIViewController+CTLConfiguration.m */,
-				CE10D9412171CA8B000561AE /* NSTimer+CTLBlockTimer.h */,
-				CE10D9422171CA8B000561AE /* NSTimer+CTLBlockTimer.m */,
 				CEE9AE7321797CA700471FB5 /* NSString+CTLMD5.h */,
 				CEE9AE7421797CA700471FB5 /* NSString+CTLMD5.m */,
 				CE2C2528218DF38800244974 /* NSString+CTLURLComparison.h */,
@@ -503,7 +498,6 @@
 				CE1286A021ABA42B0088C98C /* EqualWidthSegmentedView.m in Sources */,
 				CE10D9462171DDC7000561AE /* TwoViewController.m in Sources */,
 				CEF4122C218F19300049A994 /* NSData+CTLGZIP.m in Sources */,
-				CE10D9432171CA8B000561AE /* NSTimer+CTLBlockTimer.m in Sources */,
 				CEE8D20721AAA95900EE68CA /* CTLKeychainManager.m in Sources */,
 				CE80CE91217096A6004A98D3 /* AppDelegate.m in Sources */,
 			);

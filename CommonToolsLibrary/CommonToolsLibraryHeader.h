@@ -16,7 +16,6 @@
 #import "UITableView+CTLConfiguration.h"
 #import "UIAlertController+CTLHelper.h"
 #import "UIViewController+CTLConfiguration.h"
-#import "NSTimer+CTLBlockTimer.h"
 #import "NSString+CTLMD5.h"
 #import "NSString+CTLURLComparison.h"
 #import "UIColor+CTLHelper.h"

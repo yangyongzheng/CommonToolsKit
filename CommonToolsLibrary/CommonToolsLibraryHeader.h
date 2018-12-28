@@ -32,6 +32,8 @@
 #import "CTLKeychainManager.h"
 #import "CTLAuthorizeManager.h"
 #import "CTLLocationManager.h"
+#import "CTLContactsManager.h"
+#import "CTLTimerHolder.h"
 
 #import "EqualWidthSegmentedView.h"
 #import "EqualSpacingSegmentedView.h"

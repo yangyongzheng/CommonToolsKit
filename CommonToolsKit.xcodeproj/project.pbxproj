@@ -41,6 +41,8 @@
 		CE80CE9F217096A8004A98D3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CE80CE9E217096A8004A98D3 /* main.m */; };
 		CE80CEA9217096A8004A98D3 /* CommonToolsKitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CE80CEA8217096A8004A98D3 /* CommonToolsKitTests.m */; };
 		CE90CD2A219027F6007B2009 /* CTLDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = CE90CD29219027F6007B2009 /* CTLDevice.m */; };
+		CE91C61721D6036F005F6368 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE91C61621D6036F005F6368 /* AddressBook.framework */; };
+		CE91C61921D60376005F6368 /* Contacts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE91C61821D60376005F6368 /* Contacts.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		CE9AF45221AE2AD900EAAC56 /* CTLLocationInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = CE9AF45121AE2AD900EAAC56 /* CTLLocationInfo.m */; };
 		CEE8D20721AAA95900EE68CA /* CTLKeychainManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CEE8D20521AAA95900EE68CA /* CTLKeychainManager.m */; };
 		CEE9AE7521797CA700471FB5 /* NSString+CTLMD5.m in Sources */ = {isa = PBXBuildFile; fileRef = CEE9AE7421797CA700471FB5 /* NSString+CTLMD5.m */; };
@@ -129,6 +131,8 @@
 		CE80CEAA217096A8004A98D3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CE90CD28219027F6007B2009 /* CTLDevice.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CTLDevice.h; sourceTree = "<group>"; };
 		CE90CD29219027F6007B2009 /* CTLDevice.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CTLDevice.m; sourceTree = "<group>"; };
+		CE91C61621D6036F005F6368 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
+		CE91C61821D60376005F6368 /* Contacts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Contacts.framework; path = System/Library/Frameworks/Contacts.framework; sourceTree = SDKROOT; };
 		CE9AF45021AE2AD900EAAC56 /* CTLLocationInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CTLLocationInfo.h; sourceTree = "<group>"; };
 		CE9AF45121AE2AD900EAAC56 /* CTLLocationInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CTLLocationInfo.m; sourceTree = "<group>"; };
 		CEE8D20521AAA95900EE68CA /* CTLKeychainManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTLKeychainManager.m; sourceTree = "<group>"; };
@@ -154,6 +158,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE91C61921D60376005F6368 /* Contacts.framework in Frameworks */,
+				CE91C61721D6036F005F6368 /* AddressBook.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -303,6 +309,7 @@
 				CE80CE8E217096A6004A98D3 /* CommonToolsKit */,
 				CE80CEA7217096A8004A98D3 /* CommonToolsKitTests */,
 				CE80CE8D217096A6004A98D3 /* Products */,
+				CE91C61521D6036F005F6368 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -359,6 +366,15 @@
 				CE14F05B219180B100AEC54C /* CTLCommonFunction.m */,
 			);
 			path = CommonFunction;
+			sourceTree = "<group>";
+		};
+		CE91C61521D6036F005F6368 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CE91C61821D60376005F6368 /* Contacts.framework */,
+				CE91C61621D6036F005F6368 /* AddressBook.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

@@ -8,9 +8,10 @@
 
 #import "AppDelegate.h"
 #import "CommonToolsLibraryHeader.h"
+#import "CTLCallMonitor.h"
 
-@interface AppDelegate ()
-
+@interface AppDelegate ()<CTLCallMonitorDelegate>
+@property (nonatomic, strong) CTLCallMonitor *callMonitor;
 @end
 
 @implementation AppDelegate
@@ -31,6 +32,8 @@
     [CTLAppStatusMonitor.defaultMonitor startMonitor];
     
     NSLog(@"%@", CTLStoragePathForBaseSubdirectory(CTLStorageDocumentsBaseDirectory, CTLStorageCachesSubdirectory));
+    self.callMonitor = CTLCallMonitor.callMonitor;
+    [self.callMonitor startMonitorWithDelegate:self];
     
     return YES;
 }
@@ -68,6 +71,11 @@
 
 - (BOOL)application:(UIApplication *)app openURL:(nonnull NSURL *)url sourceApplication:(nullable NSString *)sourceApplication annotation:(nonnull id)annotation {
     return YES;
+}
+
+#pragma mark - CTLCallMonitorDelegate
+- (void)callMonitor:(CTLCallMonitor *)callMonitor callChanged:(CTLCallInfo *)callInfo {
+    
 }
 
 @end

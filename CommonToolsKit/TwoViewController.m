@@ -8,12 +8,10 @@
 
 #import "TwoViewController.h"
 #import "CommonToolsLibraryHeader.h"
-#import "CTLTimerHolder.h"
 
 @interface TwoViewController ()<CTLLocationManagerDelegate>
 {
     EqualWidthSegmentedView *_segmentedView;
-    CTLTimerHolder *_timerHolder;
 }
 @end
 
@@ -29,7 +27,6 @@
     // Do any additional setup after loading the view.
     
     self.view.backgroundColor = CTLColorWithHexInt(0xf5f5f5);
-    _timerHolder = [[CTLTimerHolder alloc] init];
 }
 
 - (void)dealloc {
@@ -38,20 +35,11 @@
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     [super touchesBegan:touches withEvent:event];
- 
-    if (arc4random() % 2 == 0) {
-        [_timerHolder startTimerWithTimeInterval:0 repeats:YES block:^(CTLTimerHolder * _Nonnull timerHolder) {
-            NSLog(@"%@", timerHolder);
-        }];
-    } else {
-        [_timerHolder startTimerWithCountdown:60 interval:1 block:^(CTLTimerHolder * _Nonnull timerHolder, NSTimeInterval currentCountdown) {
-            NSLog(@"%f", currentCountdown);
-        }];
-    }
-    [_timerHolder startFire];
     
     [CTLLocationManager.defaultManager addDelegate:self];
     [CTLLocationManager.defaultManager startUpdatingLocation];
+    
+    [UIApplication.sharedApplication ctl_safeOpenURL:[NSURL URLWithString:@"tel:18207415092"]];
 }
 
 #pragma mark - CTLLocationManagerDelegate
@@ -69,15 +57,6 @@
     } else {
         NSLog(@"%@", error);
     }
-}
-
-#pragma mark - CTLTimerHolderDelegate
-- (void)timerHolderFired:(CTLTimerHolder *)timerHolder {
-    NSLog(@"coming...");
-}
-
-- (void)timerHolder:(CTLTimerHolder *)timerHolder countdown:(NSTimeInterval)countdown {
-    
 }
 
 @end

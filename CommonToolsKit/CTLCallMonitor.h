@@ -10,8 +10,16 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef NS_ENUM(NSUInteger, CTLCallState) {
+    CTLCallStateConnecting,     // 正在连接中
+    CTLCallStateConnected,      // 连接成功
+    CTLCallStateTimeout,        // 呼叫/接听超时
+    CTLCallStateHungup,         // 挂断
+};
+
 @interface CTLCallInfo : NSObject
-@property (nonatomic) BOOL isCaller;
+@property (nonatomic) BOOL isCaller;            // 自己是否是主叫方
+@property (nonatomic) CTLCallState callState;   // 呼叫状态
 @end
 
 

@@ -12,10 +12,22 @@
 #import <CallKit/CXCallObserver.h>
 #import <CallKit/CXCall.h>
 
+@implementation CTLCallInfo
+
+- (CTLCallInfo *)copyCallInfo {
+    CTLCallInfo *tempCallInfo = [[CTLCallInfo alloc] init];
+    tempCallInfo.isCaller = self.isCaller;
+    tempCallInfo.callState = self.callState;
+    return tempCallInfo;
+}
+
+@end
+
 @interface CTLCallMonitor ()<CXCallObserverDelegate>
 @property (nonatomic, strong) CTCallCenter *callCenter NS_DEPRECATED_IOS(4_0, 10_0, "Please use callObserver instead");
 @property (nonatomic, strong) CXCallObserver *callObserver NS_AVAILABLE_IOS(10_0);
 @property (nonatomic, weak) id<CTLCallMonitorDelegate> callDelegate;
+@property (nonatomic, strong) CTLCallInfo *callInfo;
 @end
 
 @implementation CTLCallMonitor
@@ -36,20 +48,45 @@
     return [[CTLCallMonitor alloc] init];
 }
 
+- (CTLCallInfo *)callInfo {
+    if (!_callInfo) {
+        _callInfo = [[CTLCallInfo alloc] init];
+    }
+    return _callInfo;
+}
+
 - (void)startMonitorWithDelegate:(id<CTLCallMonitorDelegate>)delegate {
     self.callDelegate = delegate;
     if (@available(iOS 10.0, *)) {
         [self.callObserver setDelegate:self queue:nil];
     } else {
+        __weak typeof(self) weakSelf = self;
         self.callCenter.callEventHandler = ^(CTCall * _Nonnull call) {
+            __strong typeof(weakSelf) strongSelf = weakSelf;
             if ([call.callState isEqualToString:CTCallStateDialing]) {
-                NSLog(@"正在呼叫");
+                strongSelf.callInfo.isCaller = YES;
+                strongSelf.callInfo.callState = CTLCallStateConnecting;
             } else if ([call.callState isEqualToString:CTCallStateIncoming]) {
-                NSLog(@"电话呼入");
-            } else if ([call.callState isEqualToString:CTCallStateDisconnected]) {
-                NSLog(@"挂断");
+                strongSelf.callInfo.isCaller = NO;
+                strongSelf.callInfo.callState = CTLCallStateConnecting;
             } else if ([call.callState isEqualToString:CTCallStateConnected]) {
-                NSLog(@"接通");
+                strongSelf.callInfo.callState = CTLCallStateConnected;
+            } else if ([call.callState isEqualToString:CTCallStateDisconnected]) {
+                strongSelf.callInfo.callState = CTLCallStateDisconnected;
+            }
+            
+            void(^callChangedHandler)(void) = ^(void) {
+                if (strongSelf.callDelegate && [strongSelf.callDelegate respondsToSelector:@selector(callMonitor:callChanged:)]) {
+                    [strongSelf.callDelegate callMonitor:strongSelf callChanged:[strongSelf.callInfo copyCallInfo]];
+                }
+            };
+            
+            if (NSThread.isMainThread) {
+                callChangedHandler();
+            } else {
+                dispatch_sync(dispatch_get_main_queue(), ^{
+                    callChangedHandler();
+                });
             }
         };
     }
@@ -57,25 +94,18 @@
 
 #pragma mark - CXCallObserverDelegate
 - (void)callObserver:(CXCallObserver *)callObserver callChanged:(CXCall *)call API_AVAILABLE(ios(10.0)) {
-    NSString *prefix = nil;
-    if (call.isOutgoing) {  // 呼出
-        prefix = @"主叫方";
-    } else {                // 呼入
-        prefix = @"被叫方";
-    }
-    
-    NSString *operationString = nil;
+    self.callInfo.isCaller = call.isOutgoing;
     if (call.hasEnded) {
         if (call.hasConnected) {
-            NSLog(@"挂断");
+            self.callInfo.callState = CTLCallStateDisconnected;
         } else {
             NSLog(@"呼叫超时");
         }
     } else {
         if (call.hasConnected) {
-            NSLog(@"接通");
+            self.callInfo.callState = CTLCallStateConnected;
         } else {
-            NSLog(@"正在呼叫");
+            self.callInfo.callState = CTLCallStateConnecting;
         }
     }
 }

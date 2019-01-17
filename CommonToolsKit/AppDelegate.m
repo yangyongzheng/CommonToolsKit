@@ -75,7 +75,15 @@
 
 #pragma mark - CTLCallMonitorDelegate
 - (void)callMonitor:(CTLCallMonitor *)callMonitor callChanged:(CTLCallInfo *)callInfo {
-    
+    if (callInfo.hasConnected && callInfo.hasEnded) {
+        NSLog(@"挂断");
+    } else if (callInfo.hasConnected && !callInfo.hasEnded) {
+        NSLog(@"已接通");
+    } else if (!callInfo.hasConnected && callInfo.hasEnded) {
+        NSLog(callInfo.isOutgoing?@"主叫方：挂断":@"被叫方：接听超时");
+    } else if (!callInfo.hasConnected && !callInfo.hasEnded) {
+        NSLog(callInfo.isOutgoing?@"主叫方：正在拨打":@"被叫方：来电话了，准备接听");
+    }
 }
 
 @end

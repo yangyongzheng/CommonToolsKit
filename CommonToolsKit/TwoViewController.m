@@ -8,11 +8,13 @@
 
 #import "TwoViewController.h"
 #import "CommonToolsLibraryHeader.h"
+#import "CTLCallMonitor.h"
 
-@interface TwoViewController ()<CTLLocationManagerDelegate>
+@interface TwoViewController ()<CTLLocationManagerDelegate, CTLCallMonitorDelegate>
 {
     EqualWidthSegmentedView *_segmentedView;
 }
+@property (nonatomic, strong) CTLCallMonitor *callMonitor;
 @end
 
 @implementation TwoViewController
@@ -27,6 +29,8 @@
     // Do any additional setup after loading the view.
     
     self.view.backgroundColor = CTLColorWithHexInt(0xf5f5f5);
+    self.callMonitor = CTLCallMonitor.callMonitor;
+    [self.callMonitor startMonitorWithDelegate:self];
 }
 
 - (void)dealloc {
@@ -39,7 +43,8 @@
     [CTLLocationManager.defaultManager addDelegate:self];
     [CTLLocationManager.defaultManager startUpdatingLocation];
     
-    [UIApplication.sharedApplication ctl_safeOpenURL:[NSURL URLWithString:@"tel:18207415092"]];
+    NSString *phoneNumber = @"18207415092";
+    [UIApplication.sharedApplication ctl_safeOpenURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel:%@", phoneNumber]]];
 }
 
 #pragma mark - CTLLocationManagerDelegate
@@ -56,6 +61,18 @@
         NSLog(@"%@", locationInfo.fullAddress);
     } else {
         NSLog(@"%@", error);
+    }
+}
+
+- (void)callMonitor:(CTLCallMonitor *)callMonitor callChanged:(CTLCallInfo *)callInfo {
+    if (callInfo.hasConnected && callInfo.hasEnded) {
+        NSLog(@"挂断");
+    } else if (callInfo.hasConnected && !callInfo.hasEnded) {
+        NSLog(@"已接通");
+    } else if (!callInfo.hasConnected && callInfo.hasEnded) {
+        NSLog(callInfo.isOutgoing?@"主叫方：挂断":@"被叫方：接听超时");
+    } else if (!callInfo.hasConnected && !callInfo.hasEnded) {
+        NSLog(callInfo.isOutgoing?@"主叫方：正在拨打":@"被叫方：来电话了，准备接听");
     }
 }
 

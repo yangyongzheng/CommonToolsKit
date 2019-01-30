@@ -30,6 +30,7 @@
 		CE2C17DD21C3A87100F50EB3 /* CTLContactsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CE2C17DC21C3A87100F50EB3 /* CTLContactsManager.m */; };
 		CE2C252A218DF38800244974 /* NSString+CTLURLComparison.m in Sources */ = {isa = PBXBuildFile; fileRef = CE2C2529218DF38800244974 /* NSString+CTLURLComparison.m */; };
 		CE2C36D921AD3A2500CA3742 /* CTLLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CE2C36D821AD3A2500CA3742 /* CTLLocationManager.m */; };
+		CE3457CD2201CDD8004DD4ED /* HNWPageControl.m in Sources */ = {isa = PBXBuildFile; fileRef = CE3457CC2201CDD8004DD4ED /* HNWPageControl.m */; };
 		CE35B36921AC15D500D625F9 /* CTLAuthorizeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CE35B36821AC15D500D625F9 /* CTLAuthorizeManager.m */; };
 		CE4E056221D4F73C00CB966D /* CTLTimerHolder.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4E056121D4F73C00CB966D /* CTLTimerHolder.m */; };
 		CE56F4E32174445800DACF5C /* CTLStoragePathManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CE56F4E22174445800DACF5C /* CTLStoragePathManager.m */; };
@@ -108,6 +109,8 @@
 		CE2C2529218DF38800244974 /* NSString+CTLURLComparison.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+CTLURLComparison.m"; sourceTree = "<group>"; };
 		CE2C36D721AD3A2500CA3742 /* CTLLocationManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CTLLocationManager.h; sourceTree = "<group>"; };
 		CE2C36D821AD3A2500CA3742 /* CTLLocationManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CTLLocationManager.m; sourceTree = "<group>"; };
+		CE3457CB2201CDD8004DD4ED /* HNWPageControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNWPageControl.h; sourceTree = "<group>"; };
+		CE3457CC2201CDD8004DD4ED /* HNWPageControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNWPageControl.m; sourceTree = "<group>"; };
 		CE35B36721AC15D500D625F9 /* CTLAuthorizeManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CTLAuthorizeManager.h; sourceTree = "<group>"; };
 		CE35B36821AC15D500D625F9 /* CTLAuthorizeManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CTLAuthorizeManager.m; sourceTree = "<group>"; };
 		CE4E056021D4F73C00CB966D /* CTLTimerHolder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CTLTimerHolder.h; sourceTree = "<group>"; };
@@ -336,6 +339,8 @@
 				CE80CE93217096A6004A98D3 /* ViewController.m */,
 				CE10D9442171DDC7000561AE /* TwoViewController.h */,
 				CE10D9452171DDC7000561AE /* TwoViewController.m */,
+				CE3457CB2201CDD8004DD4ED /* HNWPageControl.h */,
+				CE3457CC2201CDD8004DD4ED /* HNWPageControl.m */,
 				CE10D9322171C7FF000561AE /* CommonToolsLibrary */,
 				CE80CE95217096A6004A98D3 /* Main.storyboard */,
 				CE80CE98217096A8004A98D3 /* Assets.xcassets */,
@@ -511,6 +516,7 @@
 				CE2C36D921AD3A2500CA3742 /* CTLLocationManager.m in Sources */,
 				CE2C252A218DF38800244974 /* NSString+CTLURLComparison.m in Sources */,
 				CE56F4E32174445800DACF5C /* CTLStoragePathManager.m in Sources */,
+				CE3457CD2201CDD8004DD4ED /* HNWPageControl.m in Sources */,
 				CE4E056221D4F73C00CB966D /* CTLTimerHolder.m in Sources */,
 				CE15DCFF21D74BFD00491E41 /* CTLCallMonitor.m in Sources */,
 				CE221AE3218FDC8E0019BACD /* UIApplication+CTLHelper.m in Sources */,

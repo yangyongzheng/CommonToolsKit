@@ -20,6 +20,10 @@ typedef NS_ENUM(NSUInteger, CTLCallState) {
 @interface CTLCallInfo : NSObject
 @property (nonatomic) BOOL isCaller;            // 自己是否是主叫方
 @property (nonatomic) CTLCallState callState;   // 呼叫状态
+@property (nonatomic, readonly, assign, getter=isOutgoing) BOOL outgoing;
+@property (nonatomic, readonly, assign, getter=isOnHold) BOOL onHold;
+@property (nonatomic, readonly, assign) BOOL hasConnected;
+@property (nonatomic, readonly, assign) BOOL hasEnded;
 @end
 
 

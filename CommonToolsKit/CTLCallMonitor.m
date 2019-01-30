@@ -72,7 +72,7 @@
             } else if ([call.callState isEqualToString:CTCallStateConnected]) {
                 strongSelf.callInfo.callState = CTLCallStateConnected;
             } else if ([call.callState isEqualToString:CTCallStateDisconnected]) {
-                strongSelf.callInfo.callState = CTLCallStateDisconnected;
+                strongSelf.callInfo.callState = CTLCallStateHungup;
             }
             
             void(^callChangedHandler)(void) = ^(void) {
@@ -97,9 +97,9 @@
     self.callInfo.isCaller = call.isOutgoing;
     if (call.hasEnded) {
         if (call.hasConnected) {
-            self.callInfo.callState = CTLCallStateDisconnected;
+            self.callInfo.callState = CTLCallStateHungup;
         } else {
-            NSLog(@"呼叫超时");
+            self.callInfo.callState = CTLCallStateTimeout;
         }
     } else {
         if (call.hasConnected) {

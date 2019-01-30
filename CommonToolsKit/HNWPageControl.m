@@ -39,7 +39,6 @@
     self.userInteractionEnabled = NO;
     _indicatorImageViews = [NSMutableArray array];
     
-    _animateDuration = 0.3;
     _hidesForSinglePage = YES;
     _pageIndicatorSpaing = 5.0;
     _pageIndicatorSize = CGSizeMake(10, 10);
@@ -213,16 +212,6 @@
     [self updateIndicatorViewsBehavior];
     if (!CGSizeEqualToSize(_currentPageIndicatorSize, _pageIndicatorSize)) {
         [self setNeedsLayout];
-    }
-}
-
-- (void)setCurrentPage:(NSInteger)currentPage animate:(BOOL)animate {
-    if (animate) {
-        [UIView animateWithDuration:_animateDuration animations:^{
-            [self setCurrentPage:currentPage];
-        }];
-    } else {
-        [self setCurrentPage:currentPage];
     }
 }
 

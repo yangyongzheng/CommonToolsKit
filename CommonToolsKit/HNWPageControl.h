@@ -40,9 +40,6 @@ typedef NS_ENUM(NSUInteger, HNWPageControlContentAlignment) {
 @property (nullable, nonatomic, strong) UIImage *pageIndicatorImage;            // 默认值 nil
 @property (nullable, nonatomic, strong) UIImage *currentPageIndicatorImage;     // 默认值 nil
 
-@property (nonatomic) CGFloat animateDuration;                                  // 默认 0.3s
-
-- (void)setCurrentPage:(NSInteger)currentPage animate:(BOOL)animate;
 @end
 
 NS_ASSUME_NONNULL_END

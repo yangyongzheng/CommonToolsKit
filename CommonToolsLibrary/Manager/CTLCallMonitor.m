@@ -12,14 +12,18 @@
 #import <CallKit/CXCallObserver.h>
 #import <CallKit/CXCall.h>
 
-@implementation CTLCallInfo
+@interface CTLCallInfo ()
+/** 是否是主叫方，YES-主叫方，NO-被叫方 */
+@property (nonatomic, readwrite, getter=isOutgoing) BOOL outgoing;
+/** 电话呼叫保持状态 */
+@property (nonatomic, readwrite, getter=isOnHold) BOOL onHold;
+/** 是否已接通 */
+@property (nonatomic, readwrite) BOOL hasConnected;
+/** 是否已挂断 */
+@property (nonatomic, readwrite) BOOL hasEnded;
+@end
 
-- (CTLCallInfo *)copyCallInfo {
-    CTLCallInfo *tempCallInfo = [[CTLCallInfo alloc] init];
-    tempCallInfo.isCaller = self.isCaller;
-    tempCallInfo.callState = self.callState;
-    return tempCallInfo;
-}
+@implementation CTLCallInfo
 
 @end
 
@@ -58,26 +62,31 @@
 - (void)startMonitorWithDelegate:(id<CTLCallMonitorDelegate>)delegate {
     self.callDelegate = delegate;
     if (@available(iOS 10.0, *)) {
-        [self.callObserver setDelegate:self queue:nil];
+        [self.callObserver setDelegate:self queue:dispatch_get_main_queue()];
     } else {
         __weak typeof(self) weakSelf = self;
         self.callCenter.callEventHandler = ^(CTCall * _Nonnull call) {
             __strong typeof(weakSelf) strongSelf = weakSelf;
             if ([call.callState isEqualToString:CTCallStateDialing]) {
-                strongSelf.callInfo.isCaller = YES;
-                strongSelf.callInfo.callState = CTLCallStateConnecting;
+                strongSelf.callInfo.outgoing = YES;
+                strongSelf.callInfo.onHold = NO;
+                strongSelf.callInfo.hasConnected = NO;
+                strongSelf.callInfo.hasEnded = NO;
             } else if ([call.callState isEqualToString:CTCallStateIncoming]) {
-                strongSelf.callInfo.isCaller = NO;
-                strongSelf.callInfo.callState = CTLCallStateConnecting;
+                strongSelf.callInfo.outgoing = NO;
+                strongSelf.callInfo.onHold = NO;
+                strongSelf.callInfo.hasConnected = NO;
+                strongSelf.callInfo.hasEnded = NO;
             } else if ([call.callState isEqualToString:CTCallStateConnected]) {
-                strongSelf.callInfo.callState = CTLCallStateConnected;
+                strongSelf.callInfo.hasConnected = YES;
+                strongSelf.callInfo.hasEnded = NO;
             } else if ([call.callState isEqualToString:CTCallStateDisconnected]) {
-                strongSelf.callInfo.callState = CTLCallStateHungup;
+                strongSelf.callInfo.hasEnded = YES;
             }
             
             void(^callChangedHandler)(void) = ^(void) {
                 if (strongSelf.callDelegate && [strongSelf.callDelegate respondsToSelector:@selector(callMonitor:callChanged:)]) {
-                    [strongSelf.callDelegate callMonitor:strongSelf callChanged:[strongSelf.callInfo copyCallInfo]];
+                    [strongSelf.callDelegate callMonitor:strongSelf callChanged:strongSelf.callInfo];
                 }
             };
             
@@ -94,19 +103,13 @@
 
 #pragma mark - CXCallObserverDelegate
 - (void)callObserver:(CXCallObserver *)callObserver callChanged:(CXCall *)call API_AVAILABLE(ios(10.0)) {
-    self.callInfo.isCaller = call.isOutgoing;
-    if (call.hasEnded) {
-        if (call.hasConnected) {
-            self.callInfo.callState = CTLCallStateHungup;
-        } else {
-            self.callInfo.callState = CTLCallStateTimeout;
-        }
-    } else {
-        if (call.hasConnected) {
-            self.callInfo.callState = CTLCallStateConnected;
-        } else {
-            self.callInfo.callState = CTLCallStateConnecting;
-        }
+    self.callInfo.outgoing = call.isOutgoing;
+    self.callInfo.onHold = call.onHold;
+    self.callInfo.hasConnected = call.hasConnected;
+    self.callInfo.hasEnded = call.hasEnded;
+    
+    if (self.callDelegate && [self.callDelegate respondsToSelector:@selector(callMonitor:callChanged:)]) {
+        [self.callDelegate callMonitor:self callChanged:self.callInfo];
     }
 }
 

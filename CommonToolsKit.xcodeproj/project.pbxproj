@@ -242,6 +242,8 @@
 				CE2C17DC21C3A87100F50EB3 /* CTLContactsManager.m */,
 				CE4E056021D4F73C00CB966D /* CTLTimerHolder.h */,
 				CE4E056121D4F73C00CB966D /* CTLTimerHolder.m */,
+				CE15DCFD21D74BFD00491E41 /* CTLCallMonitor.h */,
+				CE15DCFE21D74BFD00491E41 /* CTLCallMonitor.m */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -334,8 +336,6 @@
 				CE80CE93217096A6004A98D3 /* ViewController.m */,
 				CE10D9442171DDC7000561AE /* TwoViewController.h */,
 				CE10D9452171DDC7000561AE /* TwoViewController.m */,
-				CE15DCFD21D74BFD00491E41 /* CTLCallMonitor.h */,
-				CE15DCFE21D74BFD00491E41 /* CTLCallMonitor.m */,
 				CE10D9322171C7FF000561AE /* CommonToolsLibrary */,
 				CE80CE95217096A6004A98D3 /* Main.storyboard */,
 				CE80CE98217096A8004A98D3 /* Assets.xcassets */,

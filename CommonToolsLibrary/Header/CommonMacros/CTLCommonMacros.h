@@ -58,7 +58,7 @@
 #endif
 
 #ifndef CTLSafeAreaTopMargin
-#define CTLSafeAreaTopMargin                (CTLStatusBarHeight + 44.0f)
+#define CTLSafeAreaTopMargin                (CTLStatusBarHeight + 44.0)
 #endif
 
 #ifndef CTLAdditionalSafeAreaBottomMargin
@@ -66,7 +66,7 @@
 #endif
 
 #ifndef CTLSafeAreaBottomMargin
-#define CTLSafeAreaBottomMargin             (CTLAdditionalSafeAreaBottomMargin + 49.0f)
+#define CTLSafeAreaBottomMargin             (CTLAdditionalSafeAreaBottomMargin + 49.0)
 #endif
 
 
@@ -77,17 +77,17 @@
 
 #ifndef CTLCompileTimestamp
 // use macro to avoid compile warning when use pch file
-#define CTLCompileTimestamp                 __CTLCompileTimestamp(__DATE__, __TIME__)
+#define CTLCompileTimestamp                 __CTLCompileTimestamp()
 #endif
 
 
 // UIColor
 #ifndef CTLColorWithRGBA
-#define CTLColorWithRGBA(r, g, b, a)        [UIColor colorWithRed:((r)/255.0f) green:((g)/255.0f) blue:((b)/255.0f) alpha:(a)]
+#define CTLColorWithRGBA(r, g, b, a)        [UIColor colorWithRed:((r)/255.0) green:((g)/255.0) blue:((b)/255.0) alpha:(a)]
 #endif
 
 #ifndef CTLColorWithRGB
-#define CTLColorWithRGB(r, g, b)            CTLColorWithRGBA(r, g, b, 1.0f)
+#define CTLColorWithRGB(r, g, b)            CTLColorWithRGBA(r, g, b, 1.0)
 #endif
 
 #ifndef CTLColorWithHexString

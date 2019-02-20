@@ -44,7 +44,7 @@ static const void * NSTimerCTLTimerHolderTimerBlockAssociationKey = (void *)&NST
     }
     NSTimer *timer = [NSTimer timerWithTimeInterval:interval
                                              target:self
-                                           selector:@selector(__weakTimerFiredInvoke:)
+                                           selector:@selector(private_weakTimerFiredInvoke:)
                                            userInfo:nil
                                             repeats:repeats];
     timer.NSTimerCTLTimerHolderTimerBlock = block?[block copy]:nil;
@@ -52,7 +52,7 @@ static const void * NSTimerCTLTimerHolderTimerBlockAssociationKey = (void *)&NST
     return timer;
 }
 
-+ (void)__weakTimerFiredInvoke:(NSTimer *)aTimer {
++ (void)private_weakTimerFiredInvoke:(NSTimer *)aTimer {
     void(^timerBlock)(NSTimer *) = aTimer.NSTimerCTLTimerHolderTimerBlock;
     if (timerBlock) {
         timerBlock(aTimer);

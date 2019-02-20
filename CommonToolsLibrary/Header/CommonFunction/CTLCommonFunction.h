@@ -151,13 +151,9 @@ CTL_STATIC_INLINE UIView *CTLLoadViewInNibAtIndex(NSString *nibName, NSInteger i
 #pragma mark - 编译时间戳
 /**
  编译时间戳，单位秒
-
- @param date __DATE__
- @param time __TIME__
- @return app编译时间戳，单位秒
  */
-CTL_STATIC_INLINE NSTimeInterval __CTLCompileTimestamp(const char *date, const char *time) {
-    NSString *timeStr = [NSString stringWithFormat:@"%s %s", date, time];
+CTL_STATIC_INLINE NSTimeInterval __CTLCompileTimestamp(void) {
+    NSString *timeStr = [NSString stringWithFormat:@"%s %s", __DATE__, __TIME__];
     NSLocale *locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"MMM dd yyyy HH:mm:ss"];
